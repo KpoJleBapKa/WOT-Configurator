@@ -1,22 +1,15 @@
 #include <iostream>
 #include "main.h"
-#include <Windows.h> // підключення заголовного файлу Windows.h
 
 using namespace std;
-
- 
-int main() {
-  SetConsoleCP(1251); // встановлення кодування Windows-1251 в  потік введення
-  SetConsoleOutputCP(1251); // встановлення кодування Windows-1251 в  потік виведення
-}
 
 
 void displayMenu() {
     cout << "1. Load Initial Settings" << endl;
-    cout << "2. Створити/перевірити чи існують папки" << endl;
+    cout << "2. Check Folders" << endl;
     cout << "3. Initialize Components" << endl;
-    cout << "4. Створення бекапу" << endl;
-    cout << "5. Замінити поточний кфг на з бекапу" << endl;
+    cout << "4. Create Backup" << endl;
+    cout << "5. Restore From Backup" << endl;
     cout << "6. Manage Backup Space" << endl;
     cout << "7. Log Changes" << endl;
     cout << "8. Rollback Changes" << endl;
