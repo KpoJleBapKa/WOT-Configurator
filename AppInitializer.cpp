@@ -13,6 +13,10 @@ void AppInitializer::loadInitialSettings() {
 }
 
 void AppInitializer::checkFolders() {
+    if (!filesystem::exists("User Data")) {
+        filesystem::create_directory("User Data");
+        cout << "Created 'User Data' directory." << endl;
+    }
     if (!filesystem::exists("Saved Configs")) {
         filesystem::create_directory("Saved Configs");
         cout << "Created 'Saved Configs' directory." << endl;

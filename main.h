@@ -93,10 +93,16 @@ public:
 #ifndef PROFILEMANAGER_H
 #define PROFILEMANAGER_H
 
+#include <string>
+
 class ProfileManager {
-    void saveProfile();
-    void switchProfile();
-    void importExportProfile();
+public:
+    void setName();
+    void changeName();
+private:
+    std::string userName;
+    void saveNameToFile(const std::string& name);
+    std::string loadNameFromFile();
 };
 
 #endif // PROFILEMANAGER_H
