@@ -1,4 +1,4 @@
-#include "ConfigEditor.h"
+#include "main.h"
 #include "pugixml/pugixml.hpp"  
 #include <iostream>
 
