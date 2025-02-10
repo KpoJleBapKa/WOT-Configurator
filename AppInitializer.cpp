@@ -17,9 +17,17 @@ void AppInitializer::checkFolders() {
         filesystem::create_directory("Saved Configs");
         cout << "Created 'Saved Configs' directory." << endl;
     }
+    if (!filesystem::exists("Restored Configs")) {
+        filesystem::create_directory("Restored Configs");
+        cout << "Created 'Restored Configs' directory." << endl;
+    }
     if (!filesystem::exists("User Configs")) {
         filesystem::create_directory("User Configs");
         cout << "Created 'User Configs' directory." << endl;
+    }
+    if (!filesystem::exists("Backup")) {
+        filesystem::create_directory("Backup");
+        cout << "Created 'Backup' directory." << endl;
     }
     if (!filesystem::exists("Reference Config")) {
         filesystem::create_directory("Reference Config");
