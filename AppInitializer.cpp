@@ -29,10 +29,10 @@ void AppInitializer::checkFolders() {
         filesystem::create_directory("User Configs");
         cout << "Created 'User Configs' directory." << endl;
     }
-    if (!filesystem::exists("Backup")) {
-        filesystem::create_directory("Backup");
-        cout << "Created 'Backup' directory." << endl;
-    }
+    // if (!filesystem::exists("Backup")) {
+    //     filesystem::create_directory("Backup");
+    //     cout << "Created 'Backup' directory." << endl;
+    // }
     if (!filesystem::exists("Reference Config")) {
         filesystem::create_directory("Reference Config");
         cout << "Created 'Reference Config' directory." << endl;

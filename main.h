@@ -43,9 +43,9 @@ using namespace std;
 
 class ConfigEditor {
 public:
-    void readCurrentSettings(const string& filePath);
-    void makeChanges(const string& filePath);
-    void saveUpdatedSettings(const string& filePath);
+    void readCurrentSettings();
+    // void makeChanges(const string& filePath);
+    // void saveUpdatedSettings(const string& filePath);
 };
 
 #endif // CONFIGEDITOR_H
@@ -55,9 +55,9 @@ public:
 
 class ConfigManager {
 public:
-    void coordinate();
-    void readSettings();
-    void writeSettings();
+    void uploadConfig();
+    // void readSettings();
+    // void writeSettings();
 };
 
 #endif // CONFIGMANAGER_H
