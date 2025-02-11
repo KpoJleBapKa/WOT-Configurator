@@ -24,7 +24,7 @@ void ProfileManager::saveNameToFile(const std::string& name) {
     }
 }
 
-std::string ProfileManager::loadNameFromFile() {
+string ProfileManager::loadNameFromFile() {
     ifstream inFile("User Data/userdata.txt");
     if (inFile.is_open()) {
         getline(inFile, userName);
@@ -34,3 +34,10 @@ std::string ProfileManager::loadNameFromFile() {
     }
     return userName;
 }
+
+void ProfileManager::showName() {
+    string name = loadNameFromFile();
+    cout << "Current name: " << name << endl;
+}
+
+

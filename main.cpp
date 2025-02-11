@@ -9,6 +9,7 @@ void displayMenu() {
     cout << "2. Create Backup" << endl;
     cout << "3. Restore From Backup" << endl;
     cout << "4. Set UserName" << endl;
+    cout << "5. Show current username" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -39,6 +40,9 @@ int main() {
                 break;
             case 4:
                 profilemanager.setName();
+                break;
+            case 5:
+                profilemanager.showName();
                 break;
             case 0:
                 cout << "Exiting..." << endl;

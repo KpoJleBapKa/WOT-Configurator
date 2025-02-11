@@ -99,6 +99,7 @@ class ProfileManager {
 public:
     void setName();
     void changeName();
+    void showName();
 private:
     std::string userName;
     void saveNameToFile(const std::string& name);
