@@ -125,3 +125,102 @@ void ConfigEditor::readCurrentSettings() {
         }
     }
 }
+
+void ConfigEditor::modifySettings() {
+    string configPath = "User Configs";
+    vector<string> configFiles;
+
+    // Check for configuration files in the directory
+    for (const auto& entry : fs::directory_iterator(configPath)) {
+        if (entry.path().extension() == ".xml") {
+            configFiles.push_back(entry.path().string());
+        }
+    }
+
+    if (configFiles.empty()) {
+        cout << "No configuration files available to modify." << endl;
+        return;
+    }
+
+    // Display the list of configuration files for selection
+    cout << "Available configuration files:" << endl;
+    for (size_t i = 0; i < configFiles.size(); ++i) {
+        cout << i + 1 << ". " << configFiles[i] << endl;
+    }
+
+    cout << "Enter the number of the file you want to modify: ";
+    size_t choice;
+    cin >> choice;
+
+    if (choice < 1 || choice > configFiles.size()) {
+        cout << "Invalid choice. Please try again." << endl;
+        return;
+    }
+
+    string selectedFile = configFiles[choice - 1];
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(selectedFile.c_str());
+
+    if (!result) {
+        cout << "Failed to load file: " << result.description() << endl;
+        return;
+    }
+
+    unordered_set<string> soundSettings = {"masterVolume", "volume_micVivox", "volume_vehicles", 
+                                           "volume_music", "volume_effects", "volume_ambient", 
+                                           "volume_gui", "volume_voice", "soundMode"};
+
+    unordered_set<string> controlSettings = {"horzInvert", "vertInvert", "keySensitivity", 
+                                             "sensitivity", "scrollSensitivity"};
+
+    unordered_set<string> deviceSettings = {"windowMode", "windowedWidth", "windowedHeight", 
+                                            "fullscreenWidth", "fullscreenHeight", 
+                                            "fullscreenRefresh", "aspectRatio"};
+
+    auto root = doc.child("root");
+    if (!root) {
+        cout << "Root node <root> not found." << endl;
+        return;
+    }
+
+    auto scriptsPreferences = root.child("scriptsPreferences");
+    auto soundPrefs = scriptsPreferences.child("soundPrefs");
+
+    cout << "Sound Settings:" << endl;
+    vector<string> settingsList;
+    for (auto& setting : soundPrefs.children()) {
+        string name = setting.name();
+        if (soundSettings.count(name)) {
+            cout << "  " << name << ": " << setting.text().as_string() << endl;
+            settingsList.push_back(name);
+        }
+    }
+
+    cout << "Enter the number of the setting you want to modify: ";
+    size_t settingChoice;
+    cin >> settingChoice;
+
+    if (settingChoice < 1 || settingChoice > settingsList.size()) {
+        cout << "Invalid choice. Please try again." << endl;
+        return;
+    }
+
+    string selectedSetting = settingsList[settingChoice - 1];
+    cout << "Enter new value for " << selectedSetting << ": ";
+    float newValue;
+    cin >> newValue;
+
+    // Validation
+    if (newValue < 0.0 || newValue > 1.0) {
+        cout << "Value must be between 0 and 1." << endl;
+        return;
+    }
+
+    soundPrefs.child(selectedSetting.c_str()).text().set(newValue);
+
+    if (doc.save_file(selectedFile.c_str())) {
+        cout << "Settings updated successfully." << endl;
+    } else {
+        cout << "Failed to save changes." << endl;
+    }
+}

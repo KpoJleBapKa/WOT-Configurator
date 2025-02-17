@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <root>
 	<scriptsPreferences>
 		<introVideoVersion> 1.27.1 </introVideoVersion>
@@ -6,8 +7,8 @@
 			<player.loading.progress> 800 </player.loading.progress>
 		</gameLoading>
 		<soundPrefs>
-			<masterVolume> 0.150000 </masterVolume>
-			<volume_micVivox> 0.300000 </volume_micVivox>
+			<masterVolume>1</masterVolume>
+			<volume_micVivox>1</volume_micVivox>
 			<volume_vehicles> 0.100000 </volume_vehicles>
 			<volume_music> 0.000000 </volume_music>
 			<volume_effects> 0.350000 </volume_effects>
@@ -174,16 +175,16 @@
 		<accounts>
 			<version> 82 </version>
 			<account>
-				<login/>
+				<login />
 				<settings>
 					<players_panel> KGRwMQpTJ3Nob3dMZXZlbHMnCnAyCkkwMQpzUydzdGF0ZScKcDMKSTIKc1Mnc2hvd1R5cGVzJwpwNApJMDEKcy4= </players_panel>
 					<statsSortingFunRandom> KGRwMQpTJ3NvcnREaXJlY3Rpb24nCnAyClMnZGVzY2VuZGluZycKcDMKc1MnaWNvblR5cGUnCnA0ClMneHAnCnA1CnMu </statsSortingFunRandom>
 				</settings>
-				<counters/>
-				<notifications/>
-				<ui_flags/>
-				<filters/>
-				<battle_hints/>
+				<counters />
+				<notifications />
+				<ui_flags />
+				<filters />
+				<battle_hints />
 			</account>
 			<account>
 				<login> KpoJleBapKa </login>
@@ -335,7 +336,7 @@
 					<NYGuestActivityShown> STAxCi4= </NYGuestActivityShown>
 					<liveOpsWebEventsUIFlags> KGRwMQpTJ2xvbG4yNScKcDIKSTAwCnMu </liveOpsWebEventsUIFlags>
 				</ui_flags>
-				<newbie_hints/>
+				<newbie_hints />
 				<battle_hints>
 					<displayHistory> KGRwMQpTJ3RvdGFsRGlzcGxheUNvdW50JwpwMgooZHAzClMnZ3JpbmNoLnN0ZWFsaW5nX2Zyb21feW91JwpwNApJNDYKc3NTJ2xhc3REaXNwbGF5VGltZScKcDUKKGRwNgpnNApGMTczNDg2OTgyNS4zMDIKc3Mu </displayHistory>
 				</battle_hints>
@@ -451,8 +452,8 @@
 					<profileTechniqueMember> KGRwMQpTJ3NlbGVjdGVkQ29sdW1uU29ydGluZycKcDIKUydkZXNjZW5kaW5nJwpwMwpzUydzZWxlY3RlZENvbHVtbicKcDQKSTIKcy4= </profileTechniqueMember>
 					<BATTLEPASS_CAROUSEL_FILTER_CLIENT_1> KGRwMQpTJ2JhdHRsZVBhc3NTZWFzb24nCnAyCkkyMDI1MDEwMQpzLg== </BATTLEPASS_CAROUSEL_FILTER_CLIENT_1>
 				</filters>
-				<newbie_hints/>
-				<battle_hints/>
+				<newbie_hints />
+				<battle_hints />
 			</account>
 			<account>
 				<login> KpoJlbKa </login>
@@ -534,8 +535,8 @@
 				<filters>
 					<profileTechnique> KGRwMQpTJ2lzSW5IYW5nYXJTZWxlY3RlZCcKcDIKSTAwCnNTJ3NlbGVjdGVkQ29sdW1uU29ydGluZycKcDMKUydkZXNjZW5kaW5nJwpwNApzUydzZWxlY3RlZENvbHVtbicKcDUKSTIKcy4= </profileTechnique>
 				</filters>
-				<battle_hints/>
-				<newbie_hints/>
+				<battle_hints />
+				<newbie_hints />
 			</account>
 			<account>
 				<login> _Alien_WaRrioR </login>
@@ -582,8 +583,8 @@
 					<profileTechnique> KGRwMQpTJ2lzSW5IYW5nYXJTZWxlY3RlZCcKcDIKSTAwCnNTJ3NlbGVjdGVkQ29sdW1uU29ydGluZycKcDMKUydkZXNjZW5kaW5nJwpwNApzUydzZWxlY3RlZENvbHVtbicKcDUKSTIKcy4= </profileTechnique>
 					<BATTLEPASS_CAROUSEL_FILTER_CLIENT_1> KGRwMQpTJ2JhdHRsZVBhc3NTZWFzb24nCnAyCkkyMDI0MDIwMQpzLg== </BATTLEPASS_CAROUSEL_FILTER_CLIENT_1>
 				</filters>
-				<battle_hints/>
-				<newbie_hints/>
+				<battle_hints />
+				<newbie_hints />
 			</account>
 			<account>
 				<login> Krollebas </login>
@@ -625,12 +626,12 @@
 				<favorites>
 					<current> STkKLg== </current>
 				</favorites>
-				<filters/>
-				<newbie_hints/>
+				<filters />
+				<newbie_hints />
 			</account>
 			<account>
 				<login> babaXa_03 </login>
-				<settings/>
+				<settings />
 			</account>
 		</accounts>
 		<captureDevice> Default System Device </captureDevice>
@@ -702,195 +703,195 @@
 		<commandMapping>
 			<CMD_CM_SHOOT>
 				<fireKey> KEY_LEFTMOUSE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_SHOOT>
 			<CMD_CM_CHARGE_SHOT>
 				<fireKey> KEY_LEFTMOUSE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_CHARGE_SHOT>
 			<CMD_STOP_UNTIL_FIRE>
 				<fireKey> KEY_NONE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_STOP_UNTIL_FIRE>
 			<CMD_CM_LOCK_TARGET_OFF>
 				<fireKey> KEY_NONE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_LOCK_TARGET_OFF>
 			<CMD_TOGGLE_GUI>
 				<fireKey> KEY_NONE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_TOGGLE_GUI>
 			<CMD_AMMO_CHOICE_1>
 				<fireKey> KEY_1 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_1>
 			<CMD_AMMO_CHOICE_2>
 				<fireKey> KEY_2 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_2>
 			<CMD_AMMO_CHOICE_3>
 				<fireKey> KEY_3 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_3>
 			<CMD_AMMO_CHOICE_4>
 				<fireKey> KEY_4 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_4>
 			<CMD_AMMO_CHOICE_5>
 				<fireKey> KEY_5 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_5>
 			<CMD_AMMO_CHOICE_6>
 				<fireKey> KEY_6 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_6>
 			<CMD_AMMO_CHOICE_7>
 				<fireKey> KEY_7 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_7>
 			<CMD_AMMO_CHOICE_8>
 				<fireKey> KEY_8 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_8>
 			<CMD_AMMO_CHOICE_9>
 				<fireKey> KEY_9 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_9>
 			<CMD_AMMO_CHOICE_0>
 				<fireKey> KEY_0 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_AMMO_CHOICE_0>
 			<CMD_MINIMAP_SIZE_DOWN>
 				<fireKey> KEY_MINUS </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_MINIMAP_SIZE_DOWN>
 			<CMD_MINIMAP_SIZE_UP>
 				<fireKey> KEY_EQUALS </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_MINIMAP_SIZE_UP>
 			<CMD_MOVE_FORWARD>
 				<fireKey> KEY_W </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_MOVE_FORWARD>
 			<CMD_VOICECHAT_MUTE>
 				<fireKey> KEY_E </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_VOICECHAT_MUTE>
 			<CMD_RELOAD_PARTIAL_CLIP>
 				<fireKey> KEY_R </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_RELOAD_PARTIAL_CLIP>
 			<CMD_CHAT_SHORTCUT_CONTEXT_COMMAND>
 				<fireKey> KEY_T </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_CONTEXT_COMMAND>
 			<CMD_DECREMENT_CRUISE_MODE>
 				<fireKey> KEY_MOUSE4 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_DECREMENT_CRUISE_MODE>
 			<CMD_CM_VEHICLE_SWITCH_AUTOROTATION>
 				<fireKey> KEY_V </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_VEHICLE_SWITCH_AUTOROTATION>
 			<CMD_ROTATE_LEFT>
 				<fireKey> KEY_A </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_ROTATE_LEFT>
 			<CMD_MOVE_BACKWARD>
 				<fireKey> KEY_S </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_MOVE_BACKWARD>
 			<CMD_ROTATE_RIGHT>
 				<fireKey> KEY_D </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_ROTATE_RIGHT>
 			<CMD_CM_TRAJECTORY_VIEW>
 				<fireKey> KEY_G </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_TRAJECTORY_VIEW>
 			<CMD_VOICECHAT_ENABLE>
 				<fireKey> KEY_H </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_VOICECHAT_ENABLE>
 			<CMD_REQUEST_RECOVERY>
 				<fireKey> KEY_J </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_REQUEST_RECOVERY>
 			<CMD_CM_ALTERNATE_MODE>
 				<fireKey> KEY_LSHIFT </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_ALTERNATE_MODE>
 			<CMD_CM_LOCK_TARGET>
 				<fireKey> KEY_RIGHTMOUSE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_LOCK_TARGET>
 			<CMD_RADIAL_MENU_SHOW>
 				<fireKey> KEY_Z </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_RADIAL_MENU_SHOW>
 			<CMD_SHOW_PERSONAL_RESERVES>
 				<fireKey> KEY_B </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_SHOW_PERSONAL_RESERVES>
 			<CMD_QUEST_PROGRESS_SHOW>
 				<fireKey> KEY_N </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_QUEST_PROGRESS_SHOW>
 			<CMD_MINIMAP_VISIBLE>
 				<fireKey> KEY_M </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_MINIMAP_VISIBLE>
 			<CMD_INCREMENT_CRUISE_MODE>
 				<fireKey> KEY_MOUSE5 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_INCREMENT_CRUISE_MODE>
 			<CMD_BLOCK_TRACKS>
 				<fireKey> KEY_SPACE </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_BLOCK_TRACKS>
 			<CMD_CHAT_SHORTCUT_CONTEXT_COMMIT>
 				<fireKey> KEY_F2 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_CONTEXT_COMMIT>
 			<CMD_CHAT_SHORTCUT_THANKYOU>
 				<fireKey> KEY_F3 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_THANKYOU>
 			<CMD_CHAT_SHORTCUT_BACKTOBASE>
 				<fireKey> KEY_F4 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_BACKTOBASE>
 			<CMD_CHAT_SHORTCUT_AFFIRMATIVE>
 				<fireKey> KEY_F5 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_AFFIRMATIVE>
 			<CMD_CHAT_SHORTCUT_NEGATIVE>
 				<fireKey> KEY_F6 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_NEGATIVE>
 			<CMD_CHAT_SHORTCUT_HELPME>
 				<fireKey> KEY_F7 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_HELPME>
 			<CMD_CHAT_SHORTCUT_RELOAD>
 				<fireKey> KEY_F8 </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CHAT_SHORTCUT_RELOAD>
 			<CMD_CM_CAMERA_ROTATE_UP>
 				<fireKey> KEY_UPARROW </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_CAMERA_ROTATE_UP>
 			<CMD_CM_CAMERA_ROTATE_LEFT>
 				<fireKey> KEY_LEFTARROW </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_CAMERA_ROTATE_LEFT>
 			<CMD_CM_CAMERA_ROTATE_RIGHT>
 				<fireKey> KEY_RIGHTARROW </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_CAMERA_ROTATE_RIGHT>
 			<CMD_CM_CAMERA_ROTATE_DOWN>
 				<fireKey> KEY_DOWNARROW </fireKey>
-				<satelliteKeys/>
+				<satelliteKeys />
 			</CMD_CM_CAMERA_ROTATE_DOWN>
 		</commandMapping>
 		<mods>
@@ -1082,5 +1083,5 @@
 		<useAlternateFrameTimer> false </useAlternateFrameTimer>
 		<textureQualityMemoryBlock> 0 </textureQualityMemoryBlock>
 	</devicePreferences>
-	<consoleHistory/>
+	<consoleHistory />
 </root>

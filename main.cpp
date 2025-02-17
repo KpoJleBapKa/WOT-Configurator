@@ -48,6 +48,9 @@ int main() {
             case 6:
                 configeditor.readCurrentSettings();
                 break;
+            case 7:
+                configeditor.modifySettings();
+                break;
             case 0:
                 cout << "Exiting..." << endl;
                 break;

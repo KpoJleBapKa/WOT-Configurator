@@ -44,6 +44,7 @@ using namespace std;
 class ConfigEditor {
 public:
     void readCurrentSettings();
+    void modifySettings();
     // void makeChanges(const string& filePath);
     // void saveUpdatedSettings(const string& filePath);
 };
