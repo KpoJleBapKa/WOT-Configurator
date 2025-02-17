@@ -53,14 +53,6 @@ void ConfigEditor::readCurrentSettings() {
                                            "volume_music", "volume_effects", "volume_ambient", 
                                            "volume_gui", "volume_voice", "soundMode"};
 
-    unordered_set<string> graphicsSettings = {"COLOR_GRADING_TECHNIQUE", "CUSTOM_AA_MODE", 
-                                              "DECOR_LEVEL", "EFFECTS_QUALITY", "FLORA_QUALITY", 
-                                              "LIGHTING_QUALITY", "MOTION_BLUR_QUALITY", 
-                                              "MSAA_QUALITY", "OBJECT_LOD", 
-                                              "POST_PROCESSING_QUALITY", "SHADOWS_QUALITY", 
-                                              "WATER_QUALITY", "TERRAIN_QUALITY", 
-                                              "TEXTURE_QUALITY", "TRACK_PHYSICS_QUALITY"};
-
     unordered_set<string> controlSettings = {"horzInvert", "vertInvert", "keySensitivity", 
                                              "sensitivity", "scrollSensitivity"};
 
@@ -89,14 +81,28 @@ void ConfigEditor::readCurrentSettings() {
     auto graphicsPreferences = root.child("graphicsPreferences");
     cout << "\nGraphics Settings:" << endl;
     if (graphicsPreferences) {
+        // Display version settings
+        cout << " " << "graphicsSettingsVersion: " << graphicsPreferences.child("graphicsSettingsVersion").text().as_string() << endl;
+        cout << " " << "graphicsSettingsVersionMinor: " << graphicsPreferences.child("graphicsSettingsVersionMinor").text().as_string() << endl;
+        cout << " " << "graphicsSettingsVersionMaintainance: " << graphicsPreferences.child("graphicsSettingsVersionMaintainance").text().as_string() << endl;
+        cout << " " << "graphicsSettingsStatus: " << graphicsPreferences.child("graphicsSettingsStatus").text().as_string() << endl;
+
+        // Display each entry
         for (auto& entry : graphicsPreferences.children("entry")) {
             string label = entry.child("label").text().as_string();
-            if (graphicsSettings.count(label)) {
-                cout << "  " << label << ": " << entry.child("activeOption").text().as_string() << endl;
-            }
+            string activeOption = entry.child("activeOption").text().as_string();
+            cout <<  " " << label << ": " << activeOption << endl;
         }
+
+        // Display additional parameters
+        cout << " " << "ParticlSystemNoRenderGroup: " << graphicsPreferences.child("ParticlSystemNoRenderGroup").text().as_string() << endl;
+        cout << " " << "distributionLevel: " << graphicsPreferences.child("distributionLevel").text().as_string() << endl;
+        cout << " " << "colorGradingStrength: " << graphicsPreferences.child("colorGradingStrength").text().as_string() << endl;
+        cout << " " << "brightnessDeferred: " << graphicsPreferences.child("brightnessDeferred").text().as_string() << endl;
+        cout << " " << "contrastDeferred: " << graphicsPreferences.child("contrastDeferred").text().as_string() << endl;
+        cout << " " << "saturationDeferred: " << graphicsPreferences.child("saturationDeferred").text().as_string() << endl;
     } else {
-        cout << "Graphics node not found." << endl;
+        cout << "Graphics preferences node not found." << endl;
     }
 
     auto controlMode = scriptsPreferences.child("controlMode");
