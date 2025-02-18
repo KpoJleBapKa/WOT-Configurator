@@ -1,0 +1,86 @@
+Sound Settings: |
+  masterVolume:  0.150000 | загальний звук
+  volume_micVivox:  0.300000 | чутливість мікрофону
+  volume_vehicles:  0.100000 | техніка
+  volume_music:  0.000000 | музика
+  volume_effects:  0.350000 | ефекти
+  volume_ambient:  0.080000 | довкілля
+  volume_gui:  0.700000 | інтерфейс
+  volume_voice:  0.800000 | голосові повідомлення (командири)
+  soundMode:  default | 
+
+Graphics Settings:
+ graphicsSettingsVersion:  5 |
+ graphicsSettingsVersionMinor:  0 |
+ graphicsSettingsVersionMaintainance:  2 |
+ graphicsSettingsStatus:  0 |
+  COLOR_GRADING_TECHNIQUE :  0 |
+  CUSTOM_AA_MODE :  0 |
+  DECOR_LEVEL :  5 |
+  DRR_AUTOSCALER_ENABLED :  0 |
+  EFFECTS_QUALITY :  4 |
+  FAR_PLANE :  1 |
+  FLORA_QUALITY :  4 |
+  HAVOK_ENABLED :  0 |
+  HAVOK_QUALITY :  0 |
+  LIGHTING_QUALITY :  1 |
+  MOTION_BLUR_QUALITY :  3 |
+  MSAA_QUALITY :  3 |
+  OBJECT_LOD :  0 |
+  POST_PROCESSING_QUALITY :  1 |
+  RENDER_PIPELINE :  0 |
+  SEMITRANSPARENT_LEAVES_ENABLED :  0 |
+  SHADER_DEBUG :  1 |
+  SHADOWS_QUALITY :  0 |
+  SNIPER_MODE_EFFECTS_QUALITY :  3 |
+  SNIPER_MODE_GRASS_ENABLED :  0 |
+  SNIPER_MODE_SWINGING_ENABLED :  0 |
+  SNIPER_MODE_TERRAIN_TESSELLATION_ENABLED :  1 |
+  SPEEDTREE_QUALITY :  3 |
+  TERRAIN_QUALITY :  0 |
+  TERRAIN_TESSELLATION_ENABLED :  1 |
+  TEXTURE_QUALITY :  0 |
+  TRACK_PHYSICS_QUALITY :  0 |
+  VEHICLE_DUST_ENABLED :  0 |
+  VEHICLE_TRACES_ENABLED :  1 |
+  WATER_QUALITY :  3 |
+ ParticlSystemNoRenderGroup:  65535 |
+ distributionLevel:  2 |
+ colorGradingStrength:  0.250000 |
+ brightnessDeferred:  0.970000 |
+ contrastDeferred:  0.960000 |
+ saturationDeferred:  1.000000 |
+
+Control Settings:
+  horzInvert:  false |
+  vertInvert:  false |
+  keySensitivity:  1.000000 |
+  sensitivity:  0.092251 | аркадний приціл
+  scrollSensitivity:  1.000000 |
+  horzInvert:  false |
+  vertInvert:  false |
+  keySensitivity:  1.000000 |
+  sensitivity:  1.000000 |
+  scrollSensitivity:  1.000000 |
+  horzInvert:  false |
+  vertInvert:  false |
+  keySensitivity:  1.000000 |
+  sensitivity:  0.084026 | снайперський приціл
+  scrollSensitivity:  1.000000 |
+  keySensitivity:  1.000000 |
+  sensitivity:  1.000000 |
+  scrollSensitivity:  1.000000 |
+  horzInvert:  false |
+  vertInvert:  false |
+  keySensitivity:  1.000000 |
+  sensitivity:  1.000000 |
+  scrollSensitivity:  1.000000 |
+
+Device Settings:
+  windowMode:  1 | 
+  windowedWidth:  1920 |
+  windowedHeight:  1061 |
+  fullscreenWidth:  1920 |
+  fullscreenHeight:  1080 |
+  fullscreenRefresh:  165 |
+  aspectRatio:  1.777778 |

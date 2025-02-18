@@ -11,6 +11,7 @@ void displayMenu() {
     cout << "4. Set UserName" << endl;
     cout << "5. Show current username" << endl;
     cout << "6. Show cfg settings" << endl;
+    cout << "7. Edit cfg settings" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
