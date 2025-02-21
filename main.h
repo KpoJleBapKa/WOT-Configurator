@@ -8,7 +8,7 @@ public:
     void initializeComponents();
 };
 
-#endif
+#endif // APPINITIALIZER_H
 
 #ifndef BACKUPMANAGER_H
 #define BACKUPMANAGER_H
@@ -45,8 +45,6 @@ class ConfigEditor {
 public:
     void readCurrentSettings();
     void modifySettings();
-    // void makeChanges(const string& filePath);
-    // void saveUpdatedSettings(const string& filePath);
 };
 
 #endif // CONFIGEDITOR_H
@@ -57,8 +55,6 @@ public:
 class ConfigManager {
 public:
     void uploadConfig();
-    // void readSettings();
-    // void writeSettings();
 };
 
 #endif // CONFIGMANAGER_H
@@ -109,3 +105,9 @@ private:
 
 #endif // PROFILEMANAGER_H
 
+#ifndef MAIN_H
+#define MAIN_H
+
+void displayMenu();
+
+#endif // MAIN_H
