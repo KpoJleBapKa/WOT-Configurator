@@ -1,93 +1,226 @@
-// --- Файл ConfigManager.cpp ---
-#include "main.h"
-#include "pugixml/pugixml.hpp" // <-- Додаємо PugiXML
+#include "main.h"             // Включає ConfigManager, FileValidator
+#include "pugixml/pugixml.hpp" // Потрібен для viewCurrentGameConfig
 #include <iostream>
 #include <vector>
 #include <string>
 #include <filesystem>
-#include <cstdlib>
-#include <limits>
-#include <unordered_set> // <-- Потрібно для списків налаштувань
+#include <cstdlib>             // Для getenv
+#include <limits>              // Для numeric_limits
+#include <unordered_set>     // Потрібен для viewCurrentGameConfig
+#include <cctype>              // Для tolower
 
-// Використовуємо простір імен для зручності
 using namespace std;
 namespace fs = std::filesystem;
 
-// --- Новий метод viewCurrentGameConfig ---
-void ConfigManager::viewCurrentGameConfig() {
-    cout << "Viewing current game configuration..." << endl;
+// --- Метод зміни поточного конфігу (з валідацією) ---
+void ConfigManager::changeCurrentConfig() {
+    cout << "Changing current game config..." << endl;
+    FileValidator fileValidator; // Валідатор
 
-    // --- Визначаємо шлях до preferences.xml гри ---
+    // --- Шляхи ---
     const char* appDataPath = getenv("APPDATA");
     if (!appDataPath) {
         cerr << "Error: Unable to get APPDATA environment variable." << endl;
         return;
     }
-    fs::path gameConfigPath = fs::path(appDataPath) / "Wargaming.net" / "WorldOfTanks" / "preferences.xml";
+    fs::path targetDir = fs::path(appDataPath) / "Wargaming.net" / "WorldOfTanks";
+    fs::path targetFile = targetDir / "preferences.xml";
+    fs::path sourceDir = "User Configs";
 
-    // --- Перевіряємо, чи файл існує ---
-    if (!fs::exists(gameConfigPath)) {
-        cerr << "Error: Game configuration file not found at:" << endl;
-        cerr << gameConfigPath.string() << endl;
-        cerr << "Please ensure the game has been run at least once." << endl;
+    // --- Вибір файлу з User Configs ---
+    vector<fs::path> configFilesPaths; // Шляхи
+    vector<string> configFilesNames;  // Імена
+
+    if (!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) {
+        cerr << "Error: Directory '" << sourceDir.string() << "' not found." << endl;
         return;
     }
-     if (!fs::is_regular_file(gameConfigPath)) {
-           cerr << "Error: The path found is not a regular file:" << endl;
-           cerr << gameConfigPath.string() << endl;
+    try {
+        for (const auto& entry : fs::directory_iterator(sourceDir)) {
+            if (entry.is_regular_file() && entry.path().extension() == ".xml") {
+                configFilesPaths.push_back(entry.path());
+                configFilesNames.push_back(entry.path().filename().string());
+            }
+        }
+    } catch (const fs::filesystem_error& e) {
+        cerr << "Error reading directory '" << sourceDir.string() << "': " << e.what() << endl;
+        return;
+    }
+
+    if (configFilesNames.empty()) {
+        cout << "No config files found in '" << sourceDir.string() << "'." << endl;
+        return;
+    }
+
+    cout << "\nAvailable config files in '" << sourceDir.string() << "':" << endl;
+    for (size_t i = 0; i < configFilesNames.size(); ++i) {
+        cout << i + 1 << ". " << configFilesNames[i] << endl;
+    }
+    cout << "0. Cancel" << endl;
+
+    int choice = -1;
+    cout << "Enter the number of the config file to apply: ";
+    while (!(cin >> choice) || choice < 0 || choice > static_cast<int>(configFilesNames.size())) {
+        cout << "Invalid input. Please enter a number between 0 and " << configFilesNames.size() << ": ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    if (choice == 0) {
+        cout << "Operation cancelled." << endl;
+        return;
+    }
+    fs::path selectedSourceFile = configFilesPaths[choice - 1];
+
+    // --- ВАЛІДАЦІЯ ВИБРАНОГО ФАЙЛУ ---
+    cout << "Validating selected config file before applying..." << endl;
+     if (!fileValidator.isXmlWellFormed(selectedSourceFile)) {
+        cerr << "Error: Selected file is not a well-formed XML. Operation aborted." << endl;
+        return;
+    }
+    if (!fileValidator.hasExpectedStructure(selectedSourceFile)) {
+        cerr << "Error: Selected file is missing expected WoT structure. Operation aborted." << endl;
+        return;
+    }
+    vector<string> valueErrors = fileValidator.findInvalidSimpleValues(selectedSourceFile);
+    if (!valueErrors.empty()) {
+         cout << "\n--- Validation Warnings for selected file ---" << endl;
+         for(const auto& err : valueErrors) cout << "  - " << err << endl;
+         cout << "-------------------------------------------" << endl;
+        cout << "Do you want to continue applying this config despite the warnings? (y/n): ";
+        char confirm = 'n';
+        cin >> confirm;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (tolower(confirm) != 'y') {
+            cout << "Operation cancelled by user." << endl;
+            return;
+        }
+          cout << "Continuing operation despite warnings..." << endl;
+    } else {
+         cout << "Selected file validation passed." << endl;
+    }
+    // --- КІНЕЦЬ ВАЛІДАЦІЇ ---
+
+    // --- Логіка застосування (з видаленням) ---
+    cout << "Applying '" << selectedSourceFile.filename().string() << "' as current game config..." << endl;
+    try {
+         if (!fs::exists(targetDir)) { fs::create_directories(targetDir); }
+         if (fs::exists(targetFile)) {
+             cout << "Removing existing game config file: " << targetFile.string() << endl;
+             fs::remove(targetFile);
+         }
+        cout << "Copying " << selectedSourceFile.filename().string() << " to " << targetFile.string() << endl;
+        fs::copy_file(selectedSourceFile, targetFile, fs::copy_options::overwrite_existing);
+        cout << "Successfully applied '" << selectedSourceFile.filename().string() << "' as '" << targetFile.filename().string() << "'." << endl;
+    } catch (const fs::filesystem_error& e) {
+        cerr << "Error applying config file: " << e.what() << endl;
+        cerr << "Path1: " << e.path1().string() << endl;
+        cerr << "Path2: " << e.path2().string() << endl;
+    }
+}
+
+// --- Метод перегляду поточного конфігу гри (з валідацією) ---
+void ConfigManager::viewCurrentGameConfig() {
+     cout << "Viewing current game configuration..." << endl;
+     FileValidator fileValidator; // Валідатор
+
+     // --- Шлях до файлу гри ---
+     const char* appDataPath = getenv("APPDATA");
+     if (!appDataPath) { /* ... */ return; }
+     fs::path gameConfigPath = fs::path(appDataPath) / "Wargaming.net" / "WorldOfTanks" / "preferences.xml";
+
+     // --- ВАЛІДАЦІЯ ФАЙЛУ ГРИ ---
+     cout << "Validating game config file..." << endl;
+      if (!fs::exists(gameConfigPath)) {
+           cerr << "Error: Game configuration file not found at: " << gameConfigPath.string() << endl;
            return;
       }
+       if (!fs::is_regular_file(gameConfigPath)) { // Додав перевірку, що це файл
+           cerr << "Error: The path found is not a regular file: " << gameConfigPath.string() << endl;
+           return;
+      }
+      if (!fileValidator.isXmlWellFormed(gameConfigPath)) {
+         cerr << "Error: Current game config file is not a well-formed XML. Cannot display settings." << endl;
+         return;
+     }
+     if (!fileValidator.hasExpectedStructure(gameConfigPath)) {
+         cerr << "Warning: Current game config file might be missing expected WoT structure sections. Displaying available data..." << endl;
+     }
+     vector<string> valueErrors = fileValidator.findInvalidSimpleValues(gameConfigPath);
+     if (!valueErrors.empty()) {
+         cout << "\n--- Validation Warnings for current game config ---" << endl;
+         for(const auto& err : valueErrors) cout << "  - " << err << endl;
+         cout << "-------------------------------------------------" << endl;
+     } else {
+          cout << "Game config validation passed." << endl;
+     }
+     // --- КІНЕЦЬ ВАЛІДАЦІЇ ---
 
-    // --- Завантаження та парсинг XML (логіка схожа на ConfigEditor) ---
-    cout << "\n--- Displaying settings from: " << gameConfigPath.string() << " ---" << endl;
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(gameConfigPath.c_str());
+     // --- Логіка відображення налаштувань (як у твоєму оригінальному ConfigEditor::readCurrentSettings) ---
+     cout << "\n--- Displaying settings from: " << gameConfigPath.string() << " ---" << endl;
+     pugi::xml_document doc;
+     pugi::xml_parse_result result = doc.load_file(gameConfigPath.string().c_str()); // Використовуємо шлях
+      if (!result) {
+         cerr << "Error loading XML file again for display: " << result.description() << endl; // Помилка навіть після валідації? Дивно, але перевіримо.
+         return;
+      }
 
-    if (!result) {
-        cerr << "Error loading XML file: " << result.description() << endl;
-        cerr << "File path: " << gameConfigPath.string() << endl;
-        return;
-    }
-
-    // Визначення полів (дублюємо з ConfigEditor, або виносимо в спільний header/namespace)
+     // Визначення полів (як у твоєму ConfigEditor)
      unordered_set<string> soundSettings = {"masterVolume", "volume_micVivox", "volume_vehicles",
                                            "volume_music", "volume_effects", "volume_ambient",
                                            "volume_gui", "volume_voice", "soundMode"};
-    unordered_set<string> controlSettings = {"horzInvert", "vertInvert", "keySensitivity",
+     unordered_set<string> controlSettings = {"horzInvert", "vertInvert", "keySensitivity",
                                              "sensitivity", "scrollSensitivity"};
-    unordered_set<string> deviceSettings = {"windowMode", "windowedWidth", "windowedHeight",
+     unordered_set<string> deviceSettings = {"windowMode", "windowedWidth", "windowedHeight",
                                             "fullscreenWidth", "fullscreenHeight",
                                             "fullscreenRefresh", "aspectRatio"};
 
-    // Логіка парсингу та виводу (також дублюється)
-    auto root = doc.child("root");
-    if (!root) {
-        cout << "Root node <root> not found in " << gameConfigPath.filename().string() << "." << endl;
-        return;
-    }
+     // --- Вивід ---
+     auto root = doc.child("root");
+     if (!root) { cout << "Root node <root> not found." << endl; return; }
 
-    // --- Sound Settings ---
-    auto scriptsPreferences = root.child("scriptsPreferences");
-    auto soundPrefs = scriptsPreferences ? scriptsPreferences.child("soundPrefs") : pugi::xml_node();
-    cout << "\nSound Settings:" << endl;
-    if (soundPrefs) {
-        bool found = false;
-        for (auto& setting : soundPrefs.children()) {
-            string name = setting.name();
-            if (soundSettings.count(name)) {
-                cout << "  " << name << ": " << setting.text().as_string() << endl;
-                found = true;
-            }
-        }
-         if (!found) cout << "  (No relevant sound settings found or section empty)" << endl;
-    } else {
-        cout << "  (Sound preferences section not found)" << endl;
-    }
+     auto scriptsPreferences = root.child("scriptsPreferences");
+     if (scriptsPreferences) { // Додав перевірку
+         auto soundPrefs = scriptsPreferences.child("soundPrefs");
+         cout << "\nSound Settings:" << endl;
+         if (soundPrefs) {
+             bool found = false;
+             for (auto& setting : soundPrefs.children()) {
+                 string name = setting.name();
+                 if (soundSettings.count(name)) {
+                     cout << "  " << name << ": " << setting.text().as_string() << endl;
+                     found = true;
+                 }
+             }
+             if (!found) cout << "  (No relevant sound settings found or section empty)" << endl;
+         } else { cout << "  (Sound preferences section not found)" << endl; }
 
-    // --- Graphics Settings ---
-    auto graphicsPreferences = root.child("graphicsPreferences");
-    cout << "\nGraphics Settings:" << endl;
-    if (graphicsPreferences) {
+         auto controlMode = scriptsPreferences.child("controlMode");
+         cout << "\nControl Settings:" << endl;
+         if (controlMode) {
+              bool found = false;
+              for (auto& mode : controlMode.children()) {
+                  auto camera = mode.child("camera");
+                  if (camera) {
+                     for (auto& setting : camera.children()) {
+                           string name = setting.name();
+                           if (controlSettings.count(name)) {
+                               cout << "  " << mode.name() << "/" << name << ": " << setting.text().as_string() << endl;
+                               found = true;
+                           }
+                     }
+                  }
+              }
+              if (!found) cout << "  (No relevant control settings found or section empty)" << endl;
+         } else { cout << "  (Control mode section not found)" << endl; }
+     } else { cout << "Section <scriptsPreferences> not found." << endl;}
+
+
+     auto graphicsPreferences = root.child("graphicsPreferences");
+     cout << "\nGraphics Settings:" << endl;
+     if (graphicsPreferences) {
+         // ... (Вивід версій, <entry>, інших параметрів - ЯК У ТВОЄМУ КОДІ ConfigEditor::readCurrentSettings) ...
          cout << "  " << "graphicsSettingsVersion: " << graphicsPreferences.child("graphicsSettingsVersion").text().as_string("N/A") << endl;
          cout << "  " << "graphicsSettingsVersionMinor: " << graphicsPreferences.child("graphicsSettingsVersionMinor").text().as_string("N/A") << endl;
          cout << "  " << "graphicsSettingsVersionMaintainance: " << graphicsPreferences.child("graphicsSettingsVersionMaintainance").text().as_string("N/A") << endl;
@@ -103,36 +236,11 @@ void ConfigManager::viewCurrentGameConfig() {
          cout << "  " << "brightnessDeferred: " << graphicsPreferences.child("brightnessDeferred").text().as_string("N/A") << endl;
          cout << "  " << "contrastDeferred: " << graphicsPreferences.child("contrastDeferred").text().as_string("N/A") << endl;
          cout << "  " << "saturationDeferred: " << graphicsPreferences.child("saturationDeferred").text().as_string("N/A") << endl;
-    } else {
-        cout << "  (Graphics preferences section not found)" << endl;
-    }
+     } else { cout << "  (Graphics preferences section not found)" << endl; }
 
-    // --- Control Settings ---
-    auto controlMode = scriptsPreferences ? scriptsPreferences.child("controlMode") : pugi::xml_node();
-    cout << "\nControl Settings:" << endl;
-     if (controlMode) {
-         bool found = false;
-         for (auto& mode : controlMode.children()) {
-            auto camera = mode.child("camera");
-            if (camera) {
-                for (auto& setting : camera.children()) {
-                     string name = setting.name();
-                     if (controlSettings.count(name)) {
-                         cout << "  " << mode.name() << "/" << name << ": " << setting.text().as_string() << endl;
-                         found = true;
-                     }
-                }
-            }
-         }
-          if (!found) cout << "  (No relevant control settings found or section empty)" << endl;
-     } else {
-        cout << "  (Control mode section not found)" << endl;
-     }
-
-    // --- Device Settings ---
-    auto devicePreferences = root.child("devicePreferences");
-    cout << "\nDevice Settings:" << endl;
-    if (devicePreferences) {
+     auto devicePreferences = root.child("devicePreferences");
+     cout << "\nDevice Settings:" << endl;
+     if (devicePreferences) {
          bool found = false;
          for (auto& setting : devicePreferences.children()) {
              string name = setting.name();
@@ -142,89 +250,12 @@ void ConfigManager::viewCurrentGameConfig() {
              }
          }
          if (!found) cout << "  (No relevant device settings found or section empty)" << endl;
-    } else {
-        cout << "  (Device preferences section not found)" << endl;
-    }
-     cout << "--- End of settings for: " << gameConfigPath.filename().string() << " ---" << endl;
+     } else { cout << "  (Device preferences section not found)" << endl; }
+
+     cout << "--- End of settings ---" << endl;
 }
 
-
-// --- Існуючі методи ConfigManager ---
-
-void ConfigManager::changeCurrentConfig() {
-    // ... (код залишається таким, як був у попередній відповіді, з fs::remove)
-    cout << "Changing current game config..." << endl;
-    const char* appDataPath = getenv("APPDATA");
-    if (!appDataPath) {
-        cerr << "Error: Unable to get APPDATA environment variable." << endl;
-        return;
-    }
-    fs::path targetDir = fs::path(appDataPath) / "Wargaming.net" / "WorldOfTanks";
-    fs::path targetFile = targetDir / "preferences.xml";
-    fs::path sourceDir = "User Configs";
-    if (!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) {
-        cerr << "Error: Directory '" << sourceDir.string() << "' not found or is not a directory." << endl;
-        return;
-    }
-    vector<fs::path> configFiles;
-    cout << "\nAvailable config files in '" << sourceDir.string() << "':" << endl;
-    try {
-        for (const auto& entry : fs::directory_iterator(sourceDir)) {
-            if (entry.is_regular_file() && entry.path().extension() == ".xml") {
-                configFiles.push_back(entry.path());
-            }
-        }
-    } catch (const fs::filesystem_error& e) {
-        cerr << "Error reading directory '" << sourceDir.string() << "': " << e.what() << endl;
-        return;
-    }
-    if (configFiles.empty()) {
-        cout << "No config files found in '" << sourceDir.string() << "'." << endl;
-        return;
-    }
-    for (size_t i = 0; i < configFiles.size(); ++i) {
-        cout << i + 1 << ". " << configFiles[i].filename().string() << endl;
-    }
-    cout << "0. Cancel" << endl;
-    int choice = -1;
-    cout << "Enter the number of the config file to apply (or 0 to cancel): ";
-    while (!(cin >> choice) || choice < 0 || choice > static_cast<int>(configFiles.size())) {
-        cout << "Invalid input. Please enter a number between 0 and " << configFiles.size() << ": ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (choice == 0) {
-        cout << "Operation cancelled." << endl;
-        return;
-    }
-    fs::path selectedSourceFile = configFiles[choice - 1];
-    cout << "Applying '" << selectedSourceFile.filename().string() << "' as current game config..." << endl;
-    try {
-        if (fs::exists(targetFile)) {
-            cout << "Attempting to remove existing target file: " << targetFile.string() << endl;
-            try {
-                fs::remove(targetFile);
-                cout << "Existing target file removed successfully." << endl;
-            } catch (const fs::filesystem_error& remove_error) {
-                cerr << "Error: Could not remove existing target file '" << targetFile.string() << "': " << remove_error.what() << endl;
-                cerr << "----> Please ensure the file is not in use (e.g., close World of Tanks and its launcher) and you have necessary permissions." << endl;
-                return;
-            }
-        }
-        if (!fs::exists(targetDir)) {
-             cout << "Target directory '" << targetDir.string() << "' does not exist. Attempting to create." << endl;
-             fs::create_directories(targetDir);
-        }
-        fs::copy_file(selectedSourceFile, targetFile, fs::copy_options::overwrite_existing);
-        cout << "Successfully applied '" << selectedSourceFile.filename().string() << "' as '" << targetFile.filename().string() << "'." << endl;
-    } catch (const fs::filesystem_error& e) {
-        cerr << "Error applying config file during copy: " << e.what() << endl;
-        cerr << "Details: " << e.path1().string() << " -> " << e.path2().string() << endl;
-        cerr << "----> Please ensure the file is not in use and you have necessary permissions." << endl;
-    }
-}
-
+// --- Метод завантаження конфігу (заглушка) ---
 void ConfigManager::uploadConfig() {
     cout << "Upload config functionality is not yet implemented." << endl;
 }

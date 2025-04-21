@@ -7,7 +7,7 @@
 			<player.loading.progress> 800 </player.loading.progress>
 		</gameLoading>
 		<soundPrefs>
-			<masterVolume>0.150000006</masterVolume>
+			<masterVolume>0.1</masterVolume>
 			<volume_micVivox>1</volume_micVivox>
 			<volume_vehicles> 0.100000 </volume_vehicles>
 			<volume_music> 0.000000 </volume_music>
