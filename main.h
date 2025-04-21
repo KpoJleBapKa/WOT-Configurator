@@ -52,9 +52,13 @@ public:
 #ifndef CONFIGMANAGER_H
 #define CONFIGMANAGER_H
 
+#include <string>
+
 class ConfigManager {
 public:
     void uploadConfig();
+    void changeCurrentConfig();
+    void viewCurrentGameConfig(); // <-- Новий метод для перегляду конфігу гри
 };
 
 #endif // CONFIGMANAGER_H

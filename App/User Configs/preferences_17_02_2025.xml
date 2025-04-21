@@ -1054,7 +1054,7 @@
 		<saturationDeferred> 1.000000 </saturationDeferred>
 	</graphicsPreferences>
 	<devicePreferences>
-		<windowMode>1</windowMode>
+		<windowMode>2</windowMode>
 		<windowedMonitorIndex> 0 </windowedMonitorIndex>
 		<windowedWidth> 1920 </windowedWidth>
 		<windowedHeight> 1061 </windowedHeight>
