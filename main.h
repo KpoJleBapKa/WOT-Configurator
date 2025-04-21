@@ -67,14 +67,17 @@ public:
 #define FILEVALIDATOR_H
 
 #include <string>
+#include <vector>
+#include <filesystem>
 
-using namespace std;
+namespace fs = std::filesystem;
 
 class FileValidator {
 public:
-    void validateSyntax(const string& filePath);
-    void detectErrors();
-    void informUser();
+    void runValidationWizard();
+    bool isXmlWellFormed(const fs::path& filePath);
+    bool hasExpectedStructure(const fs::path& filePath);
+    std::vector<std::string> findInvalidSimpleValues(const fs::path& filePath);
 };
 
 #endif // FILEVALIDATOR_H

@@ -1,5 +1,6 @@
 #include <iostream>
-#include "main.h" // Переконайся, що цей файл включає всі потрібні заголовки класів
+#include <limits>      // Рекомендується для cin.ignore
+#include "main.h"      // Переконайся, що цей файл включає всі потрібні заголовки
 
 using namespace std;
 
@@ -14,6 +15,7 @@ void displayMenu() {
     cout << "7. Edit cfg settings" << endl;
     cout << "8. Change current cfg" << endl; // <-- Додано
     cout << "9. Check current cfg" << endl; // <-- Додано
+    cout << "10. Validate Config File" << endl; // <-- Додано пункт меню
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -64,6 +66,9 @@ int main() {
                 break;
             case 9:
                 configManager.viewCurrentGameConfig(); // <-- Викликає новий метод ConfigManager
+                break;
+            case 10: // <-- Додано обробку
+                fileValidator.runValidationWizard(); // Викликаємо метод валідатора
                 break;
             case 0:
                 cout << "Exiting..." << endl;
