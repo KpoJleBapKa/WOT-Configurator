@@ -21,63 +21,172 @@ void displayMenu() {
 }
 
 int main() {
-    // Створюємо екземпляри класів, як і було
+    // Створюємо екземпляри класів
     AppInitializer initializer;
     BackupManager backupManager;
-    ChangeTracker changeTracker; // Не використовується, але залишаємо
     ConfigEditor configeditor;
-    ConfigManager configManager; // <-- Потрібен екземпляр ConfigManager
-    FileValidator fileValidator; // Не використовується, але залишаємо
+    ConfigManager configManager;
+    FileValidator fileValidator;
     ProfileManager profilemanager;
-    // MainWindow mainWindow; // Не потрібен для консолі
+    ChangeTracker logger; // <-- Створюємо екземпляр логгера
 
     int choice;
 
+    logger.logAction("Application::Start", true); // Логуємо запуск програми
+
     do {
         displayMenu();
-        // Просте читання вводу, як було
         cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << endl;
 
-        // Додаємо обробку case 8
+        bool actionSuccess = true; // Прапорець успішності для логування
+        string actionDetails = "";  // Додаткові деталі для логу
+        string actionName = "";     // Назва дії для логу
+
         switch (choice) {
             case 1:
-                initializer.checkFolders();
-                break;
+                actionName = "AppInitializer::checkFolders";
+                try {
+                    initializer.checkFolders();
+                    // Припускаємо успіх, якщо не було винятків (краще б метод повертав bool)
+                    actionSuccess = true;
+                } catch(...) { // Ловимо будь-які можливі винятки
+                    actionSuccess = false;
+                    actionDetails = "Exception occurred";
+                }
+                logger.logAction(actionName, actionSuccess, actionDetails);
+                break; // Не забуваємо break
+
             case 2:
-                backupManager.createBackup();
+                actionName = "BackupManager::createBackup";
+                 try {
+                     backupManager.createBackup();
+                     // Успіх визначається тим, чи вивелось повідомлення про помилку всередині методу
+                     // Це не найкращий спосіб, але працює для поточного коду
+                     // Краще б метод повертав bool або кидав винятки при помилці копіювання
+                      actionSuccess = true; // Припускаємо успіх, якщо дійшли сюди
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 3:
-                backupManager.restoreFromBackup();
+                actionName = "BackupManager::restoreFromBackup";
+                 try {
+                     backupManager.restoreFromBackup();
+                     // Аналогічно case 2, успіх припускається
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                 logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 4:
-                profilemanager.setName();
+                actionName = "ProfileManager::setName";
+                 try {
+                      profilemanager.setName();
+                      actionSuccess = true; // Припускаємо успіх
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 5:
-                profilemanager.showName();
+                actionName = "ProfileManager::showName";
+                 try {
+                      profilemanager.showName();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 6:
-                configeditor.readCurrentSettings();
+                actionName = "ConfigEditor::readCurrentSettings";
+                 try {
+                      configeditor.readCurrentSettings();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 7:
-                configeditor.modifySettings();
+                actionName = "ConfigEditor::modifySettings";
+                 try {
+                      configeditor.modifySettings();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
-            case 8: // <-- Додано обробку
-                configManager.changeCurrentConfig(); // Викликаємо новий метод
+
+            case 8:
+                actionName = "ConfigManager::changeCurrentConfig";
+                 try {
+                      configManager.changeCurrentConfig();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 9:
-                configManager.viewCurrentGameConfig(); // <-- Викликає новий метод ConfigManager
+                actionName = "ConfigManager::viewCurrentGameConfig";
+                 try {
+                      configManager.viewCurrentGameConfig();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
-            case 10: // <-- Додано обробку
-                fileValidator.runValidationWizard(); // Викликаємо метод валідатора
+
+            case 10:
+                actionName = "FileValidator::runValidationWizard";
+                 try {
+                      fileValidator.runValidationWizard();
+                      actionSuccess = true;
+                 } catch (...) {
+                      actionSuccess = false;
+                      actionDetails = "Exception occurred";
+                 }
+                logger.logAction(actionName, actionSuccess, actionDetails);
                 break;
+
             case 0:
                 cout << "Exiting..." << endl;
+                logger.logAction("Application::Exit", true); // Логуємо вихід
                 break;
+
             default:
+                actionName = "Menu::InvalidChoice";
+                actionDetails = "User entered: " + to_string(choice); // Додаємо деталі
+                logger.logAction(actionName, false, actionDetails); // Логуємо невірний вибір як помилку
                 cout << "Invalid choice. Please try again." << endl;
                 break;
         }
-        cout << endl; // Залишаємо порожній рядок після виконання дії
+        // Не виводимо роздільник після виходу
+        if (choice != 0) {
+             cout << "\n---------------------------------\n" << endl;
+        }
+
     } while (choice != 0);
 
     return 0;

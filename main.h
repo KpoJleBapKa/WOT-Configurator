@@ -25,11 +25,21 @@ public:
 #ifndef CHANGETRACKER_H
 #define CHANGETRACKER_H
 
+#include <string> // Потрібен для std::string
+
 class ChangeTracker {
 public:
-    void logChanges();
-    void rollbackChanges();
-    void displayChangeHistory();
+    // Метод для запису дії в лог
+    // functionName - назва функції/операції, що логується
+    // success - чи була операція успішною (true/false)
+    // details - необов'язковий рядок з додатковою інформацією (напр., ім'я файлу, помилка)
+    void logAction(const std::string& functionName, bool success, const std::string& details = "");
+
+    // Старі методи logChanges, rollbackChanges, displayChangeHistory видаляємо або коментуємо,
+    // оскільки вони не відповідають поточній задачі простого логування.
+    // void logChanges();
+    // void rollbackChanges();
+    // void displayChangeHistory();
 };
 
 #endif // CHANGETRACKER_H

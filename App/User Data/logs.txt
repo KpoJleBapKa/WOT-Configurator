@@ -1,0 +1,8 @@
+2025-04-22_02:57:42 | Application::Start | Result: [OK]
+2025-04-22_02:57:55 | BackupManager::createBackup | Result: [OK]
+2025-04-22_03:00:31 | ProfileManager::showName | Result: [OK]
+2025-04-22_03:00:37 | ConfigEditor::readCurrentSettings | Result: [OK]
+2025-04-22_03:00:42 | ConfigEditor::readCurrentSettings | Result: [OK]
+2025-04-22_03:00:48 | ConfigManager::viewCurrentGameConfig | Result: [OK]
+2025-04-22_03:00:59 | ConfigEditor::readCurrentSettings | Result: [OK]
+2025-04-22_03:01:07 | FileValidator::runValidationWizard | Result: [OK]
