@@ -1,52 +1,63 @@
-#include "main.h"
-#include <iostream>
-#include <filesystem>
+#include "main.h" // Головний заголовок з оголошеннями класів
+#include <vector>
 #include <fstream>
-#include "preferences_data.h"
+#include <stdexcept> // Для std::runtime_error
+#include <iostream> // Можна залишити для std::cerr у винятках, якщо потрібно
+#include "preferences_data.h" // Включаємо дані
 
-// extern unsigned char _binary_preferences_xml_start;
-// extern unsigned char _binary_preferences_xml_end;
-
-using namespace std;
-
-void AppInitializer::loadInitialSettings() {
-    cout << "Loading initial settings..." << endl;
-}
+// НЕ використовуємо "using namespace std;" у .cpp файлах без потреби
 
 void AppInitializer::checkFolders() {
-    if (!filesystem::exists("User Data")) {
-        filesystem::create_directory("User Data");
-        cout << "Created 'User Data' directory." << endl;
+    // Список папок, які мають існувати
+    const std::vector<fs::path> folders = {
+        "User Data", "Saved Configs", "Restored Configs", "User Configs", "Reference Config"
+    };
+
+    try {
+        for (const auto& folder : folders) {
+            if (!fs::exists(folder)) {
+                fs::create_directory(folder);
+                // Видалено std::cout << "Created '" << folder << "' directory." << std::endl;
+                // Логування створення папки тепер може робити MainWindow або ChangeTracker
+            }
+        }
+
+        // Створення reference config, якщо його немає
+        fs::path refFolder = "Reference Config";
+        fs::path refFile = refFolder / "preferences.xml";
+        if (!fs::exists(refFile)) {
+            if (!fs::exists(refFolder)) { // Переконуємось, що папка є
+                fs::create_directories(refFolder);
+            }
+            std::ofstream outFile(refFile, std::ios::binary);
+            if (outFile.is_open()) {
+                outFile.write(reinterpret_cast<const char*>(preferences_xml), preferences_xml_len);
+                outFile.close();
+                    // Видалено std::cout << "Extracted 'preferences.xml'..." << std::endl;
+            } else {
+                // Якщо не вдалося відкрити файл, кидаємо виняток
+                throw std::runtime_error("Не вдалося створити еталонний файл конфігурації: " + refFile.string());
+            }
+        }
+    } catch (const fs::filesystem_error& e) {
+        // Перехоплюємо помилки файлової системи і перетворюємо на більш загальний виняток
+        throw std::runtime_error(std::string("Помилка файлової системи при перевірці/створенні папок: ") + e.what());
+    } catch (const std::runtime_error& e) {
+        throw; // Прокидуємо наш власний виняток далі
     }
-    if (!filesystem::exists("Saved Configs")) {
-        filesystem::create_directory("Saved Configs");
-        cout << "Created 'Saved Configs' directory." << endl;
+    catch (...) {
+        // Ловимо будь-які інші непередбачені помилки
+        throw std::runtime_error("Невідома помилка під час перевірки/створення папок.");
     }
-    if (!filesystem::exists("Restored Configs")) {
-        filesystem::create_directory("Restored Configs");
-        cout << "Created 'Restored Configs' directory." << endl;
-    }
-    if (!filesystem::exists("User Configs")) {
-        filesystem::create_directory("User Configs");
-        cout << "Created 'User Configs' directory." << endl;
-    }
-    // if (!filesystem::exists("Backup")) {
-    //     filesystem::create_directory("Backup");
-    //     cout << "Created 'Backup' directory." << endl;
-    // }
-    if (!filesystem::exists("Reference Config")) {
-        filesystem::create_directory("Reference Config");
-        cout << "Created 'Reference Config' directory." << endl;
-        ofstream outFile("Reference Config/preferences.xml", ios::binary);
-        if (outFile.is_open()) {
-            // ЗМІНЕНО: використовуємо масив і довжину з хедера
-            outFile.write(reinterpret_cast<const char*>(preferences_xml), preferences_xml_len);
-            outFile.close();
-            cout << "Extracted 'preferences.xml' to 'Reference Config'." << endl;
-        } else { /* ... обробка помилки ... */ }
-    }
+}
+
+// Ці методи залишаються як заглушки, якщо вони не роблять нічого критичного
+void AppInitializer::loadInitialSettings() {
+    // Видалено std::cout << "Loading initial settings..." << std::endl;
+    // Тут може бути логіка завантаження початкових налаштувань програми
 }
 
 void AppInitializer::initializeComponents() {
-    cout << "Initializing components..." << endl;
+    // Видалено std::cout << "Initializing components..." << std::endl;
+    // Тут може бути ініціалізація інших компонентів
 }

@@ -1,374 +1,314 @@
-#include "main.h" // Або "FileValidator.h", якщо ти створив окремий файл
-#include "pugixml/pugixml.hpp" // Переконайся, що шлях правильний
-#include <iostream>
+#include "main.h" // Головний заголовок (містить оголошення FileValidator та ValidationResult)
+#include "pugixml/pugixml.hpp" // Включаємо pugixml ТУТ
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
-#include <filesystem>
-#include <limits>      // Для numeric_limits
-#include <cstdlib>     // Для getenv
-#include <sstream>     // Для tryParseFloat/Int
+#include <limits>    // Для numeric_limits (якщо потрібен)
+#include <iostream>  // Для std::cerr у внутрішніх методах
+#include <QMessageBox> // Для вікон повідомлень у validateBeforeAction
+#include <QString>     // Для роботи з QMessageBox
 
-// Використання просторів імен
-using namespace std;
-namespace fs = std::filesystem;
+// НЕ використовуємо "using namespace std;"
 
-// --- Допоміжна функція для безпечної конвертації рядка в число (float) ---
+// --- Допоміжні функції парсингу (залишаємо як є) ---
+namespace { // Анонімний простір імен для локальних допоміжних функцій
 bool tryParseFloat(const char* text, float& outValue) {
     if (!text) return false;
-    std::istringstream iss(text);
-    // Дозволяємо читати, навіть якщо не весь рядок розібрано (на випадок пробілів)
+    std::string s(text); // Копіюємо в рядок для роботи з istringstream
+    std::istringstream iss(s);
     iss >> outValue;
-    // Перевіряємо лише на помилку читання
-    return !iss.fail();
+    // Перевіряємо стан та чи не залишилось нечислових символів (окрім початкових/кінцевих пробілів)
+    // iss.eof() може не спрацювати, якщо є пробіли в кінці
+    char remaining;
+    return !iss.fail() && !(iss >> remaining); // Чи вдалося прочитати ще щось після числа
 }
-
-// --- Допоміжна функція для безпечної конвертації рядка в ціле число (int) ---
 bool tryParseInt(const char* text, int& outValue) {
-     if (!text) return false;
-    std::istringstream iss(text);
+    if (!text) return false;
+    std::string s(text);
+    std::istringstream iss(s);
     iss >> outValue;
-    return !iss.fail();
+    char remaining;
+    return !iss.fail() && !(iss >> remaining);
 }
+} // кінець анонімного простору імен
 
 
-// --- Метод runValidationWizard ---
-// Керує процесом валідації через консоль
-void FileValidator::runValidationWizard() {
-    cout << "\n--- Validate Config File ---" << endl;
-    cout << "Select directory to validate files from:" << endl;
-    cout << "1. User Configs" << endl;
-    cout << "2. Game Config Directory (checks preferences.xml)" << endl;
-    cout << "0. Cancel" << endl;
-    cout << "Enter choice: ";
-    int dirChoice = -1;
-
-    // Читання вибору директорії
-    while (!(cin >> dirChoice) || dirChoice < 0 || dirChoice > 2) {
-         cout << "Invalid input. Please enter a number between 0 and 2: ";
-         cin.clear();
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очистка буфера
-
-    fs::path fileToValidate; // Шлях до файлу, який будемо валідувати
-
-    if (dirChoice == 1) {
-        fs::path sourceDir = "User Configs";
-        cout << "\nAvailable files in '" << sourceDir.string() << "':" << endl;
-        vector<fs::path> configFiles;
-        try {
-            if (!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) {
-                 cerr << "Error: Directory not found: " << sourceDir.string() << endl;
-            } else {
-                 for (const auto& entry : fs::directory_iterator(sourceDir)) {
-                    if (entry.is_regular_file() && entry.path().extension() == ".xml") {
-                        configFiles.push_back(entry.path());
-                    }
-                 }
-            }
-        } catch (const fs::filesystem_error& e) {
-             cerr << "Error reading directory '" << sourceDir.string() << "': " << e.what() << endl;
-        }
-
-        if (configFiles.empty()) {
-            cout << "No config files found to validate." << endl;
-        } else {
-            for (size_t i = 0; i < configFiles.size(); ++i) {
-                cout << i + 1 << ". " << configFiles[i].filename().string() << endl;
-            }
-            cout << "0. Cancel" << endl;
-            cout << "Enter the number of the file to validate: ";
-            int fileChoice = -1;
-            // Читання вибору файлу
-             while (!(cin >> fileChoice) || fileChoice < 0 || fileChoice > static_cast<int>(configFiles.size())) {
-                 cout << "Invalid input. Please enter a number between 0 and " << configFiles.size() << ": ";
-                 cin.clear();
-                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-            if (fileChoice > 0) {
-                fileToValidate = configFiles[fileChoice - 1];
-            } else {
-                 cout << "Validation cancelled." << endl;
-            }
-        }
-
-    } else if (dirChoice == 2) {
-         const char* appDataPath = getenv("APPDATA");
-         if (appDataPath) {
-              fileToValidate = fs::path(appDataPath) / "Wargaming.net" / "WorldOfTanks" / "preferences.xml";
-              if (!fs::exists(fileToValidate)) {
-                   cerr << "Error: preferences.xml not found in game directory: " << fileToValidate.string() << endl;
-                   fileToValidate.clear(); // Скидаємо шлях, якщо файлу немає
-              }
-         } else {
-              cerr << "Error: Could not get APPDATA path." << endl;
-         }
-    } else {
-         cout << "Validation cancelled." << endl;
-    }
-
-    // --- Запуск валідації, якщо файл вибрано ---
-    if (!fileToValidate.empty()) {
-        cout << "\n--- Running Validation for: " << fileToValidate.string() << " ---" << endl;
-
-        // Викликаємо інші методи цього ж класу
-        bool isWellFormed = this->isXmlWellFormed(fileToValidate);
-        cout << "1. XML Well-Formed Check: " << (isWellFormed ? "Passed" : "Failed (See error message above)") << endl;
-
-        if (isWellFormed) {
-            bool hasStructure = this->hasExpectedStructure(fileToValidate);
-            cout << "2. Expected Structure Check: " << (hasStructure ? "Passed (Basic structure seems OK)" : "Warnings/Failed (Check messages above)") << endl;
-
-            // Запускаємо перевірку значень незалежно від результату перевірки структури (якщо XML коректний)
-            vector<string> valueErrors = this->findInvalidSimpleValues(fileToValidate);
-            cout << "3. Simple Value Validation Check: ";
-            if (valueErrors.empty()) {
-                cout << "Passed (No obvious errors in simple values found)" << endl;
-            } else {
-                cout << "Found " << valueErrors.size() << " potential issue(s):" << endl;
-                for (const string& err : valueErrors) {
-                    cout << "   - " << err << endl;
-                }
-            }
-        } else {
-             cout << "Skipping structure and value checks due to XML parsing error." << endl;
-        }
-        cout << "--- Validation Finished ---" << endl;
-    }
-}
-
-
-// --- Реалізація isXmlWellFormed ---
-// Перевіряє, чи є файл синтаксично коректним XML
-bool FileValidator::isXmlWellFormed(const fs::path& filePath) {
-    if (!fs::exists(filePath)) { // Перевіряємо існування перед is_regular_file
-        cerr << "Validation Error: File not found: " << filePath.string() << endl;
-        return false;
-    }
-     if (!fs::is_regular_file(filePath)) {
-         cerr << "Validation Error: Path is not a regular file: " << filePath.string() << endl;
-         return false;
-     }
-
-
+// --- Реалізація основного методу валідації ---
+ValidationResult FileValidator::validateFile(const fs::path& filePath) {
+    ValidationResult result;
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(filePath.c_str(), pugi::parse_default | pugi::parse_declaration); // Додамо прапор для можливого <?xml ...?>
 
+    if (!fs::exists(filePath)) {
+        result.wellFormedError = "Файл не знайдено: " + filePath.string();
+        return result; // isWellFormed = false
+    }
+    if (!fs::is_regular_file(filePath)) {
+        result.wellFormedError = "Шлях не є файлом: " + filePath.string();
+        return result; // isWellFormed = false
+    }
+
+    // 1. Перевірка Well-Formed
+    std::string wfError;
+    result.isWellFormed = isXmlWellFormedInternal(filePath, doc, wfError);
+    if (!result.isWellFormed) {
+        result.wellFormedError = wfError;
+        return result;
+    }
+
+    // 2. Перевірка структури (тільки якщо XML коректний)
+    std::string structWarn;
+    result.hasStructure = hasExpectedStructureInternal(doc, structWarn);
+    result.structureInfo = structWarn; // Записуємо повідомлення (може бути "OK" або попередження)
+
+    // 3. Перевірка значень (тільки якщо XML коректний)
+    result.valueErrors = findInvalidSimpleValuesInternal(doc);
+
+    return result;
+}
+
+// --- Реалізація допоміжного методу для GUI ---
+bool FileValidator::validateBeforeAction(const fs::path& filePath, const std::string& actionNameStd, bool showSuccess) {
+    QString actionName = QString::fromStdString(actionNameStd); // Конвертуємо для QMessageBox
+    ValidationResult result = validateFile(filePath);
+
+    if (result.isValid()) { // XML коректний
+        QString summary; // Резюме для повідомлення
+        bool hasWarnings = false;
+
+        summary += "XML: OK.\n";
+        summary += QString("Структура: %1\n").arg(QString::fromStdString(result.structureInfo));
+        if (!result.hasStructure) hasWarnings = true;
+
+        if (result.valueErrors.empty()) {
+            summary += "Значення: OK.";
+        } else {
+            summary += QString("Значення: Знайдено %1 потенційних проблем.").arg(result.valueErrors.size());
+            hasWarnings = true;
+            // Додамо перші кілька помилок для наочності
+            summary += "\nПриклади помилок значень:\n";
+            int count = 0;
+            for(const auto& err : result.valueErrors) {
+                if (++count > 3) { // Обмежимо кількість для вікна
+                    summary += "- ...\n";
+                    break;
+                }
+                summary += QString("- %1\n").arg(QString::fromStdString(err));
+            }
+        }
+
+        if (hasWarnings) {
+            QMessageBox::StandardButton reply;
+            QString warningText = QString("Увага! Файл '%1' містить попередження:\n\n%2\n\nПродовжити дію '%3'?")
+                                      .arg(QString::fromStdWString(filePath.filename().wstring()))
+                                      .arg(summary)
+                                      .arg(actionName);
+            reply = QMessageBox::warning(nullptr, actionName + " - Попередження валідації",
+                                         warningText,
+                                         QMessageBox::Yes | QMessageBox::No,
+                                         QMessageBox::No);
+            return (reply == QMessageBox::Yes);
+        } else {
+            // Немає помилок і попереджень
+            if (showSuccess) {
+                QMessageBox::information(nullptr, actionName + " - Валідація успішна",
+                                         QString("Файл '%1' успішно пройшов валідацію.")
+                                             .arg(QString::fromStdWString(filePath.filename().wstring())));
+            }
+            return true; // Можна продовжувати
+        }
+    } else { // Критична помилка XML
+        QMessageBox::critical(nullptr, actionName + " - Помилка валідації",
+                              QString("Не вдалося виконати дію '%1'.\nФайл '%2' не пройшов валідацію:\n%3")
+                                  .arg(actionName)
+                                  .arg(QString::fromStdWString(filePath.filename().wstring()))
+                                  .arg(QString::fromStdString(result.wellFormedError)));
+        return false; // Не можна продовжувати
+    }
+}
+
+
+// --- Внутрішні методи реалізації ---
+
+bool FileValidator::isXmlWellFormedInternal(const fs::path& filePath, pugi::xml_document& doc, std::string& errorMsg) {
+    // doc вже передається за посиланням, перевіряємо тільки результат завантаження
+    pugi::xml_parse_result result = doc.load_file(filePath.c_str()); // Використовуємо c_str()
     if (result.status != pugi::status_ok) {
-        cerr << "XML Parsing Error: " << result.description() << " at offset " << result.offset << endl;
-        // Не виводимо шлях тут, бо він буде виведений у runValidationWizard
+        // Формуємо повідомлення про помилку
+        std::stringstream ss;
+        ss << "Помилка XML: " << result.description() << " (позиція " << result.offset << ")";
+        errorMsg = ss.str();
         return false;
     }
+    errorMsg = "OK";
     return true;
 }
 
-// --- Реалізація hasExpectedStructure ---
-// Перевіряє наявність основних очікуваних секцій WoT
-bool FileValidator::hasExpectedStructure(const fs::path& filePath) {
-    pugi::xml_document doc;
-    // Не перевіряємо результат load_file ще раз, бо це має зробити isXmlWellFormed перед викликом
-    if (!doc.load_file(filePath.c_str())) {
-        // Цей випадок не мав би статися, якщо isXmlWellFormed викликався першим
-        return false;
-    }
-
+bool FileValidator::hasExpectedStructureInternal(const pugi::xml_document& doc, std::string& warnings) {
+    // doc вже завантажено в isXmlWellFormedInternal
     bool structureOk = true;
-    auto root = doc.child("root"); // Використовуємо auto для зручності
+    std::stringstream warningStream;
 
+    const pugi::xml_node root = doc.child("root"); // Використовуємо const, бо не змінюємо
     if (!root) {
-        cerr << "Structure Error: Missing <root> element." << endl;
-        return false; // Без <root> далі немає сенсу перевіряти
+        warnings = "Відсутній кореневий елемент <root>.";
+        return false; // Це критична помилка структури
     }
 
     if (!root.child("scriptsPreferences")) {
-         cerr << "Structure Warning: Missing <scriptsPreferences> section." << endl;
-         structureOk = false; // Вважаємо це помилкою структури
+        warningStream << "Відсутня секція <scriptsPreferences>. ";
+        structureOk = false;
     }
-     if (!root.child("graphicsPreferences")) {
-         cerr << "Structure Warning: Missing <graphicsPreferences> section." << endl;
-         structureOk = false;
+    if (!root.child("graphicsPreferences")) {
+        warningStream << "Відсутня секція <graphicsPreferences>. ";
+        structureOk = false;
     }
-     if (!root.child("devicePreferences")) {
-         cerr << "Structure Warning: Missing <devicePreferences> section." << endl;
-         structureOk = false;
+    if (!root.child("devicePreferences")) {
+        warningStream << "Відсутня секція <devicePreferences>. ";
+        structureOk = false;
     }
 
-    // Можна додати перевірки глибше, якщо потрібно
-    // if (root.child("scriptsPreferences") && !root.child("scriptsPreferences").child("soundPrefs")) {
-    //     cerr << "Structure Warning: Missing <soundPrefs> inside <scriptsPreferences>." << endl;
-    // }
+    // Додаткові перевірки (якщо потрібно)
+    const pugi::xml_node scriptsPrefs = root.child("scriptsPreferences");
+    if (scriptsPrefs && !scriptsPrefs.child("soundPrefs")) {
+        warningStream << "Відсутня підсекція <soundPrefs> всередині <scriptsPreferences>. ";
+        // Можна не вважати це критичною помилкою (structureOk = false;)
+    }
+    if (scriptsPrefs && !scriptsPrefs.child("controlMode")) {
+        warningStream << "Відсутня підсекція <controlMode> всередині <scriptsPreferences>. ";
+    }
 
-    return structureOk;
+
+    warnings = warningStream.str();
+    if (structureOk && warnings.empty()) {
+        warnings = "OK"; // Якщо все добре і попереджень немає
+    }
+    return structureOk; // Повертаємо загальний статус (true, якщо основні секції є)
 }
 
-
-// --- Реалізація findInvalidSimpleValues ---
-// Знаходить прості значення, які виходять за межі очікуваних діапазонів
-// --- FileValidator.cpp ---
-// ... (includes, namespaces, tryParseFloat/Int, isXmlWellFormed, hasExpectedStructure) ...
-
-vector<string> FileValidator::findInvalidSimpleValues(const fs::path& filePath) {
-    vector<string> errors;
-    pugi::xml_document doc;
-
-    if (!doc.load_file(filePath.c_str())) {
-         errors.push_back("Failed to load XML file for value validation.");
-        return errors;
-    }
-
-    auto root = doc.child("root");
-    if (!root) {
-        errors.push_back("Missing <root> element, cannot validate values.");
-        return errors;
-    }
+std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pugi::xml_document& doc) {
+    // doc вже завантажено
+    std::vector<std::string> errors;
+    const pugi::xml_node root = doc.child("root");
+    if (!root) return {"Помилка: Відсутній <root> елемент для перевірки значень."}; // Повертаємо вектор з однією помилкою
 
     // 1. Перевірка <soundPrefs>
-    auto scriptsPrefs = root.child("scriptsPreferences");
+    const pugi::xml_node scriptsPrefs = root.child("scriptsPreferences");
     if (scriptsPrefs) {
-        auto soundPrefs = scriptsPrefs.child("soundPrefs");
+        const pugi::xml_node soundPrefs = scriptsPrefs.child("soundPrefs");
         if (soundPrefs) {
-            const vector<string> volumeTags = {
+            const std::vector<std::string> volumeTags = { /* ... список тегів гучності ... */
                 "masterVolume", "volume_micVivox", "volume_vehicles", "volume_music",
                 "volume_effects", "volume_ambient", "volume_gui", "volume_voice",
                 "volume_masterFadeVivox", "volume_masterVivox", "volume_music_hangar",
                 "volume_ev_ambient", "volume_ev_effects", "volume_ev_gui",
                 "volume_ev_music", "volume_ev_vehicles", "volume_ev_voice"
             };
-            for (const string& tagName : volumeTags) {
+            for (const std::string& tagName : volumeTags) {
                 pugi::xml_node node = soundPrefs.child(tagName.c_str());
                 if (node) {
                     float value;
                     const char* text = node.text().as_string();
                     if (tryParseFloat(text, value)) {
                         if (value < 0.0f || value > 1.0f) {
-                            // ВИПРАВЛЕНО: Використовуємо string() для конкатенації
-                            errors.push_back(string("Invalid value for <") + tagName + ">: '" + text + "'. Expected range [0.0, 1.0].");
+                            errors.push_back("<" + tagName + ">: '" + text + "'. Очікується [0.0, 1.0].");
                         }
                     } else {
-                        // ВИПРАВЛЕНО: Використовуємо string()
-                        errors.push_back(string("Invalid format for <") + tagName + ">: '" + text + "'. Expected a number.");
+                        errors.push_back("<" + tagName + ">: '" + text + "'. Очікується число.");
                     }
                 }
             }
-        } else {
-            errors.push_back("Missing <soundPrefs> section inside <scriptsPreferences>.");
-        }
+        } // Не додаємо помилку, якщо немає <soundPrefs>, це перевіряє структура
 
-         // 2. Перевірка <fov>
-          auto fovNode = scriptsPrefs.child("fov");
-           if(fovNode) {
-                float value;
-                const char* text = fovNode.text().as_string();
-                if(tryParseFloat(text, value)) {
-                    if (value < 50.0f || value > 130.0f) {
-                         // ВИПРАВЛЕНО: Використовуємо string()
-                         errors.push_back(string("Suspicious value for <fov>: '") + text + "'. Typical range [60.0, 120.0].");
+        // Перевірка <fov>
+        const pugi::xml_node fovNode = scriptsPrefs.child("fov");
+        if(fovNode) {
+            float value;
+            const char* text = fovNode.text().as_string();
+            if(tryParseFloat(text, value)) {
+                if (value < 50.0f || value > 130.0f) { // Допустимий діапазон FOV
+                    errors.push_back("<fov>: '" + std::string(text) + "'. Нетипове значення (очікується 50-130).");
+                }
+            } else {
+                errors.push_back("<fov>: '" + std::string(text) + "'. Очікується число.");
+            }
+        } // Не додаємо помилку, якщо немає <fov>
+
+    } // Не додаємо помилку, якщо немає <scriptsPreferences>
+
+
+    // 2. Перевірка <devicePreferences>
+    const pugi::xml_node devicePrefs = root.child("devicePreferences");
+    if (devicePrefs) {
+        // Window Mode
+        pugi::xml_node wmNode = devicePrefs.child("windowMode");
+        if (wmNode) {
+            int value;
+            const char* text = wmNode.text().as_string();
+            if(tryParseInt(text, value)) {
+                if (value < 0 || value > 2) { // 0 - вікно, 1 - повноекранне вікно, 2 - повний екран
+                    errors.push_back("<windowMode>: '" + std::string(text) + "'. Очікується 0, 1, або 2.");
+                }
+            } else {
+                errors.push_back("<windowMode>: '" + std::string(text) + "'. Очікується ціле число.");
+            }
+        } // Не додаємо помилку про відсутність
+
+        // Resolutions
+        const std::vector<std::pair<std::string, int>> resolutionTags = {
+            {"windowedWidth", 640}, {"windowedHeight", 480},
+            {"fullscreenWidth", 800}, {"fullscreenHeight", 600}
+        };
+        for (const auto& pair : resolutionTags) {
+            pugi::xml_node resNode = devicePrefs.child(pair.first.c_str());
+            if(resNode) {
+                int value;
+                const char* text = resNode.text().as_string();
+                if(tryParseInt(text, value)) {
+                    if (value < pair.second) {
+                        errors.push_back("<" + pair.first + ">: '" + text + "'. Очікується >= " + std::to_string(pair.second) + ".");
                     }
                 } else {
-                     // ВИПРАВЛЕНО: Використовуємо string()
-                     errors.push_back(string("Invalid format for <fov>: '") + text + "'. Expected a number.");
+                    errors.push_back("<" + pair.first + ">: '" + text + "'. Очікується ціле число.");
                 }
-           } else {
-                errors.push_back("Missing <fov> tag inside <scriptsPreferences>.");
-           }
-    } else {
-        errors.push_back("Missing <scriptsPreferences> section, cannot check sound/fov.");
-    }
-
-
-     // 3. Перевірка <devicePreferences>
-     auto devicePrefs = root.child("devicePreferences");
-     if (devicePrefs) {
-         // Window Mode
-         pugi::xml_node wmNode = devicePrefs.child("windowMode");
-         if (wmNode) {
-             int value;
-             const char* text = wmNode.text().as_string();
-             if(tryParseInt(text, value)) {
-                 if (value < 0 || value > 2) {
-                      // ВИПРАВЛЕНО: Використовуємо string()
-                      errors.push_back(string("Invalid value for <windowMode>: '") + text + "'. Expected 0, 1, or 2.");
-                 }
-             } else {
-                 // ВИПРАВЛЕНО: Використовуємо string()
-                 errors.push_back(string("Invalid format for <windowMode>: '") + text + "'. Expected an integer.");
-             }
-         } else {
-              errors.push_back("Missing <windowMode> tag in <devicePreferences>.");
-         }
-
-         // Resolutions
-         const vector<pair<string, int>> resolutionTags = {
-             {"windowedWidth", 640}, {"windowedHeight", 480},
-             {"fullscreenWidth", 800}, {"fullscreenHeight", 600}
-         };
-         for (const auto& pair : resolutionTags) {
-              pugi::xml_node resNode = devicePrefs.child(pair.first.c_str());
-              if(resNode) {
-                  int value;
-                  const char* text = resNode.text().as_string();
-                  if(tryParseInt(text, value)) {
-                      if (value < pair.second) {
-                           // ВИПРАВЛЕНО: Використовуємо string() та to_string() для числа
-                           errors.push_back(string("Invalid value for <") + pair.first + ">: '" + text + "'. Expected >= " + to_string(pair.second) + ".");
-                      }
-                  } else {
-                       // ВИПРАВЛЕНО: Використовуємо string()
-                      errors.push_back(string("Invalid format for <") + pair.first + ">: '" + text + "'. Expected an integer.");
-                  }
-              } else {
-                   errors.push_back(string("Missing <") + pair.first + "> tag in <devicePreferences>.");
-              }
-         }
-         // Refresh Rate
-         pugi::xml_node rrNode = devicePrefs.child("fullscreenRefresh");
-          if(rrNode) {
-              int value;
-              const char* text = rrNode.text().as_string();
-              if(tryParseInt(text, value)) {
-                  if (value < 10) {
-                       // ВИПРАВЛЕНО: Використовуємо string()
-                       errors.push_back(string("Suspiciously low value for <fullscreenRefresh>: '") + text + "'. Expected >= 50 typically.");
-                  }
-              } else {
-                   // ВИПРАВЛЕНО: Використовуємо string()
-                  errors.push_back(string("Invalid format for <fullscreenRefresh>: '") + text + "'. Expected an integer.");
-              }
-          } else {
-                errors.push_back("Missing <fullscreenRefresh> tag in <devicePreferences>.");
-          }
-     } else {
-         errors.push_back("Missing <devicePreferences> section.");
-     }
-
-
-      // 4. Перевірка графіки (прості значення)
-      auto graphPrefs = root.child("graphicsPreferences");
-       if(graphPrefs) {
-           const vector<string> graphTags = {
-               "colorGradingStrength", "brightnessDeferred", "contrastDeferred", "saturationDeferred"
-           };
-            for (const string& tagName : graphTags) {
-                pugi::xml_node node = graphPrefs.child(tagName.c_str());
-                 if (node) {
-                    float value;
-                    const char* text = node.text().as_string();
-                    if (tryParseFloat(text, value)) {
-                        if (value < 0.0f || value > 1.5f) {
-                            // ВИПРАВЛЕНО: Використовуємо string()
-                            errors.push_back(string("Suspicious value for <") + tagName + ">: '" + text + "'. Expected range typically around [0.0, 1.0].");
-                        }
-                    } else {
-                         // ВИПРАВЛЕНО: Використовуємо string()
-                         errors.push_back(string("Invalid format for <") + tagName + ">: '" + text + "'. Expected a number.");
-                    }
-                 }
+            } // Не додаємо помилку про відсутність
+        }
+        // Refresh Rate
+        pugi::xml_node rrNode = devicePrefs.child("fullscreenRefresh");
+        if(rrNode) {
+            int value;
+            const char* text = rrNode.text().as_string();
+            if(tryParseInt(text, value)) {
+                if (value < 10 || value > 400) { // Розширений діапазон для сучасних моніторів
+                    errors.push_back("<fullscreenRefresh>: '" + std::string(text) + "'. Нетипове значення (очікується 50-240).");
+                }
+            } else {
+                errors.push_back("<fullscreenRefresh>: '" + std::string(text) + "'. Очікується ціле число.");
             }
-       } else {
-            errors.push_back("Missing <graphicsPreferences> section.");
-       }
+        } // Не додаємо помилку про відсутність
+    } // Не додаємо помилку, якщо немає <devicePreferences>
+
+    // 3. Перевірка графіки
+    const pugi::xml_node graphPrefs = root.child("graphicsPreferences");
+    if (graphPrefs) {
+        const std::vector<std::string> graphTags = {
+            "colorGradingStrength", "brightnessDeferred", "contrastDeferred", "saturationDeferred"
+        };
+        for (const std::string& tagName : graphTags) {
+            pugi::xml_node node = graphPrefs.child(tagName.c_str());
+            if (node) {
+                float value;
+                const char* text = node.text().as_string();
+                if (tryParseFloat(text, value)) {
+                    if (value < 0.0f || value > 1.5f) { // Трохи розширимо діапазон
+                        errors.push_back("<" + tagName + ">: '" + text + "'. Нетипове значення (очікується ~[0.0, 1.0]).");
+                    }
+                } else {
+                    errors.push_back("<" + tagName + ">: '" + text + "'. Очікується число.");
+                }
+            } // Не додаємо помилку про відсутність
+        }
+    } // Не додаємо помилку, якщо немає <graphicsPreferences>
 
     return errors;
 }

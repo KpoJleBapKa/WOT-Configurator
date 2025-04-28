@@ -1,0 +1,939 @@
+<root>
+	<graphicsPreferences>
+		<graphicsSettingsVersion> 5 </graphicsSettingsVersion>
+		<graphicsSettingsVersionMinor> 0 </graphicsSettingsVersionMinor>
+		<graphicsSettingsVersionMaintainance> 2 </graphicsSettingsVersionMaintainance>
+		<graphicsSettingsStatus> 0 </graphicsSettingsStatus>
+		<detector>
+			<reason> client version change </reason>
+			<deviceName> NVIDIA GeForce GTX 1650 </deviceName>
+			<clientVersion> 1.28.1 </clientVersion>
+			<gpuMemory> 3937 </gpuMemory>
+			<gpuShared> 8109 </gpuShared>
+			<gpuScore> 2245 </gpuScore>
+			<cpuScore> 217977 </cpuScore>
+			<cpuCores> 8 </cpuCores>
+			<ram> 16219 </ram>
+			<virtualMemory> 134217727 </virtualMemory>
+			<graphicsPresetName> ULTRA </graphicsPresetName>
+		</detector>
+		<deviceGUID> 497D9F4B.A768B374.C79C02A4.B25D0AF2 </deviceGUID>
+		<deviceGUIDGraphicsAPI> D3D11 </deviceGUIDGraphicsAPI>
+		<deviceGUIDAdapterOutput> 0 </deviceGUIDAdapterOutput>
+		<deviceChanges> 0 </deviceChanges>
+		<currentPreset> CUSTOM </currentPreset>
+		<entry>
+			<label> COLOR_GRADING_TECHNIQUE </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> CUSTOM_AA_MODE </label>
+			<activeOption> 2 </activeOption>
+		</entry>
+		<entry>
+			<label> DECOR_LEVEL </label>
+			<activeOption> 1 </activeOption>
+		</entry>
+		<entry>
+			<label> DRR_AUTOSCALER_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> EFFECTS_QUALITY </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> FAR_PLANE </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> FLORA_QUALITY </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> HAVOK_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> HAVOK_QUALITY </label>
+			<activeOption> 2 </activeOption>
+		</entry>
+		<entry>
+			<label> LIGHTING_QUALITY </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> MOTION_BLUR_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> MSAA_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> OBJECT_LOD </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> POST_PROCESSING_QUALITY </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> RENDER_PIPELINE </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> SEMITRANSPARENT_LEAVES_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> SHADER_DEBUG </label>
+			<activeOption> 1 </activeOption>
+		</entry>
+		<entry>
+			<label> SHADOWS_QUALITY </label>
+			<activeOption> 2 </activeOption>
+		</entry>
+		<entry>
+			<label> SNIPER_MODE_EFFECTS_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> SNIPER_MODE_GRASS_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> SNIPER_MODE_SWINGING_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> SNIPER_MODE_TERRAIN_TESSELLATION_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> SPEEDTREE_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> TERRAIN_QUALITY </label>
+			<activeOption> 5 </activeOption>
+		</entry>
+		<entry>
+			<label> TERRAIN_TESSELLATION_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> TEXTURE_QUALITY </label>
+			<activeOption> 4 </activeOption>
+		</entry>
+		<entry>
+			<label> TRACK_PHYSICS_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<entry>
+			<label> VEHICLE_DUST_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> VEHICLE_TRACES_ENABLED </label>
+			<activeOption> 0 </activeOption>
+		</entry>
+		<entry>
+			<label> WATER_QUALITY </label>
+			<activeOption> 3 </activeOption>
+		</entry>
+		<ParticlSystemNoRenderGroup> 65535 </ParticlSystemNoRenderGroup>
+		<distributionLevel> 2 </distributionLevel>
+		<colorGradingStrength> 1.000000 </colorGradingStrength>
+		<brightnessDeferred> 0.500000 </brightnessDeferred>
+		<contrastDeferred> 0.500000 </contrastDeferred>
+		<saturationDeferred> 1.000000 </saturationDeferred>
+	</graphicsPreferences>
+	<devicePreferences>
+		<windowMode> 1 </windowMode>
+		<windowedMonitorIndex> 0 </windowedMonitorIndex>
+		<windowedWidth> 1280 </windowedWidth>
+		<windowedHeight> 1048 </windowedHeight>
+		<positionX> 653 </positionX>
+		<positionY> -7 </positionY>
+		<isWindowMaximized> true </isWindowMaximized>
+		<borderlessBehaviour> 0 </borderlessBehaviour>
+		<borderlessPositionX> 0 </borderlessPositionX>
+		<borderlessPositionY> 0 </borderlessPositionY>
+		<borderlessWidth> 0 </borderlessWidth>
+		<borderlessHeight> 0 </borderlessHeight>
+		<borderlessMonitorIndex> 0 </borderlessMonitorIndex>
+		<toggleBorderless> false </toggleBorderless>
+		<fullscreenMonitorIndex> 0 </fullscreenMonitorIndex>
+		<fullscreenWidth> 1920 </fullscreenWidth>
+		<fullscreenHeight> 1080 </fullscreenHeight>
+		<fullscreenRefresh> 144 </fullscreenRefresh>
+		<waitVSync> false </waitVSync>
+		<tripleBuffering> false </tripleBuffering>
+		<aspectRatio> 1.777778 </aspectRatio>
+		<aspectRatio_override> -1.000000 </aspectRatio_override>
+		<gammaDeferred> 0.450000 </gammaDeferred>
+		<gammaForward> 0.500000 </gammaForward>
+		<drrScale> 1.000000 </drrScale>
+		<useAlternateFrameTimer> false </useAlternateFrameTimer>
+		<textureQualityMemoryBlock> 3000 </textureQualityMemoryBlock>
+	</devicePreferences>
+	<scriptsPreferences>
+		<introVideoVersion> 1.28.1 </introVideoVersion>
+		<gameLoading>
+			<client.loading.progress> 48.000000 </client.loading.progress>
+			<player.loading.progress> 1070.000000 </player.loading.progress>
+		</gameLoading>
+		<soundPrefs>
+			<masterVolume> 0.000000 </masterVolume>
+			<volume_micVivox> 0.000000 </volume_micVivox>
+			<volume_vehicles> 0.000000 </volume_vehicles>
+			<volume_music> 0.000000 </volume_music>
+			<volume_effects> 0.000000 </volume_effects>
+			<volume_ambient> 0.000000 </volume_ambient>
+			<volume_masterFadeVivox> 0.000000 </volume_masterFadeVivox>
+			<volume_gui> 0.000000 </volume_gui>
+			<volume_masterVivox> 0.000000 </volume_masterVivox>
+			<enable> 0 </enable>
+			<volume_music_hangar> 0.000000 </volume_music_hangar>
+			<volume_voice> 0.000000 </volume_voice>
+			<volume_ev_ambient> 0.800000 </volume_ev_ambient>
+			<volume_ev_effects> 0.800000 </volume_ev_effects>
+			<volume_ev_gui> 0.800000 </volume_ev_gui>
+			<volume_ev_music> 0.800000 </volume_ev_music>
+			<volume_ev_vehicles> 0.800000 </volume_ev_vehicles>
+			<volume_ev_voice> 0.800000 </volume_ev_voice>
+			<detectedSpeakerConfig> 2 </detectedSpeakerConfig>
+			<soundMode> default </soundMode>
+		</soundPrefs>
+		<replayPrefs>
+			<replayEnabled> STIKLg== </replayEnabled>
+			<sniperZoom> STEKLg== </sniperZoom>
+			<hullLockEnabled> STAKLg== </hullLockEnabled>
+			<preCommanderCam> STEKLg== </preCommanderCam>
+			<commanderCam> STEKLg== </commanderCam>
+			<showVehicleHPinPlayersPanel> STIKLg== </showVehicleHPinPlayersPanel>
+			<showVehicleHPinMinimap> STIKLg== </showVehicleHPinMinimap>
+			<hangarCamPeriod> STAKLg== </hangarCamPeriod>
+			<hangarCamParallaxEnabled> STAKLg== </hangarCamParallaxEnabled>
+			<useServerAim> STAKLg== </useServerAim>
+			<showDamageIcon> STEKLg== </showDamageIcon>
+			<minimapSize> RjMKLg== </minimapSize>
+			<mapsTrainingMinimapSize> RjMKLg== </mapsTrainingMinimapSize>
+			<comp7PrebattleMinimapSize> RjIKLg== </comp7PrebattleMinimapSize>
+			<minimapAlpha> STY1Ci4= </minimapAlpha>
+			<postmortemMode> STMKLg== </postmortemMode>
+			<showVehiclesCounter> STEKLg== </showVehiclesCounter>
+			<battleLoadingInfo> STEKLg== </battleLoadingInfo>
+			<battleLoadingRankedInfo> STEKLg== </battleLoadingRankedInfo>
+			<showMarksOnGun> STAxCi4= </showMarksOnGun>
+			<anonymizer> STAwCi4= </anonymizer>
+			<showVictimsDogTag> STEKLg== </showVictimsDogTag>
+			<showDogTagToKiller> STEKLg== </showDogTagToKiller>
+			<showKillersDogTag> STEKLg== </showKillersDogTag>
+			<showPersonalAnimatedDogTag> STAKLg== </showPersonalAnimatedDogTag>
+			<dynamicCamera> STAKLg== </dynamicCamera>
+			<increasedZoom> STEKLg== </increasedZoom>
+			<sniperModeByShift> STAKLg== </sniperModeByShift>
+			<enableSpeedometer> STEKLg== </enableSpeedometer>
+			<enableRepairTimer> STEKLg== </enableRepairTimer>
+			<enableBattleNotifier> STEKLg== </enableBattleNotifier>
+			<horStabilizationSnp> STEKLg== </horStabilizationSnp>
+			<enableOlFilter> STAKLg== </enableOlFilter>
+			<enableSpamFilter> STAKLg== </enableSpamFilter>
+			<datetimeIdx> STMKLg== </datetimeIdx>
+			<invitesFromFriendsOnly> STAKLg== </invitesFromFriendsOnly>
+			<receiveClanInvitesNotifications> STEKLg== </receiveClanInvitesNotifications>
+			<receiveFriendshipRequest> STEKLg== </receiveFriendshipRequest>
+			<receiveInvitesInBattle> STEKLg== </receiveInvitesInBattle>
+			<storeReceiverInBattle> STEKLg== </storeReceiverInBattle>
+			<disableBattleChat> STAKLg== </disableBattleChat>
+			<chatContactsListOnly> STAKLg== </chatContactsListOnly>
+			<ppShowLevels> STEKLg== </ppShowLevels>
+			<ppShowTypes> STAxCi4= </ppShowTypes>
+			<ppState> STIKLg== </ppState>
+			<epicppState> STUKLg== </epicppState>
+			<gameplayMask> STY1Ci4= </gameplayMask>
+			<gameplay_only10Mode> STAKLg== </gameplay_only10Mode>
+			<gameplay_devMaps> STEKLg== </gameplay_devMaps>
+			<enableOpticalSnpEffect> STEKLg== </enableOpticalSnpEffect>
+			<showVectorOnMap> STEKLg== </showVectorOnMap>
+			<showSectorOnMap> STAKLg== </showSectorOnMap>
+			<showVehModelsOnMap> STIKLg== </showVehModelsOnMap>
+			<showArtyHitOnMap> STEKLg== </showArtyHitOnMap>
+			<minimapViewRange> STEKLg== </minimapViewRange>
+			<minimapMaxViewRange> STEKLg== </minimapMaxViewRange>
+			<minimapDrawRange> STEKLg== </minimapDrawRange>
+			<customizationDisplayType> STIKLg== </customizationDisplayType>
+			<carouselType> STEKLg== </carouselType>
+			<doubleCarouselType> STAKLg== </doubleCarouselType>
+			<vehicleCarouselStats> STAxCi4= </vehicleCarouselStats>
+			<displayPlatoonMembers> STEKLg== </displayPlatoonMembers>
+			<minimapAlphaEnabled> STAKLg== </minimapAlphaEnabled>
+			<minimapMinSpottingRange> STEKLg== </minimapMinSpottingRange>
+			<scrollSmoothing> STEKLg== </scrollSmoothing>
+			<isColorBlind> STAwCi4= </isColorBlind>
+			<soundDevice> STEKLg== </soundDevice>
+			<alternativeVoices> STAKLg== </alternativeVoices>
+			<mouseHorzInvert> STAKLg== </mouseHorzInvert>
+			<mouseVertInvert> STAKLg== </mouseVertInvert>
+			<backDraftInvert> STAKLg== </backDraftInvert>
+			<arcade> KGRwMQpTJ3JlbG9hZGVyVGltZXInCnAyCkwxMDBMCnNTJ2d1blRhZ1R5cGUnCnAzCkk2CnNTJ3pvb21JbmRpY2F0b3InCnA0CkkxMDAKc1MnZ3VuVGFnJwpwNQpJMTAwCnNTJ2NlbnRyYWxUYWdUeXBlJwpwNgpMOEwKc1MnY2Fzc2V0dGUnCnA3CkkxMDAKc1MnbmV0VHlwZScKcDgKSTAKc1MnbWl4aW5nJwpwOQpJMTAwCnNTJ21peGluZ1R5cGUnCnAxMApMM0wKc1MncmVsb2FkZXInCnAxMQpJMTAwCnNTJ2NlbnRyYWxUYWcnCnAxMgpJMTAwCnNTJ25ldCcKcDEzCkkwCnNTJ2NvbmRpdGlvbicKcDE0CkkxMDAKcy4= </arcade>
+			<sniper> KGRwMQpTJ3JlbG9hZGVyVGltZXInCnAyCkwxMDBMCnNTJ2d1blRhZ1R5cGUnCnAzCkk2CnNTJ3pvb21JbmRpY2F0b3InCnA0CkkxMDAKc1MnZ3VuVGFnJwpwNQpJMTAwCnNTJ2NlbnRyYWxUYWdUeXBlJwpwNgpMOEwKc1MnY2Fzc2V0dGUnCnA3CkkxMDAKc1MnbmV0VHlwZScKcDgKSTAKc1MnbWl4aW5nJwpwOQpJMTAwCnNTJ21peGluZ1R5cGUnCnAxMApMM0wKc1MncmVsb2FkZXInCnAxMQpJMTAwCnNTJ2NlbnRyYWxUYWcnCnAxMgpJMTAwCnNTJ25ldCcKcDEzCkkxMDAKc1MnY29uZGl0aW9uJwpwMTQKSTEwMApzLg== </sniper>
+			<shotsResultIndicator> STEKLg== </shotsResultIndicator>
+			<spgScaleWidget> STEKLg== </spgScaleWidget>
+			<spgStrategicCamMode> STEKLg== </spgStrategicCamMode>
+			<autoChangeAimMode> STEKLg== </autoChangeAimMode>
+			<aimEntranceMode> STEKLg== </aimEntranceMode>
+			<contour> STEKLg== </contour>
+			<contourPenetrableZone> STIKLg== </contourPenetrableZone>
+			<contourImpenetrableZone> STEKLg== </contourImpenetrableZone>
+			<enemy> KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTEKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkxCnNTJ21hcmtlckJhc2VBaW1NYXJrZXIyRCcKcDQKSTEKc1MnbWFya2VyQWx0UGxheWVyTmFtZScKcDUKSTEKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNgpJMQpzUydtYXJrZXJBbHRIcEluZGljYXRvcicKcDcKSTEKc1MnbWFya2VyQmFzZUljb24nCnA4CkkxCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA5CkkxCnNTJ21hcmtlckJhc2VWZWhpY2xlTmFtZScKcDEwCkkxCnNTJ21hcmtlckFsdEljb24nCnAxMQpJMQpzUydtYXJrZXJCYXNlTGV2ZWwnCnAxMgpJMQpzUydtYXJrZXJBbHREYW1hZ2UnCnAxMwpJMQpzUydtYXJrZXJBbHRWZWhpY2xlTmFtZScKcDE0CkkxCnNTJ21hcmtlckFsdExldmVsJwpwMTUKSTEKc1MnbWFya2VyQWx0QWltTWFya2VyMkQnCnAxNgpJMQpzUydtYXJrZXJBbHRIcCcKcDE3CkwxTApzLg== </enemy>
+			<dead> KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTMKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkxCnNTJ21hcmtlckJhc2VBaW1NYXJrZXIyRCcKcDQKSTAKc1MnbWFya2VyQWx0UGxheWVyTmFtZScKcDUKSTEKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNgpJMQpzUydtYXJrZXJBbHRIcEluZGljYXRvcicKcDcKSTEKc1MnbWFya2VyQmFzZUljb24nCnA4CkkxCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA5CkkxCnNTJ21hcmtlckJhc2VWZWhpY2xlTmFtZScKcDEwCkkxCnNTJ21hcmtlckFsdEljb24nCnAxMQpJMQpzUydtYXJrZXJCYXNlTGV2ZWwnCnAxMgpJMQpzUydtYXJrZXJBbHREYW1hZ2UnCnAxMwpJMApzUydtYXJrZXJBbHRWZWhpY2xlTmFtZScKcDE0CkkxCnNTJ21hcmtlckFsdExldmVsJwpwMTUKSTEKc1MnbWFya2VyQWx0QWltTWFya2VyMkQnCnAxNgpJMApzUydtYXJrZXJBbHRIcCcKcDE3CkwzTApzLg== </dead>
+			<ally> KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTEKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkxCnNTJ21hcmtlckJhc2VBaW1NYXJrZXIyRCcKcDQKSTAKc1MnbWFya2VyQWx0UGxheWVyTmFtZScKcDUKSTEKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNgpJMQpzUydtYXJrZXJBbHRIcEluZGljYXRvcicKcDcKSTEKc1MnbWFya2VyQmFzZUljb24nCnA4CkkxCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA5CkkxCnNTJ21hcmtlckJhc2VWZWhpY2xlTmFtZScKcDEwCkkxCnNTJ21hcmtlckFsdEljb24nCnAxMQpJMQpzUydtYXJrZXJCYXNlTGV2ZWwnCnAxMgpJMQpzUydtYXJrZXJBbHREYW1hZ2UnCnAxMwpJMQpzUydtYXJrZXJBbHRWZWhpY2xlTmFtZScKcDE0CkkxCnNTJ21hcmtlckFsdExldmVsJwpwMTUKSTEKc1MnbWFya2VyQWx0QWltTWFya2VyMkQnCnAxNgpJMApzUydtYXJrZXJBbHRIcCcKcDE3CkwxTApzLg== </ally>
+			<damageIndicatorType> STEKLg== </damageIndicatorType>
+			<damageIndicatorCrits> STEKLg== </damageIndicatorCrits>
+			<damageIndicatorAllies> STEKLg== </damageIndicatorAllies>
+			<damageIndicatorDamageValue> STEKLg== </damageIndicatorDamageValue>
+			<damageIndicatorVehicleInfo> STEKLg== </damageIndicatorVehicleInfo>
+			<damageIndicatorAnimation> STEKLg== </damageIndicatorAnimation>
+			<damageIndicatorDynamicIndicator> STEKLg== </damageIndicatorDynamicIndicator>
+			<damageLogTotalDamage> STEKLg== </damageLogTotalDamage>
+			<damageLogBlockedDamage> STEKLg== </damageLogBlockedDamage>
+			<damageLogAssistDamage> STEKLg== </damageLogAssistDamage>
+			<damageLogAssistStun> STEKLg== </damageLogAssistStun>
+			<damageLogShowDetails> STAKLg== </damageLogShowDetails>
+			<damageLogShowEventTypes> STAKLg== </damageLogShowEventTypes>
+			<damageLogEventsPosition> STEKLg== </damageLogEventsPosition>
+			<battleEventsShowInBattle> STEKLg== </battleEventsShowInBattle>
+			<battleEventsEnemyHpDamage> STEKLg== </battleEventsEnemyHpDamage>
+			<battleEventsEnemyBurning> STEKLg== </battleEventsEnemyBurning>
+			<battleEventsEnemyRamAttack> STEKLg== </battleEventsEnemyRamAttack>
+			<battleEventsBlockedDamage> STEKLg== </battleEventsBlockedDamage>
+			<battleEventsEnemyDetectionDamage> STEKLg== </battleEventsEnemyDetectionDamage>
+			<battleEventsEnemyTrackDamage> STEKLg== </battleEventsEnemyTrackDamage>
+			<battleEventsEnemyDetection> STEKLg== </battleEventsEnemyDetection>
+			<battleEventsEnemyKill> STEKLg== </battleEventsEnemyKill>
+			<battleEventsBaseCaptureDrop> STEKLg== </battleEventsBaseCaptureDrop>
+			<battleEventsBaseCapture> STEKLg== </battleEventsBaseCapture>
+			<battleEventsEnemyCriticalHit> STEKLg== </battleEventsEnemyCriticalHit>
+			<battleEventsEventName> STEKLg== </battleEventsEventName>
+			<battleEventsVehicleInfo> STEKLg== </battleEventsVehicleInfo>
+			<battleEventsEnemyWorldCollision> STEKLg== </battleEventsEnemyWorldCollision>
+			<battleEventsReceivedDamage> STEKLg== </battleEventsReceivedDamage>
+			<battleEventsReceivedCrits> STEKLg== </battleEventsReceivedCrits>
+			<battleEventsEnemyAssistStun> STEKLg== </battleEventsEnemyAssistStun>
+			<battleEventsEnemyStun> STAKLg== </battleEventsEnemyStun>
+			<battleEventsCrewPerks> STEKLg== </battleEventsCrewPerks>
+			<battleBorderMapMode> STEKLg== </battleBorderMapMode>
+			<battleBorderMapType> STAKLg== </battleBorderMapType>
+			<progressViewType> STEKLg== </progressViewType>
+			<progressViewConditions> STEKLg== </progressViewConditions>
+			<enableBattleComm> STEKLg== </enableBattleComm>
+			<showMarkers> STAKLg== </showMarkers>
+			<showCalloutMessages> STEKLg== </showCalloutMessages>
+			<showCommInPlayerlist> STAKLg== </showCommInPlayerlist>
+			<showStickyMarkers> STAKLg== </showStickyMarkers>
+			<showLocationMarkers> STEKLg== </showLocationMarkers>
+			<showHPValues> STEKLg== </showHPValues>
+			<showHPDifference> STEKLg== </showHPDifference>
+			<enableTierGrouping> STEKLg== </enableTierGrouping>
+			<showHPBar> STEKLg== </showHPBar>
+			<lootBoxVideoOff> STAKLg== </lootBoxVideoOff>
+			<enableCommendations> STEKLg== </enableCommendations>
+		</replayPrefs>
+		<fov> 120.000000 </fov>
+		<dynamicFov> KGxwMQpGODAKYUYxMDAKYS4= </dynamicFov>
+		<loginInfo>
+			<data> AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAATvRErUIzkyeoFwtGpnwXQQAAAACAAAAAAAQZgAAAAEAACAAAACoxgm3cg9iAgQHFBxYwUi555Lx3YJfj1eItcg0j3ef9QAAAAAOgAAAAAIAACAAAAD2Eutjb6SNXaRoCaksmCVDqzEg1gtM4m1OS3rqxLp7zJAAAABUDr3NH2iJhPrdbfvxXCL/A6GJXWWZ8V62eG/mkrg4n07dPhBYvyJj/kHbIi22h+qKQSsYRX99GeiUYxJU4Cy+OV0E/BlXW8p6cSpD8eU1NKvGcf8dWMZMwotCrm1O7Uwupk0QwBUjeOZbJgNCkxRDOuu4+sIMHnuIuYtVqy6PzE2KVDnK2JGOVEo7DhYxKwxAAAAA9XXnLo0N9B+wzl+ZBEh1YDzreMwBEeb0PGhHWEfdI2a8mUQGeGi+Z7X3pVIl511NkjNnBKUd3FtmrmOsKA2/qg== </data>
+			<user> KyTRikso </user>
+		</loginInfo>
+		<loginServerSelection> false </loginServerSelection>
+		<accounts>
+			<version> 87 </version>
+			<account>
+				<login/>
+				<settings>
+					<lastBadgesVisit> RjE3MzM0OTUzODAuMTQyNTcxMgou </lastBadgesVisit>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+				</settings>
+				<ui_flags/>
+				<counters/>
+				<notifications/>
+			</account>
+			<account>
+				<login> KyTRikso </login>
+				<manual>
+					<manual_new_content> KGRwMQpTJ3YuMS4yOC4xLjAgIzY1NicKcDIKKGxwMwoobHA0CmEobHA1CmEobHA2CmEobHA3CmEobHA4CmEobHA5CmEobHAxMAphcy4= </manual_new_content>
+					<lobby_menu_manual_trigger_shown> STAxCi4= </lobby_menu_manual_trigger_shown>
+				</manual>
+				<settings>
+					<topOfTree> KGRwMQpTJzI0MTIwNS0wOTAwXzI1MDEwNS0wOTAwXzA1LTA1X0phbl90ZWNodHJlZV8hNTg1NjQnCnAyCihkcDMKUydub3RpZmllZCcKcDQKSTAxCnNTJ25hdGlvbnMnCnA1CihscDYKSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMQphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYXNzUycyNDEyMDUtMDkwMF8yNTAxMDUtMDkwMF8wNS0wNV9KYW5fdGVjaHRyZWVfITU4NTY1JwpwNwooZHA4ClMnbm90aWZpZWQnCnA5CkkwMQpzUyduYXRpb25zJwpwMTAKKGxwMTEKSTAwCmFJMDEKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYXNzLg== </topOfTree>
+					<battleMattersSettings> KGRwMQpTJ3Byb2dyZXNzRm9yUXVlc3QnCnAyCkkxCnNTJ2JhdHRsZXNDb3VudFdpdGhvdXRQcm9ncmVzcycKcDMKSTAKc1MncmVtaW5kZXJMYXN0RGlzcGxheVRpbWUnCnA0CkkwCnNTJ2xhc3RRdWVzdFByb2dyZXNzJwpwNQpJMApzLg== </battleMattersSettings>
+					<appliedColorSettings> KGRwMQpJMAooZHAyClZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwMwpJMApzc0kxCihkcDQKVmNvbnRyYXN0Q29ycmVjdGlvbgpwNQpJNTAKc1ZicmlnaHRuZXNzQ29ycmVjdGlvbgpwNgpJNTAKc1ZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwNwpJMwpzVmNvbG9yRmlsdGVySW50ZW5zaXR5CnA4CkkxMDAKc1ZzYXR1cmF0aW9uQ29ycmVjdGlvbgpwOQpJMTAwCnNzLg== </appliedColorSettings>
+					<wotPlus> KGRwMQpTJ2lzUGFzc2l2ZVhwRW5hYmxlZCcKcDIKSTAxCnNTJ2lzRnJlZURlbW91bnRpbmdFbmFibGVkJwpwMwpJMDEKc1MnaXNPcHRpb25hbERldmljZXNBc3Npc3RhbnRFbmFibGVkJwpwNApJMDEKc1MnaXNCYWRnZXNFbmFibGVkJwpwNQpJMDAKc1MnaXNFeGNsdWRlZE1hcEVuYWJsZWQnCnA2CkkwMQpzUydpc0RhaWx5QXR0ZW5kYW5jZXNFbmFibGVkJwpwNwpJMDEKc1MnaXNXb3RQbHVzRW5hYmxlZCcKcDgKSTAxCnNTJ2lzQmF0dGxlQm9udXNlc0VuYWJsZWQnCnA5CkkwMApzUydpc0dvbGRSZXNlcnZlRW5hYmxlZCcKcDEwCkkwMQpzUydpc0NyZXdBc3Npc3RhbnRFbmFibGVkJwpwMTEKSTAxCnNTJ2Ftb3VudE9mRGFpbHlBdHRlbmRhbmNlJwpwMTIKSTAKc1MnaXNPbmJvYXJkaW5nU2hvd24nCnAxMwpJMDAKc1MnaXNBZGRpdGlvbmFsWFBFbmFibGVkJwpwMTQKSTAwCnNTJ2lzRmlyc3RUaW1lJwpwMTUKSTAxCnMu </wotPlus>
+					<telecomRentals> KGRwMQpTJ3BlbmRpbmdSZW50YWxzJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNUZWxlY29tUmVudGFsc0VuYWJsZWQnCnA1CkkwMQpzUydpc1RlbGVjb21SZW50YWxzQmxvY2tlZCcKcDYKSTAxCnMu </telecomRentals>
+					<quests> KGRwMQpTJ2RhaWx5UXVlc3RzJwpwMgooZHAzClMncHJlbU1pc3Npb25zVGFiRGlzY292ZXJlZCcKcDQKSTAxCnNTJ2xhc3RWaXNpdGVkRFFUYWJJZHgnCnA1CkkwCnNzUyduYVZpc2l0ZWQnCnA2CihTJ1dHU1NBLTU4ODYwX3ExOScKcDcKUydXR1NTQS01ODg2MF9xMTgnCnA4ClMnV0dTU0EtNTg1NjVfcTAxJwpwOQpTJ1dHU1NBLTU4ODI3X3EwNScKcDEwClMnV0dTU0EtNDgzNzNfcTIwMCcKcDExClMnV0dTU0EtNTg0NTdfcTAxJwpwMTIKUydXR1NTQS01ODQ1N19xMDInCnAxMwpTJ1dHU1NBLTU4NDU3X3EwMycKcDE0ClMnV0dTU0EtNTg3NTdfcTAxJwpwMTUKUydXR1NTQS01ODU2NV9xMDMnCnAxNgpTJ1dHU1NBLTQ4MzczX3ExNjYnCnAxNwpTJ1dHU1NBLTU4NzE4X3EwMScKcDE4ClMncHJlbV9hY2NfcTAyJwpwMTkKUydwcmVtX2FjY19xMDMnCnAyMApTJ1dHU1NBLTU4OTI5X3EwOCcKcDIxClMncHJlbV9hY2NfcTAxJwpwMjIKUydXR1NTQS01ODkyOV9xMDYnCnAyMwpTJ1dHU1NBLTUzODQ1X3EwMScKcDI0ClMnV0dTU0EtNTg5MjlfcTA0JwpwMjUKUydXR1NTQS01ODkyOV9xMDUnCnAyNgpTJ2JhdHRsZV9wYXNzX1dHU1NBLTU4Njk5X3EwMV9tZWRhbCcKcDI3ClMnV0dTU0EtNTg5MjlfcTAzJwpwMjgKUydXR1NTQS00ODM3M19xMTY4JwpwMjkKUydXR1NTQS01ODkyOV9xMDEnCnAzMApTJ2RxOjY4MDYyN2M0OlFVRVNUX0VQSUNfUkVXQVJEOjo6OnI6NTAxX18xMDA6OnI6NTMzX18xOjpyOjU2Ml9fNTo6cjo1OTFfXzUwJwpwMzEKUydXR1NTQS01ODU2NV9xMDInCnAzMgpTJ1dHU1NBLTU4OTI5X3EwMTAnCnAzMwpTJ1dHU1NBLTU4ODYwX3EwNCcKcDM0ClMnV0dTU0EtNTg4NjBfcTA1JwpwMzUKUydXR1NTQS01ODg2MF9xMDInCnAzNgpTJ1dHU1NBLTU4ODYwX3EwMycKcDM3ClMnV0dTU0EtNTg4NjBfcTAxJwpwMzgKUydXR1NTQS01ODg2MF9xMjAnCnAzOQpTJ2RxOjY4MGNmYzg0OlFVRVNUX0hBUkQ6OmM6MzE1X183OjpyOmV0dF9fMTo6cjpidHRfXzE6OnI6MzMyX18yMDo6cjozMjJfXzQwMDAwJwpwNDAKUydXR1NTQS01ODYzOF9xMDMnCnA0MQpTJ1dHU1NBLTU4NjM4X3EwMicKcDQyClMnV0dTU0EtNTg2MzhfcTAxJwpwNDMKUydXR1NTQS01ODkyOV9xMDInCnA0NApTJ1dHU1NBLTU4OTI5X3EwOScKcDQ1ClMnV0dTU0EtNTg1NjRfcTAzJwpwNDYKUydXR1NTQS01ODU2NF9xMDInCnA0NwpTJ1dHU1NBLTU4NTY0X3EwMScKcDQ4ClMnV0dTU0EtNTg0NTZfcTAyJwpwNDkKUydXR1NTQS00ODM3M19xMTExJwpwNTAKUydXR1NTQS01ODYzOV9xMDMnCnA1MQpTJ1dHU1NBLTU4NDU2X3EwMScKcDUyClMnV0dTU0EtNTg5MjlfcTA3JwpwNTMKUydXR1NTQS01ODYzOV9xMDYnCnA1NApTJ1dHU1NBLTU4NjM5X3EwNCcKcDU1ClMnV0dTU0EtNTg2MzlfcTA1JwpwNTYKUydXR1NTQS01ODYzOV9xMDInCnA1NwpTJ1dHU1NBLTU4NDU2X3EwMycKcDU4ClMnV0dTU0EtNTg2MzlfcTAxJwpwNTkKdHA2MApzUyd2aXNpdGVkJwpwNjEKKGc3Cmc4Cmc0MApTJ1dHU1NBLTQ4MzczX3EyMDAnCmc0NApTJ3ByZW1fYWNjX3EwMicKUydwcmVtX2FjY19xMDMnCmcyMQpnNDUKZzIzCmc1MwpnMjUKZzI2CmcyNwpnMjgKUydXR1NTQS00ODM3M19xMTY4JwpnMzAKZzMxCmczMwpnMzQKZzM1CmczNgpnMzcKZzM4CmczOQpnNDEKZzQyCmc0MwpnNDYKZzQ3Cmc0OApnOQpnMTUKZzI0Cmc1NApnNTUKZzU2Cmc1MQpnNTkKdHA2MgpzUydsYXN0VmlzaXRUaW1lJwpwNjMKRjE3NDU3NDY1NjAuNTEwOTk5OQpzUydxdWVzdERlbHRhcycKcDY0CihkcDY1ClMndG9rZW5zUHJvZ3Jlc3MnCnA2NgooZHA2NwpTJ2RxdDpjb250cm9sOnRpY2tldDplcGljX3Jld2FyZCcKcDY4CkkzMwpzc1MncXVlc3RQcm9ncmVzcycKcDY5CihkcDcwClMnZHE6NjgwZGY4YjY6UVVFU1RfTUVESVVNOjpjOjIxOV9fMTU6OnI6ZXR0X18xOjpyOmJ0dF9fMTo6cjoyMzJfXzE1OjpyOjIyMF9fMzAwMDAnCnA3MQooZHA3MgpOKGRwNzMKUydib251c0NvdW50JwpwNzQKSTEKc1MnZGFtYWdlZCcKcDc1CkYwCnNzc1MncHJlbV9hY2NfcTAyJwpwNzYKKGRwNzcKTihkcDc4ClMnYm9udXNDb3VudCcKcDc5CkkxCnNzc1MncHJlbV9hY2NfcTAzJwpwODAKKGRwODEKTihkcDgyClMnYm9udXNDb3VudCcKcDgzCkkxCnNTJ2tpbGxzJwpwODQKRjAKc3NzUydkcTo2ODBkZjhiNjpRVUVTVF9FQVNZOjpjOjExMl9fMzo6cjpldHRfXzE6OnI6YnR0X18xOjpyOjEzMl9fMTA6OnI6MTA1X18xJwpwODUKKGRwODYKTihkcDg3ClMnYm9udXNDb3VudCcKcDg4CkkxCnNzc1MncHJlbV9hY2NfcTAxJwpwODkKKGRwOTAKTihkcDkxClMnYm9udXNDb3VudCcKcDkyCkkxCnNzc3NTJ3F1ZXN0Q29tcGxldGlvbicKcDkzCihkcDk0ClMncHJlbV9hY2NfcTAyJwpwOTUKSTAxCnNTJ3ByZW1fYWNjX3EwMycKcDk2CkkwMQpzUydwcmVtX2FjY19xMDEnCnA5NwpJMDEKc3NzUydwZXJzb25hbE1pc3Npb25zJwpwOTgKKGRwOTkKUydoZWFkZXJBbGVydCcKcDEwMApJMDAKc1Mnb3BlcmF0aW9uc1Zpc2l0ZWQnCnAxMDEKY19fYnVpbHRpbl9fCnNldApwMTAyCigobHRScDEwMwpzUydpbnRyb1Nob3duJwpwMTA0CkkwMApzc1MnbWluaW1pemVkJwpwMTA1CmcxMDIKKChsdFJwMTA2CnMu </quests>
+					<epicLastCycleID> STIwMjUwNTAyCi4= </epicLastCycleID>
+					<rankedWebLeague> Y2NvcHlfcmVnCl9yZWNvbnN0cnVjdG9yCnAxCihjZ3VpLnJhbmtlZF9iYXR0bGVzLnJhbmtlZF9oZWxwZXJzLndlYl9zZWFzb25fcHJvdmlkZXIKV2ViU2Vhc29uSW5mbwpwMgpjX19idWlsdGluX18KdHVwbGUKcDMKKEkwCk5JMDAKSTAwCnR0UnA0Ci4= </rankedWebLeague>
+					<hw24_keys> KGRwMQpTJ3NvdW5kJwpwMgooZHAzCnNTJ2Nhcm91c2VsX2ZpbHRlcl9kZWYnCnA0CihkcDUKc1MnbWV0YV9pbnRvX3ZpZXdfc2hvd2VkJwpwNgpJMDAKc1MnYXdhcmRfdW5sb2NrX2xldmVsJwpwNwoobHA4CnNTJ2Zhdm9yaXRlcycKcDkKSTAKc1MnYXJ0ZWZhY3Rfdm9pY2VvdmVyX211dGVkJwpwMTAKSTAwCnNTJ3Byb21vX3NjcmVlbl9zaG93ZWQnCnAxMQpJMDAKc1MnZGVmZW5jZV9mYXZvcml0ZXMnCnAxMgpJMApzUydjaGF0X2ZpcnN0X3NlZW4nCnAxMwpJMDAKc1Mnc2VsZWN0ZWRfbGV2ZWwnCnAxNApJMQpzUyd1bmxvY2tfbGV2ZWxzJwpwMTUKKGRwMTYKSTQKKGRwMTcKUydpc05ldycKcDE4CkkwMQpzc0kyCihkcDE5ClMnaXNOZXcnCnAyMApJMDEKc3NJMwooZHAyMQpTJ2lzTmV3JwpwMjIKSTAxCnNzcy4= </hw24_keys>
+					<newSettingsCounter> KGRwMQpTJ0dhbWVTZXR0aW5ncycKcDIKKGRwMwpTJ3Nob3dBcnR5SGl0T25NYXAnCnA0CkkwMApzUydzaG93VmVoaWNsZUhQaW5QbGF5ZXJzUGFuZWwnCnA1CkkwMApzUydnYW1lcGxheV9lcGljU3RhbmRhcmQnCnA2CkkwMApzUydwcmVDb21tYW5kZXJDYW0nCnA3CkkwMApzUydkaXNwbGF5UGxhdG9vbk1lbWJlcnMnCnA4CkkwMApzUydoYW5nYXJDYW1QZXJpb2QnCnA5CkkwMQpzUydzaG93VmVoaWNsZUhQaW5NaW5pbWFwJwpwMTAKSTAwCnNTJ3Nob3dWaWN0aW1zRG9nVGFnJwpwMTEKSTAwCnNTJ2xpbWl0ZWRVSUFjdGl2ZScKcDEyCkkwMQpzUydzY3JvbGxTbW9vdGhpbmcnCnAxMwpJMDAKc1MncG9zdG1vcnRlbU1vZGUnCnAxNApJMDAKc1MnaGFuZ2FyQ2FtUGFyYWxsYXhFbmFibGVkJwpwMTUKSTAwCnNTJ2h1bGxMb2NrRW5hYmxlZCcKcDE2CkkwMApzUydlbmFibGVDb21tZW5kYXRpb25zJwpwMTcKSTAwCnNTJ2dhbWVwbGF5X29ubHkxME1vZGUnCnAxOApJMDEKc1Mnc3dpdGNoRXF1aXBtZW50JwpwMTkKSTAwCnNTJ2NvbW1hbmRlckNhbScKcDIwCkkwMApzUydzaG93RGFtYWdlSWNvbicKcDIxCkkwMApzUydnYW1lcGxheV9kZXZNYXBzJwpwMjIKSTAwCnNTJ2Fub255bWl6ZXInCnAyMwpJMDAKc1Mnc2hvd0xvY2F0aW9uTWFya2VycycKcDI0CkkwMApzc1MnU291bmRTZXR0aW5ncycKcDI1CihkcDI2ClMnYXJ0eUJ1bGJWb2ljZXMnCnAyNwpJMDEKc3NTJ0dyYXBoaWNTZXR0aW5ncycKcDI4CihkcDI5ClMnU2NyZWVuU2V0dGluZ3MnCnAzMAooZHAzMQpTJ2NvbG9yRmlsdGVyJwpwMzIKSTAwCnNTJ2dhbW1hU2V0dGluZycKcDMzCkkwMApzc1MnQWR2YW5jZWRHcmFwaGljU2V0dGluZ3MnCnAzNAooZHAzNQpTJ0hBVk9LX0VOQUJMRUQnCnAzNgpJMDAKc1MnVFJBQ0tfUEhZU0lDU19RVUFMSVRZJwpwMzcKSTAwCnNTJ1RFUlJBSU5fVEVTU0VMTEFUSU9OX0VOQUJMRUQnCnAzOApJMDAKc1MnU05JUEVSX01PREVfVEVSUkFJTl9URVNTRUxMQVRJT05fRU5BQkxFRCcKcDM5CkkwMApzc3NTJ0NvbnRyb2xzU2V0dGluZ3MnCnA0MAooZHA0MQpTJ3Nob3dQZXJzb25hbFJlc2VydmVzJwpwNDIKSTAxCnNTJ2NoYXJnZUZpcmUnCnA0MwpJMDAKc1Mnc2hvd1F1ZXN0UHJvZ3Jlc3MnCnA0NApJMDEKc1MnaGlnaGxpZ2h0TG9jYXRpb24nCnA0NQpJMDAKc1MnbmVnYXRpdmUnCnA0NgpJMDEKc1MnYWZmaXJtYXRpdmUnCnA0NwpJMDEKc3NTJ0ZlZWRiYWNrU2V0dGluZ3MnCnA0OAooZHA0OQpTJ2ZlZWRiYWNrQmF0dGxlRXZlbnRzJwpwNTAKKGRwNTEKUydiYXR0bGVFdmVudHNDcmV3UGVya3MnCnA1MgpJMDAKc3NTJ2ZlZWRiYWNrQmF0dGxlQm9yZGVyTWFwJwpwNTMKKGRwNTQKUydiYXR0bGVCb3JkZXJNYXBNb2RlJwpwNTUKSTAwCnNTJ2JhdHRsZUJvcmRlck1hcFR5cGUnCnA1NgpJMDAKc3NTJ2ZlZWRiYWNrUXVlc3RzUHJvZ3Jlc3MnCnA1NwooZHA1OApTJ3Nob3dIUFZhbHVlcycKcDU5CkkwMApzUydzaG93SFBEaWZmZXJlbmNlJwpwNjAKSTAwCnNTJ3Nob3dIUEJhcicKcDYxCkkwMApzUydlbmFibGVUaWVyR3JvdXBpbmcnCnA2MgpJMDAKc1MncHJvZ3Jlc3NWaWV3VHlwZScKcDYzCkkwMApzUydwcm9ncmVzc1ZpZXdDb25kaXRpb25zJwpwNjQKSTAwCnNzUydmZWVkYmFja0RhbWFnZUluZGljYXRvcicKcDY1CihkcDY2ClMnZGFtYWdlSW5kaWNhdG9yQWxsaWVzJwpwNjcKSTAwCnNzc1MnQWltU2V0dGluZ3MnCnA2OAooZHA2OQpTJ2NvbnRvdXInCnA3MAooZHA3MQpnNzAKSTAwCnNTJ2NvbnRvdXJQZW5ldHJhYmxlWm9uZScKcDcyCkkwMQpzUydjb250b3VySW1wZW5ldHJhYmxlWm9uZScKcDczCkkwMApzc1Mnc3BnJwpwNzQKKGRwNzUKUydhdXRvQ2hhbmdlQWltTW9kZScKcDc2CkkwMApzUydzcGdTY2FsZVdpZGdldCcKcDc3CkkwMApzUydzaG90c1Jlc3VsdEluZGljYXRvcicKcDc4CkkwMApzUydzcGdTdHJhdGVnaWNDYW1Nb2RlJwpwNzkKSTAxCnNTJ2FpbUVudHJhbmNlTW9kZScKcDgwCkkwMQpzc3Mu </newSettingsCounter>
+					<lastBadgesVisit> RjE3NDUwOTA1NTMuNzg0MzcxNAou </lastBadgesVisit>
+					<achievements20_info> KGRwMQpTJ2FjaGlldmVtZW50c01lZGFsQ291bnRJbmZvJwpwMgpJMApzUydhY2hpZXZlbWVudFd0cicKcDMKKGRwNApTJ2FjaGlldmVtZW50V3RyUHJldlJhbmsnCnA1Ckk0CnNTJ2FjaGlldmVtZW50V3RyUHJldlN1YlJhbmsnCnA2CkkyCnNTJ2FjaGlldmVtZW50V3RyUG9pbnRzJwpwNwpJNjI4Mgpzc1MnYWNoaWV2ZW1lbnRXdHJQb2ludHNOb3RpZmljYXRpb24nCnA4Ckk2MjE0CnNTJ2FjaGlldmVtZW50czIwSW5pdGlhbEJhdHRsZUNvdW50JwpwOQpJMTM3OTQKc1MnYWNoaWV2ZW1lbnRzRmlyc3RFbnRyeVN0YXR1cycKcDEwCkkyCnNTJ2FjaGlldmVtZW50c0VkaXRpbmdFbmFibGVkU3RhdHVzJwpwMTEKSTIKc1MnYWNoaWV2ZW1lbnRzV3RyUmFua3MnCnAxMgooZHAxMwpzUydhY2hpZXZlbWVudHNNZWRhbEFkZGVkU3RhdHVzJwpwMTQKSTAKc1MnYWNoaWV2ZW1lbnRzUmF0aW5nQ2hhbmdlZFN0YXR1cycKcDE1CkkwCnNTJ2FjaGlldmVtZW50czIwTWF4V3RyUG9pbnRzJwpwMTYKSTYyMTQKc1MncHJldkFjaGlldmVtZW50TmFtZUxpc3QnCnAxNwoobHAxOApTJ3dhcnJpb3InCnAxOQphUydtYWluR3VuJwpwMjAKYVMnc3VwcG9ydGVyJwpwMjEKYVMnc25pcGVyMicKcDIyCmFTJ2V2aWxleWUnCnAyMwphUydzdGVlbHdhbGwnCnAyNAphUydkZWZlbmRlcicKcDI1CmFTJ2ludmFkZXInCnAyNgphUydzY291dCcKcDI3CmFTJ2ZpZ2h0ZXInCnAyOAphUydkdWVsaXN0JwpwMjkKYVMnbWVkYWxBbnRpU3BnRmlyZScKcDMwCmFTJ2ltcGVuZXRyYWJsZScKcDMxCmFTJ2thbWlrYXplJwpwMzIKYVMnYWltZXInCnAzMwphUydib21iYXJkaWVyJwpwMzQKYVMnc2hvb3RUb0tpbGwnCnAzNQphUydoYW5kT2ZEZWF0aCcKcDM2CmFTJ21vdXNlYmFuZScKcDM3CmFTJ2JlYXN0aHVudGVyJwpwMzgKYVMnc2luYWknCnAzOQphUydhcm1vclBpZXJjZXInCnA0MAphUyd0aXRsZVNuaXBlcicKcDQxCmFTJ21lY2hhbmljRW5naW5lZXI3JwpwNDIKYVMnbWVjaGFuaWNFbmdpbmVlcjknCnA0MwphUyd0YW5rRXhwZXJ0MicKcDQ0CmFTJ21lZGFsUmFkbGV5V2FsdGVycycKcDQ1CmFTJ21lZGFsR29yZScKcDQ2CmFTJ21lZGFsTmlrb2xhcycKcDQ3CmFTJ21lZGFsT3NraW4nCnA0OAphUydtZWRhbExlaHZhc2xhaWhvJwpwNDkKYVMnbWVkYWxPcmxpaycKcDUwCmFTJ21lZGFsSGFsb25lbicKcDUxCmFTJ21lZGFsVGFtYWRhWW9zaGlvJwpwNTIKYVMnbWVkYWxEdW1pdHJ1JwpwNTMKYVMnbWVkYWxQYXNjdWNjaScKcDU0CmFTJ21lZGFsQnJ1bm9QaWV0cm8nCnA1NQphUydtZWRhbEJpbGxvdHRlJwpwNTYKYVMnbWVkYWxCcm90aGVyc0luQXJtcycKcDU3CmFTJ2V2ZW4nCnA1OAphUydjaGFybWVkJwpwNTkKYVMnYm9uZWNydXNoZXInCnA2MAphUydkZW1vbGl0aW9uJwpwNjEKYVMnYXJzb25pc3QnCnA2MgphUydtZWRhbE1vbm9saXRoJwpwNjMKYVMnaXJvbk1hbicKcDY0CmFTJ3N0dXJkeScKcDY1CmFTJ3Rhbmt3b21lbicKcDY2CmFTJ2ZpcnN0TWVyaXQnCnA2NwphUyduZXdNZXJpdFBNMicKcDY4CmFTJ21lZGFsS2F5JwpwNjkKYVMnbWVkYWxDYXJpdXMnCnA3MAphUydtZWRhbEVraW5zJwpwNzEKYVMnbWVkYWxLbmlzcGVsJwpwNzIKYVMnbWVkYWxQb3BwZWwnCnA3MwphUydtZWRhbEFicmFtcycKcDc0CmFTJ21lZGFsTGVDbGVyYycKcDc1CmFTJ21lZGFsTGF2cmluZW5rbycKcDc2CmFTJ3NvbGRpZXJPZkZvcnR1bmUnCnA3NwphUydyZWFkeUZvckJhdHRsZUxUJwpwNzgKYVMncmVhZHlGb3JCYXR0bGVNVCcKcDc5CmFTJ3JlYWR5Rm9yQmF0dGxlSFQnCnA4MAphUydyZWFkeUZvckJhdHRsZUFUU1BHJwpwODEKYVMncmVhZHlGb3JCYXR0bGVTUEcnCnA4MgphUydyZWFkeUZvckJhdHRsZUFsbGlhbmNlVVNTUicKcDgzCmFTJzE0MzQnCnA4NAphUycxNDI3JwpwODUKYVMnMDVZZWFyc09mU2VydmljZScKcDg2CmFTJzA0WWVhcnNPZlNlcnZpY2UnCnA4NwphUycwM1llYXJzT2ZTZXJ2aWNlJwpwODgKYVMnMDJZZWFyc09mU2VydmljZScKcDg5CmFTJzAxWWVhcnNPZlNlcnZpY2UnCnA5MAphUydSUDIwMThmaXJzdG1lZCcKcDkxCmFTJ1JQMjAxOHNlY29uZG1lZCcKcDkyCmFTJ1JQMjAxOHRoaXJkbWVkJwpwOTMKYVMnb2NjdXB5aW5nRm9yY2UnCnA5NAphUydpcm9uU2hpZWxkJwpwOTUKYVMnZ2VuZXJhbE9mVGhlQXJteScKcDk2CmFTJ3N1cHJlbWVHdW4nCnA5NwphUydCYXR0bGVQYXNzQ29tbW9uUHJfNicKcDk4CmFTJ0JhdHRsZVBhc3NDb21tb25Qcl85JwpwOTkKYVMnQmF0dGxlUGFzc0NvbW1vblByX05ZMjMnCnAxMDAKYVMnQmF0dGxlUGFzc0NvbW1vblByXzEwJwpwMTAxCmFTJ0JhdHRsZVBhc3NDb21tb25Qcl8xMScKcDEwMgphUydCYXR0bGVQYXNzQ29tbW9uUHJfMTMnCnAxMDMKYVMnTlkyMl9BdG1zcGhyTGV2ZWwnCnAxMDQKYVMnTlkyM19BdG1zcGhyTGV2ZWwnCnAxMDUKYVMnTlkyM19DZWxlYkNoYWxsZW5nZScKcDEwNgphUydOWTI0X0F0bXNwaHJMZXZlbCcKcDEwNwphUydOWTI0X0NlbGViQ2hhbGxlbmdlJwpwMTA4CmFTJ05ZMjVfQ2VsZWJDaGFsbGVuZ2UnCnAxMDkKYVMnTlkyNV9BdG1zcGhyTGV2ZWwnCnAxMTAKYVMnYm9vdGNhbXBNZWRhbCcKcDExMQphUydUZW5ZZWFyc0NvdW50ZG93blBhcnRpY2lwYXRpb24nCnAxMTIKYVMnVGVuWWVhcnNDb3VudGRvd25TdGFnZU1lZGFsJwpwMTEzCmFTJ2REYXlGaWdodGVyJwpwMTE0CmFTJ3d0eEh1bnRlcldpbnMnCnAxMTUKYVMnd3QyMDIySHVudGVyV2lucycKcDExNgphUyd3dHhCb3NzV2lucycKcDExNwphUyd3dDIwMjJCb3NzV2lucycKcDExOAphUydtYXkyMycKcDExOQphUydqdW5lMjMnCnAxMjAKYVMnb293VGFua21hbldpbnMnCnAxMjEKYVMnb293U3RyYXRlZ2lzdFdpbnMnCnAxMjIKYVMnb293Q29tcGV0ZXRpdmVXaW4nCnAxMjMKYVMnaHcyMDIxTWVkYWwxJwpwMTI0CmFTJ2h3MjAyMU1lZGFsMicKcDEyNQphUydodzIwMjJNZWRhbDAxJwpwMTI2CmFTJ2h3MjAyM01lZGFsJwpwMTI3CmFTJ2h3MjAyNE1lZGFsJwpwMTI4CmFTJ0Nvc21pY19NYXJ0aWFuU3RhbGtlcicKcDEyOQphUydDb3NtaWNfU3BhY2VUcmFjZScKcDEzMAphUydDb3NtaWNfU3RhclRyZWtDcmV3JwpwMTMxCmFTJ0Nvc21pY19MaXZlTG9uZ0FuZFByb3NwZXInCnAxMzIKYVMnY29tcDdTZWFzb24xJwpwMTMzCmFTJ2NvbXA3XzIwMjNfMScKcDEzNAphUydjb21wN18zX3llYXJseV9zaWx2ZXInCnAxMzUKYVMnY29tcDdfM18xJwpwMTM2CmFTJ2NvbXA3XzNfMycKcDEzNwphUydjb21wN18zXzInCnAxMzgKYVMnY29tcDdfNF8yJwpwMTM5CmFTJ2NvbXA3XzRfMycKcDE0MAphUyd3dDIwMjRIdW50ZXJXaW5zJwpwMTQxCmFTJ3d0MjAyNEJvc3NXaW5zJwpwMTQyCmFTJ3d0MjAyNEh1bnRlcldpbnNFcGljJwpwMTQzCmFzUydhY2hpZXZlbWVudHNSYXRpbmdDYWxjdWxhdGVkU3RhdHVzJwpwMTQ0CkkyCnMu </achievements20_info>
+					<colorSettingsTabIdx> STEKLg== </colorSettingsTabIdx>
+					<personalReserves> KGRwMQpTJ2Jvb3N0ZXJDYXJkSGludHNTZWVuJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHA0CkkxCmFJMTIyMjEwCmFJMwphSTQKYUkxMjEwMDAKYUkxMjEwMDEKYUkxMjEwMDIKYUkxMjEwMDMKYUkxMjEwMDQKYUkxMjEwMDUKYUkxMjI1MTAKYUkyCmFJMTIyNDEwCmF0UnA1CnNTJ2lzRmlyc3RUaW1lTm90aWZpY2F0aW9uU2hvd24nCnA2CkkwMQpzUydpc0ludHJvUGFnZVNob3duJwpwNwpJMDEKcy4= </personalReserves>
+					<modeSelectorBattlePassShown> KGRwMQpTJ3NlYXNvbklkJwpwMgpJMTc0MTE0NTQwMApzUydzcGVjQmF0dGxlc0xpc3QnCnAzCkkwMApzUydjb21wNycKcDQKSTAxCnNTJ21hcHNUcmFpbmluZycKcDUKSTAwCnNTJ3RyYWluaW5nc0xpc3QnCnA2CkkwMApzUydyYW5kb20nCnA3CkkwMQpzUydzdHJvbmdob2xkc0JhdHRsZXNMaXN0JwpwOApJMDAKc1MnZnVuX3JhbmRvbScKcDkKSTAwCnNTJ3N0b3J5X21vZGUnCnAxMApJMDAKcy4= </modeSelectorBattlePassShown>
+					<comp7Entitlements> KGRwMQpTJ3RpbWVzdGFtcCcKcDIKRjE3NDU3NzUwMTkuNzYwNTk0MQpzUydiYWxhbmNlJwpwMwooZHA0ClMnY29tcDdfc2Vhc29uX3BvaW50czo0OjEnCnA1CkkyCnNTJ2NvbXA3X2VsaXRlX3Jhbms6NDoxJwpwNgpJMApzUydjb21wN19lbGl0ZV9yYW5rOjQ6MicKcDcKSTAKc1MnY29tcDdfbWF4X2FjaGlldmVkX3Jhbms6NDoxJwpwOApJNgpzUydjb21wN19tYXhfYWNoaWV2ZWRfcmFuazo0OjInCnA5CkkzCnNTJ2NvbXA3X3JhdGluZ19wb2ludHM6NDoxJwpwMTAKSTk5MgpzUydjb21wN19yYXRpbmdfcG9pbnRzOjQ6MicKcDExCkkxMjIyCnNTJ2NvbXA3X3NlYXNvbl9wb2ludHM6NDoyJwpwMTIKSTMKc3Mu </comp7Entitlements>
+					<isCustomizationIntroViewed> STAxCi4= </isCustomizationIntroViewed>
+					<CustomizationTabsVisited> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJMQphSTIKYUkzCmFJNAphSTUKYUk2CmFJNwphSTgKYUk5CmF0UnAzCi4= </CustomizationTabsVisited>
+					<knownSelectorBattles> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpTJ2JhdHRsZVJveWFsZScKcDMKYVMnZnVuUmFuZG9tJwpwNAphUydjb21wNycKcDUKYVMnbWFwc1RyYWluaW5nJwpwNgphUydncmluY2gnCnA3CmFTJ2VwaWMnCnA4CmFTJ3NvcnRpZScKcDkKYVMnU3RvcnlNb2RlJwpwMTAKYXRScDExCi4= </knownSelectorBattles>
+					<adventCalendarSettings> KGRwMQpTJ2FkdmVudENhbGVuZGFySW50cm9TaG93bicKcDIKSTAxCnNTJ2FkdmVudENhbGVuZGFyRmlyc3RFbnRyeU5vdGlmaWNhdGlvblNob3duJwpwMwpJMDEKc1MnYWR2ZW50Q2FsZW5kYXJMYXN0SGlnaGxpZ2h0ZWREb29yJwpwNApJMzEKc1MnYWR2ZW50Q2FsZW5kYXJMYXN0RGF5UG9wdXBTZWVuJwpwNQpJMQpzLg== </adventCalendarSettings>
+					<watchedPreBattleTipsSection> KGRwMQpTJ3RpcDIwMCcKcDIKSTUKc1MndGlwMjEwJwpwMwpJNApzUyd0aXAxOTInCnA0Ckk5CnNTJ3RpcDE4NicKcDUKSTUKc1MndGlwMjA0JwpwNgpJMwpzUyd0aXAyMDInCnA3Ckk2CnNTJ3RpcDIwNScKcDgKSTUKcy4= </watchedPreBattleTipsSection>
+					<minimapSize> RjMKLg== </minimapSize>
+					<preBattleHintSection> KGRwMQpTJ3F1ZXN0UHJvZ3Jlc3NIaW50JwpwMgooZHAzClMnaGludHNMZWZ0JwpwNApJMApzUydsYXN0RGlzcGxheURheScKcDUKSTExNwpzUydudW1CYXR0bGVzJwpwNgpJMTcKc3NTJ2JhdHRsZUNvbW11bmljYXRpb25IaW50JwpwNwooZHA4Cmc0CkkwCnNzUydoZWxwU2NyZWVuSGludCcKcDkKKGRwMTAKSTQ0Mjg5CihkcDExClMnaGludHNMZWZ0JwpwMTIKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAxMwpJMApzUydudW1CYXR0bGVzJwpwMTQKSTAKc3NJMjEwMjUKKGRwMTUKUydoaW50c0xlZnQnCnAxNgpJMgpzUydsYXN0RGlzcGxheURheScKcDE3CkkxNgpzUydudW1CYXR0bGVzJwpwMTgKSTAKc3NJMjE1MzcKKGRwMTkKUydoaW50c0xlZnQnCnAyMApJMwpzUydsYXN0RGlzcGxheURheScKcDIxCkkwCnNTJ251bUJhdHRsZXMnCnAyMgpJMApzc0kyMjUyOQooZHAyMwpTJ2hpbnRzTGVmdCcKcDI0CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMjUKSTAKc1MnbnVtQmF0dGxlcycKcDI2CkkwCnNzSTM2MDk3CihkcDI3ClMnaGludHNMZWZ0JwpwMjgKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAyOQpJMApzUydudW1CYXR0bGVzJwpwMzAKSTAKc3NJMjI4NjUKKGRwMzEKUydoaW50c0xlZnQnCnAzMgpJMwpzUydsYXN0RGlzcGxheURheScKcDMzCkkwCnNTJ251bUJhdHRsZXMnCnAzNApJMApzc0kyMDc2OQooZHAzNQpTJ2hpbnRzTGVmdCcKcDM2CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMzcKSTAKc1MnbnVtQmF0dGxlcycKcDM4CkkwCnNzSTIzMTIxCihkcDM5ClMnaGludHNMZWZ0JwpwNDAKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA0MQpJMApzUydudW1CYXR0bGVzJwpwNDIKSTAKc3NJMzIzMjEKKGRwNDMKUydoaW50c0xlZnQnCnA0NApJMwpzUydsYXN0RGlzcGxheURheScKcDQ1CkkwCnNTJ251bUJhdHRsZXMnCnA0NgpJMApzc0k0NzIxCihkcDQ3ClMnaGludHNMZWZ0JwpwNDgKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA0OQpJMApzUydudW1CYXR0bGVzJwpwNTAKSTAKc3NJNTMzNjEKKGRwNTEKUydoaW50c0xlZnQnCnA1MgpJMgpzUydsYXN0RGlzcGxheURheScKcDUzCkkzNDYKc1MnbnVtQmF0dGxlcycKcDU0CkkwCnNzSTY1NTg1CihkcDU1ClMnaGludHNMZWZ0JwpwNTYKSTIKc1MnbGFzdERpc3BsYXlEYXknCnA1NwpJNzUKc1MnbnVtQmF0dGxlcycKcDU4CkkwCnNzSTYzODI1CihkcDU5ClMnaGludHNMZWZ0JwpwNjAKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA2MQpJMApzUydudW1CYXR0bGVzJwpwNjIKSTAKc3NJMjIyNzMKKGRwNjMKUydoaW50c0xlZnQnCnA2NApJMwpzUydsYXN0RGlzcGxheURheScKcDY1CkkwCnNTJ251bUJhdHRsZXMnCnA2NgpJMApzc0k5MDA5CihkcDY3ClMnaGludHNMZWZ0JwpwNjgKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA2OQpJMApzUydudW1CYXR0bGVzJwpwNzAKSTAKc3NJMTkyODEKKGRwNzEKUydoaW50c0xlZnQnCnA3MgpJMwpzUydsYXN0RGlzcGxheURheScKcDczCkkwCnNTJ251bUJhdHRsZXMnCnA3NApJMApzc0k5MzEzCihkcDc1ClMnaGludHNMZWZ0JwpwNzYKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA3NwpJMApzUydudW1CYXR0bGVzJwpwNzgKSTAKc3NJMjMzNzcKKGRwNzkKUydoaW50c0xlZnQnCnA4MApJMwpzUydsYXN0RGlzcGxheURheScKcDgxCkkwCnNTJ251bUJhdHRsZXMnCnA4MgpJMApzc0k5MjY1CihkcDgzClMnaGludHNMZWZ0JwpwODQKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA4NQpJMApzUydudW1CYXR0bGVzJwpwODYKSTAKc3NJMTg0OTcKKGRwODcKUydoaW50c0xlZnQnCnA4OApJMwpzUydsYXN0RGlzcGxheURheScKcDg5CkkwCnNTJ251bUJhdHRsZXMnCnA5MApJMApzc0kyMDU2MQooZHA5MQpTJ2hpbnRzTGVmdCcKcDkyCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwOTMKSTAKc1MnbnVtQmF0dGxlcycKcDk0CkkwCnNzSTYyNTcKKGRwOTUKUydoaW50c0xlZnQnCnA5NgpJMwpzUydsYXN0RGlzcGxheURheScKcDk3CkkwCnNTJ251bUJhdHRsZXMnCnA5OApJMApzc0kyMjc4NQooZHA5OQpTJ2hpbnRzTGVmdCcKcDEwMApJMwpzUydsYXN0RGlzcGxheURheScKcDEwMQpJMApzUydudW1CYXR0bGVzJwpwMTAyCkkwCnNzSTk1MjEKKGRwMTAzClMnaGludHNMZWZ0JwpwMTA0CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTA1CkkwCnNTJ251bUJhdHRsZXMnCnAxMDYKSTAKc3NJMTg3NTMKKGRwMTA3Cmc5NgpJMwpzZzk3CkkwCnNnOTgKSTAKc3NJNTM2MDEKKGRwMTA4ClMnaGludHNMZWZ0JwpwMTA5CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTEwCkkwCnNTJ251bUJhdHRsZXMnCnAxMTEKSTAKc3NJNjA3ODUKKGRwMTEyClMnaGludHNMZWZ0JwpwMTEzCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTE0CkkwCnNTJ251bUJhdHRsZXMnCnAxMTUKSTAKc3NJODU0NQooZHAxMTYKUydoaW50c0xlZnQnCnAxMTcKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAxMTgKSTAKc1MnbnVtQmF0dGxlcycKcDExOQpJMApzc0k0MzU1MwooZHAxMjAKUydoaW50c0xlZnQnCnAxMjEKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAxMjIKSTAKc1MnbnVtQmF0dGxlcycKcDEyMwpJMApzc0kxOTAwOQooZHAxMjQKUydoaW50c0xlZnQnCnAxMjUKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAxMjYKSTAKc1MnbnVtQmF0dGxlcycKcDEyNwpJMApzc0k4ODAxCihkcDEyOApTJ2hpbnRzTGVmdCcKcDEyOQpJMwpzUydsYXN0RGlzcGxheURheScKcDEzMApJMApzUydudW1CYXR0bGVzJwpwMTMxCkkwCnNzSTY3NjkKKGRwMTMyClMnaGludHNMZWZ0JwpwMTMzCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTM0CkkwCnNTJ251bUJhdHRsZXMnCnAxMzUKSTAKc3NJMjE4NDEKKGRwMTM2ClMnaGludHNMZWZ0JwpwMTM3CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTM4CkkwCnNTJ251bUJhdHRsZXMnCnAxMzkKSTAKc3NJMjEyODEKKGRwMTQwClMnaGludHNMZWZ0JwpwMTQxCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTQyCkkwCnNTJ251bUJhdHRsZXMnCnAxNDMKSTAKc3NJNjAyMDkKKGRwMTQ0ClMnaGludHNMZWZ0JwpwMTQ1CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTQ2CkkwCnNTJ251bUJhdHRsZXMnCnAxNDcKSTAKc3NJNjU2MDEKKGRwMTQ4ClMnaGludHNMZWZ0JwpwMTQ5CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMTUwCkkwCnNTJ251bUJhdHRsZXMnCnAxNTEKSTAKc3NzUydyZXNlcnZlc0hpbnRTZWN0aW9uJwpwMTUyCihkcDE1MwpnNApJMApzcy4= </preBattleHintSection>
+					<minimapHintSection> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKcy4= </minimapHintSection>
+					<devMapsHintSection> KGRwMQpTJ2Rldk1hcHMnCnAyCihkcDMKUydoaW50c0xlZnQnCnA0CkkwCnNzLg== </devMapsHintSection>
+					<AdvancedAchievements> KGRwMQpTJ3Vuc2VlbkFkdmFuY2VkQWNoaWV2ZW1lbnRzJwpwMgooZHAzClMndmVoaWNsZUFjaGlldmVtZW50cycKcDQKKGxwNQpJNDQwCmFJNDA5CmFJNDQyCmFzc1MncHJldkFjaGlldmVtZW50U2NvcmUnCnA2CkkzODIwCnNTJ3ByZXZDYXRlZ29yeUxpc3REYXRhJwpwNwoobHA4CihJMzQwCkkyNQp0cDkKYShJMzI1MApJNTQKdHAxMAphKEkyMzAKSTEwMAp0cDExCmFzUydwcmV2VHJvcGh5Q291bnQnCnAxMgpJMApzUydpc05lZWRlZFNob3dIaW50QWNoaWV2ZW1lbnRDYXRhbG9nJwpwMTMKSTAwCnNTJ3ByZXZQbGF5ZXJDb2xsZWN0aW9uUHJvZ3Jlc3MnCnAxNApGNTQuMTc2MDcyMjM0NzYyOTg0CnNTJ21haW5BZHZhbmNlZEFjaGlldmVtZW50c1BhZ2VWaXNpdGVkJwpwMTUKSTAxCnNTJ3NlZW5Ucm9waGllc0FkdmFuY2VkQWNoaWV2ZW1lbnRzJwpwMTYKKGRwMTcKVnZlaGljbGVBY2hpZXZlbWVudHMKcDE4CihscDE5Ckk0MTcKYUk0MTgKYUkzNjYKYUkzNzAKYUk0MDkKYUk0NDAKYUk0NDEKYUk0NDIKYUk0MTEKYUk0MTIKYUk0MTUKYXNzLg== </AdvancedAchievements>
+					<statsSorting> KGRwMQpTJ3NvcnREaXJlY3Rpb24nCnAyClMnZGVzY2VuZGluZycKcDMKc1MnaWNvblR5cGUnCnA0ClMnZGFtYWdlJwpwNQpzLg== </statsSorting>
+					<rocketAccelerationModeHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkxMTcKc1MnbnVtQmF0dGxlcycKcDQKSTAKcy4= </rocketAccelerationModeHint>
+					<lastLoggedServerDay> STIwMTAyCi4= </lastLoggedServerDay>
+					<optDeviceTabVisited> KGRwMQpWdHJvcGh5CnAyCkkwMQpzUydzaW1wbGUnCnAzCkkwMQpzUydvcHREZXZpY2UnCnA0CkkwMQpzVm1vZGVybml6ZWQKcDUKSTAxCnNTJ3NoZWxscycKcDYKSTAxCnNTJ2RlZmF1bHQnCnA3CkkwMQpzVmRlbHV4ZQpwOApJMDEKc1ZjcmV3CnA5CkkwMQpzLg== </optDeviceTabVisited>
+					<showOptDeviceHint> STAwCi4= </showOptDeviceHint>
+					<lastSeenCollectingNotifyTime> RjE3MzY2OTIyMzMuMDA3MTQ0Nwou </lastSeenCollectingNotifyTime>
+					<lastSeenNoFriendsNotifyTime> RjE3MzM0NjYxMDQuNjQzOTUKLg== </lastSeenNoFriendsNotifyTime>
+					<showedBlueprintConfirm> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJNTUwNQphSTc0NDEKYUk1MjE3CmF0UnAzCi4= </showedBlueprintConfirm>
+					<customization> KGRwMQpTJ2lzQ2Fyb3VzZWxzQXJyb3dzSGludFNob3duJwpwMgpJMDEKc1MnaXNQcm9qZWN0aW9uRGVjYWxIaW50U2hvd24nCnAzCkkwMApzLg== </customization>
+					<commanderCamHintSection> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKcy4= </commanderCamHintSection>
+					<twinGunHintSection> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkxCnNTJ251bUJhdHRsZXMnCnA0CkkwCnMu </twinGunHintSection>
+					<showOptDeviceHintTrophy> STAwCi4= </showOptDeviceHintTrophy>
+					<showOptModernizedDeviceHint> STAwCi4= </showOptModernizedDeviceHint>
+					<crew_books_viewed> KGRwMQpTJ3VuaXZlcnNhbEd1aWRlJwpwMgpJMApzUydjcmV3Qm9vaycKcDMKKGRwNApJMApJMApzSTEKSTAKc0kyCkkwCnNJMwpJMApzSTQKSTAKc0k1CkkwCnNJNgpJMApzSTcKSTAKc0k4CkkxCnNJOQpJMApzSTEwCkkwCnNzUydicm9jaHVyZScKcDUKKGRwNgpJMApJMTIKc0kxCkkxCnNJMgpJNApzSTMKSTgKc0k0CkkxNgpzSTUKSTkKc0k2CkkwCnNJNwpJMTEKc0k4Ckk1CnNJOQpJNgpzSTEwCkkxNwpzc1MndW5pdmVyc2FsQm9vaycKcDcKSTEKc1MncGVyc29uYWxCb29rJwpwOApJNApzUydndWlkZScKcDkKKGRwMTAKSTAKSTEKc0kxCkkxCnNJMgpJMwpzSTMKSTEKc0k0Ckk0CnNJNQpJMApzSTYKSTAKc0k3CkkxCnNJOApJMQpzSTkKSTEKc0kxMApJMQpzc1MndW5pdmVyc2FsQnJvY2h1cmUnCnAxMQpJMApzLg== </crew_books_viewed>
+					<crew_skins_viewed> KGRwMQpJMgpMMUwKc0k0CkwyTApzSTE3OQpMMTBMCnNJNwpMMUwKc0kxMDMKTDFMCnNJMTIzCkw4TApzSTE2NApMMkwKc0kxMDIKTDVMCnNJMTY2CkwxTApzSTE2NwpMMUwKc0kxMDQKTDZMCnNJMTA1CkwyTApzSTEwNgpMMkwKc0kxMDcKTDFMCnNJMTA4CkwyTApzSTEwOQpMMkwKc0kxMTAKTDZMCnNJMTExCkwxTApzSTExMgpMMkwKc0kxMTMKTDJMCnNJMTE0CkwyTApzSTExNQpMNEwKc0kxMTYKTDNMCnNJMTY5CkwxTApzSTEyMApMM0wKc0kxMjEKTDVMCnNJMTIyCkwxTApzSTE2OApMMUwKc0kxMjQKTDJMCnMu </crew_skins_viewed>
+					<lastSeenFriendsNotifyTime> RjE3MzY2OTIyNDEuOTkwNDU5Mgou </lastSeenFriendsNotifyTime>
+					<crystalsInfoShown> STAxCi4= </crystalsInfoShown>
+					<dynSquadHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTEKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkxMTMKc1MnbnVtQmF0dGxlcycKcDQKSTEwCnMu </dynSquadHint>
+					<soundDevice> STEKLg== </soundDevice>
+					<grinch_keys> KGRwMQpTJ2dyaW5jaF9jaGFwdGVyc19lbmRfbm90aWZpY2F0aW9uX3Nob3duJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHA0CkkxCmF0UnA1CnNTJ2dyaW5jaF9maW5pc2hlZF9ub3RpZmljYXRpb25fc2hvd24nCnA2CkkwMQpzUydncmluY2hfY2hhcHRlcnNfc3RhcnRfbm90aWZpY2F0aW9uX3Nob3duJwpwNwpnMwooKGxwOApJMQphSTMKYXRScDkKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDEwCkkwCnMu </grinch_keys>
+					<grinch_progression_key> KGRwMQpTJ2lzX2ZpcnN0X2VudHJ5JwpwMgpJMDAKc1MncHJldmlvdXNfcG9pbnRzX2NvdW50JwpwMwpJMTczCnMu </grinch_progression_key>
+					<siegeModeHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkk4MwpzUydudW1CYXR0bGVzJwpwNApJMApzLg== </siegeModeHint>
+					<relativePower> STAxCi4= </relativePower>
+					<CustomizationStyleItemsVisited> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJMjI1MDY4CmFJMjI0ODEyCmFJMzM0NjUyCmFJMjYyNzMyCmFJMjI0NTU2CmFJMjMwNDc2CmFJMjY3MzQwCmFJMjA1MTAwCmFJMjQ3MTE2CmFJMzMzMTE2CmFJMzM2MTg4CmFJMzM1NDIwCmF0UnAzCi4= </CustomizationStyleItemsVisited>
+					<mapsTrainingMinimapSize> RjMKLg== </mapsTrainingMinimapSize>
+					<relativeMobility> STAxCi4= </relativeMobility>
+					<comp7PrebattleMinimapSize> RjIKLg== </comp7PrebattleMinimapSize>
+					<comp7IsVoipInBattleActivated> STAxCi4= </comp7IsVoipInBattleActivated>
+					<customShopSettings> KGRwMQpWaGFzQXVjdGlvbkludHJvCnAyCkkwMApzVmRpc3BsYXllZEdyZWV0aW5ncwpwMwpWWyJwbGF0Zm9ybV9pbl9hdV80XzEiLCJwbGF0Zm9ybV9pbl9hdV80XzRfMSIsInBsYXRmb3JtX2luX2F1XzRfMyIsInBsYXRmb3JtX2luX2F1XzRfNSJdCnA0CnMu </customShopSettings>
+					<dogTags> KGRwMQpTJ2FuaW1hdGVkRG9nVGFnc1Zpc2l0ZWQnCnAyCkkwMQpzUydzZWxlY3RlZEN1c3RvbWl6YWJsZScKcDMKKGxwNApJNjMyCmFJMzAwCmFzUydsYXN0VmlzaXRlZERvZ1RhZ3NUYWJJZHgnCnA1CkkwCnNTJ3NlbGVjdGVkQW5pbWF0ZWQnCnA2CihscDcKSTYzNwphSTYzOAphc1MnY3VzdG9taXphYmxlRG9nVGFnc1Zpc2l0ZWQnCnA4CkkwMQpzUydzZWVuQ29tcHMnCnA5CmNfX2J1aWx0aW5fXwpzZXQKcDEwCigobHAxMQpJMjUzCmFJNjQxCmFJMjU4CmFJNjQzCmFJNjQ0CmFJNjQ4CmFJNjQ5CmFJNjUwCmFJNjQyCmFJNjU0CmFJNjU1CmFJNjU2CmFJNDAxCmFJNDAyCmFJNDAzCmFJMjAKYUk0MDUKYUk0MDYKYUk0MDcKYUkyNAphSTI1CmFJMjYKYUkyOAphSTMwCmFJMzQKYUk0MAphSTQzCmFJMzAwCmFJMzAxCmFJMzA2CmFJMzA3CmFJNTQKYUk1NQphSTU2CmFJMzEzCmFJMzE0CmFJNTkKYUkzMTYKYUk2NQphSTY2CmFJNjcKYUk2OAphSTY5CmFJNzAKYUk3MQphSTcyCmFJMjAxCmFJMjAyCmFJNjMxCmFJMjA1CmFJMjA2CmFJMjA3CmFJMjA4CmFJMjI3CmFJNjAwCmFJNjAxCmFJNjAyCmFJNjAzCmFJNjA0CmFJNjA4CmFJNjA5CmFJNjEwCmFJNjExCmFJMjQ2CmFJNjE2CmFJNjAKYUk2MTgKYUkyMzUKYUk2MjMKYUk2MjQKYUk2MjUKYUk2MjkKYUk2MzAKYUk2MTcKYUk2MzIKYUk0MDQKYUkyNTAKYUk2MzUKYUk2MzYKYUk2MzcKYUk2MzgKYUkyNTIKYXRScDEyCnNTJ29uYm9hcmRpbmdFbmFibGVkJwpwMTMKSTAwCnMu </dogTags>
+					<relativeCamouflage> STAxCi4= </relativeCamouflage>
+					<relativeVisibility> STAxCi4= </relativeVisibility>
+					<funRandomLastPreset> UydmYWxsX3RhbmtzJwpwMQou </funRandomLastPreset>
+					<becomeEliteWatched> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJNzAyNQphSTUzNDA5CmFJMzQzMzcKYUkxNTY5NwphSTI3MTUzCmF0UnAzCi4= </becomeEliteWatched>
+					<funRandomProgressionOpened> STAxCi4= </funRandomProgressionOpened>
+					<funRandomProgression> KGRwMQpTJzIwMjUwMjI4MDkwMCcKcDIKKGRwMwpTJ2Z1blJhbmRvbUluZlByb2dyZXNzaW9uUHJldkNvbXBsZXRlQ291bnQnCnA0CkkwCnNTJ2Z1blJhbmRvbUluZlByb2dyZXNzaW9uUHJldkNvdW50ZXInCnA1CkkwCnNTJ2Z1blJhbmRvbVByb2dyZXNzaW9uUHJldkNvdW50ZXInCnA2CkkxNTAKc3NTJzIwMjUwNDI1MDkwMCcKcDcKKGRwOApTJ2Z1blJhbmRvbUluZlByb2dyZXNzaW9uUHJldkNvbXBsZXRlQ291bnQnCnA5CkkwCnNTJ2Z1blJhbmRvbUluZlByb2dyZXNzaW9uUHJldkNvdW50ZXInCnAxMApJMApzUydmdW5SYW5kb21Qcm9ncmVzc2lvblByZXZDb3VudGVyJwpwMTEKSTEwMApzc1MnMjAyNTA0MTgwOTAwJwpwMTIKKGRwMTMKUydmdW5SYW5kb21JbmZQcm9ncmVzc2lvblByZXZDb21wbGV0ZUNvdW50JwpwMTQKSTEKc1MnZnVuUmFuZG9tSW5mUHJvZ3Jlc3Npb25QcmV2Q291bnRlcicKcDE1CkkwCnNTJ2Z1blJhbmRvbVByb2dyZXNzaW9uUHJldkNvdW50ZXInCnAxNgpJMTUwCnNzUycyMDI1MDEyNDA5MDAnCnAxNwooZHAxOApTJ2Z1blJhbmRvbUluZlByb2dyZXNzaW9uUHJldkNvbXBsZXRlQ291bnQnCnAxOQpJMApzUydmdW5SYW5kb21Qcm9ncmVzc2lvblByZXZDb3VudGVyJwpwMjAKSTE1MApzUydmdW5SYW5kb21JbmZQcm9ncmVzc2lvblByZXZDb3VudGVyJwpwMjEKSTAKc3Mu </funRandomProgression>
+					<funRandomHintSection> KGRwMQpTJ2VsZW1lbnRfb2Zfc3VycHJpc2VfMjAyNScKcDIKKGRwMwpTJ2hpbnRzTGVmdCcKcDQKSTIKc3NTJ2ljZV9hZ2VfMjAyNCcKcDUKKGRwNgpTJ2hpbnRzTGVmdCcKcDcKSTAKc3NTJ3Nub3diYWxsc18yMDI0JwpwOAooZHA5ClMnaGludHNMZWZ0JwpwMTAKSTAKc3NTJ2ZhbGxfdGFua3MnCnAxMQooZHAxMgpTJ2hpbnRzTGVmdCcKcDEzCkkwCnNzUydyYWlsZ3VuXzIwMjUnCnAxNAooZHAxNQpTJ2hpbnRzTGVmdCcKcDE2CkkwCnNzLg== </funRandomHintSection>
+					<wheeledDeathCounter> STgKLg== </wheeledDeathCounter>
+					<wheeledModeScreenHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkk3OQpzUydudW1CYXR0bGVzJwpwNApJMApzLg== </wheeledModeScreenHint>
+					<SELECTED_QUEST_IN_REPLAY> STE3Nwou </SELECTED_QUEST_IN_REPLAY>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+					<lootBoxSystem> KGRwMQpTJ3N0UGF0cmljaycKcDIKKGRwMwpTJ2xvb3RCb3hlc0ludHJvVmlkZW9TaG93bicKcDQKSTAxCnNTJ2xvb3RCb3hlc1dhc1N0YXJ0ZWQnCnA1CkkwMQpzUydsb290Qm94ZXNXYXNGaW5pc2hlZCcKcDYKSTAxCnNTJ2xvb3RCb3hlc1VuaXF1ZUlEJwpwNwpJMjA0MDc5MTIyMApzUydsb290Qm94ZXNIYXNOZXcnCnA4CkkwMApzUydsb290Qm94ZXNPcGVuQW5pbWF0aW9uRW5hYmxlZCcKcDkKSTAxCnNTJ2xvb3RCb3hlc1NlbGVjdGVkQm94JwpwMTAKTnNzUydiYXR0bGVQYXNzJwpwMTEKKGRwMTIKUydsb290Qm94ZXNTZWxlY3RlZEJveCcKcDEzCk5zUydsb290Qm94ZXNXYXNTdGFydGVkJwpwMTQKSTAwCnNTJ2xvb3RCb3hlc1dhc0ZpbmlzaGVkJwpwMTUKSTAwCnNTJ2xvb3RCb3hlc1VuaXF1ZUlEJwpwMTYKSS0xMjEyMjc3NDc3CnNTJ2xvb3RCb3hlc0hhc05ldycKcDE3CkkwMApzUydsb290Qm94ZXNJbnRyb1ZpZGVvU2hvd24nCnAxOApJMDEKc1MnbG9vdEJveGVzT3BlbkFuaW1hdGlvbkVuYWJsZWQnCnAxOQpJMDEKc3Mu </lootBoxSystem>
+					<isBattlePassStarted> STAxCi4= </isBattlePassStarted>
+					<lastBattlePassPointsSeen> KGRwMQpJMApJMTA3NQpzSTE2MQpJMjQ1NgpzSTE2MApJMApzSTE2NApJMTk5NApzSTE2MwpJMTA3NQpzLg== </lastBattlePassPointsSeen>
+					<ROYALE_INTRO_VIDEO_SHOWN> STAxCi4= </ROYALE_INTRO_VIDEO_SHOWN>
+					<radarHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkk3NwpzUydudW1CYXR0bGVzJwpwNApJOQpzLg== </radarHint>
+					<brProgressionPointsSeen> STQ1NAou </brProgressionPointsSeen>
+					<isBattlePassExtraStarted> STAxCi4= </isBattlePassExtraStarted>
+					<sessionStats> KGRwMQpTJ2JhdHRsZUVmZmljaWVuY3lTZWN0aW9uRXhwYW5kZWQnCnAyCkkwMQpzLg== </sessionStats>
+					<previewInfoPanelIdx> STEKLg== </previewInfoPanelIdx>
+					<players_panel> KGRwMQpTJ3Nob3dMZXZlbHMnCnAyCkkwMQpzUydzdGF0ZScKcDMKSTIKc1Mnc2hvd1R5cGVzJwpwNApJMDEKcy4= </players_panel>
+					<fallTanksHintSection> KGRwMQpTJ3ZlaGljbGVfZXZhY3VhdGlvbl9oaW50X3NlY3Rpb24nCnAyCihkcDMKUydoaW50c0xlZnQnCnA0CkkwCnNzLg== </fallTanksHintSection>
+					<subtitles> STAwCi4= </subtitles>
+				</settings>
+				<notifications>
+					<achievementsVisited> STAxCi4= </achievementsVisited>
+					<collectionsNotifications> KGRwMQpTJ2NvbGxlY3Rpb25TdGFydE5vdGlmaWNhdGlvbicKcDIKKGxwMwpzUydjb2xsZWN0aW9uUmVuZXdOb3RpZmljYXRpb24nCnA0CihkcDUKc1MnY29sbGVjdGlvbnNVcGRhdGVkRW50cnlOb3RpZmljYXRpb24nCnA2CkkwMQpzLg== </collectionsNotifications>
+					<saReminderShown> RjE3MzMzODA5MjIuMDc4OTk1Nwou </saReminderShown>
+					<integratedAuctionNotifications> KGRwMQpTJ2F1Y3Rpb25TdGFnZUZpbmlzaE5vdGlmaWNhdGlvbicKcDIKY19fYnVpbHRpbl9fCnNldApwMwooKGxwNApTJzIwMjUwNicKcDUKYVMnMjAyNTA0JwpwNgphdFJwNwpzUydhdWN0aW9uU3RhZ2VTdGFydE5vdGlmaWNhdGlvbicKcDgKZzMKKChscDkKUycyMDI1MDMnCnAxMAphUycyMDI1MDknCnAxMQphUycyMDI1MDcnCnAxMgphUycyMDI1MDUnCnAxMwphdFJwMTQKcy4= </integratedAuctionNotifications>
+					<funRandomNotifications> KGRwMQpTJ2Z1blJhbmRvbU5vdGlmaWNhdGlvbnNGcm96ZW4nCnAyCmNfX2J1aWx0aW5fXwpzZXQKcDMKKChsdFJwNApzUydmdW5SYW5kb21Ob3RpZmljYXRpb25zUHJvZ3Jlc3Npb25zJwpwNQpnMwooKGxwNgpTJycKYVMnMjAyNTA0MjUwOTAwJwpwNwphdFJwOApzUydmdW5SYW5kb21Ob3RpZmljYXRpb25zU3ViTW9kZXMnCnA5CmczCigobHAxMApTJ2VsZW1lbnRfb2Zfc3VycHJpc2VfMjAyNScKcDExCmFTJ3JhaWxndW5fMjAyNScKcDEyCmFTJ3Nub3diYWxsc18yMDI0JwpwMTMKYVMnZmFsbF90YW5rcycKcDE0CmFTJ2ljZV9hZ2VfMjAyNCcKcDE1CmF0UnAxNgpzLg== </funRandomNotifications>
+					<resourceWellNotifications> KGRwMQpTJ3Jlc291cmNlV2VsbFN0YXJ0U2hvd24nCnAyCmNfX2J1aWx0aW5fXwpzZXQKcDMKKChscDQKSTYKYUk3CmF0UnA1CnNTJ3Jlc291cmNlV2VsbEVuZFNob3duJwpwNgpnMwooKGx0UnA3CnMu </resourceWellNotifications>
+					<recruitsNotifications> KGRwMQpTJ3RtYW5fdGVtcGxhdGU6Ojp0YW5rbWVuX2JwMTNfNjo2MzAxODA6Ojpicm90aGVyaG9vZDo6dGFua21lbl9icDEzXzY6JwpwMgpJMQpzUyd0bWFuX3RlbXBsYXRlOjo6dGFua21lbl9icDE2Xzk6MTQ3MDQyMDo6Ojo6dGFua21lbl9icDE2Xzk6JwpwMwpJMQpzUyd0bWFuX3RlbXBsYXRlOjo6Y29zbTAyX1Nwb2NrOjIxMDA2MDo6OmJyb3RoZXJob29kOjpjb3NtMDJfU3BvY2s6JwpwNApJMQpzUyd0bWFuX3RlbXBsYXRlOmdlcm1hbnk6dHJ1ZTpnaXJsc191bmRfcGFuemVyX21pa2E6Ojo6YnJvdGhlcmhvb2Q6MTAwOmdpcmxzX3VuZF9wYW56ZXJfbWlrYTpjb21tYW5kZXInCnA1CkkxCnNTJ3RtYW5fdGVtcGxhdGU6Ojp0YW5rbWVuX2JwMTZfNzoxNDcwNDIwOjo6Ojp0YW5rbWVuX2JwMTZfNzonCnA2CkkxCnNTJ3RtYW5fdGVtcGxhdGU6Ojp0YW5rbWVuX2JwMTZfNjoxNDcwNDIwOjo6Ojp0YW5rbWVuX2JwMTZfNjonCnA3CkkxCnNTJ3RtYW5fdGVtcGxhdGU6OjpodzIyX3dpdGNoX3NpYmlsbGE6MjEwMDYwOjo6OjpodzIyX3dpdGNoX3NpYmlsbGE6JwpwOApJMQpzUyd0bWFuX3RlbXBsYXRlOjo6Y29zbTAyX0tpcms6MjEwMDYwOjo6YnJvdGhlcmhvb2Q6OmNvc20wMl9LaXJrOicKcDkKSTEKc1MndG1hbl90ZW1wbGF0ZTo6Omh3MjJfd2l0Y2hfa29yZGVsaWE6MjEwMDYwOjo6OjpodzIyX3dpdGNoX2tvcmRlbGlhOicKcDEwCkkxCnNTJ3RtYW5fdGVtcGxhdGU6Ojp0YW5rbWVuX2JwMTNfNTo2MzAxODA6Ojpicm90aGVyaG9vZDo6dGFua21lbl9icDEzXzU6JwpwMTEKSTEKc1MndG1hbl90ZW1wbGF0ZTo6OnRhbmttZW5fYnAxNl84OjE0NzA0MjA6Ojo6OnRhbmttZW5fYnAxNl84OicKcDEyCkkxCnMu </recruitsNotifications>
+					<viewedOffers> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJNTg5MzIKYXRScDMKLg== </viewedOffers>
+				</notifications>
+				<ui_flags>
+					<mua> KGRwMQpJODA4MQpjX19idWlsdGluX18Kc2V0CnAyCigobHRScDMKc0k0OTkzCmcyCigobHA0CkkxMTEzOAphSTExMTQxCmF0UnA1CnNJMjE1MzcKZzIKKChsdFJwNgpzSTc0MjUKZzIKKChsdFJwNwpzSTQxOTMKZzIKKChsdFJwOApzSTg0NjUKZzIKKChsdFJwOQpzSTk1MDUKZzIKKChsdFJwMTAKc0k0MzY5CmcyCigobHRScDExCnNJMTE3NzcKZzIKKChsdFJwMTIKc0kzNzEzCmcyCigobHAxMwpJNTc2MgphSTUyNTMKYUkyOTUxCmF0UnAxNApzSTg5NzcKZzIKKChscDE1CkkyMTUyMgphSTEwMDA1CmF0UnAxNgpzSTI4NjUKZzIKKChscDE3Ckk1NjcKYXRScDE4CnNJMjEyODEKZzIKKChscDE5Ckk1NjA5OAphSTMzODI5CmF0UnAyMApzSTcxODUKZzIKKChscDIxCkk3MjcyNQphdFJwMjIKc0k3NDQxCmcyCigobHAyMwpJMTYxNDYKYUkxMDc3MgphdFJwMjQKc0k1MTY5CmcyCigobHRScDI1CnNJNTIxNwpnMgooKGx0UnAyNgpzSTE2NjQxCmcyCigobHAyNwpJMjYzNzMKYXRScDI4CnNJMTQ2MjUKZzIKKChsdFJwMjkKc0kyMDk3CmcyCigobHAzMApJMzM3OAphSTIzNTcKYUk1NjcKYXRScDMxCnNJOTc0NQpnMgooKGx0UnAzMgpzSTE2OTYxCmcyCigobHRScDMzCnNJNTEzNwpnMgooKGx0UnAzNApzSTEyMDk3CmcyCigobHRScDM1CnNJMjA3NjkKZzIKKChscDM2Ckk1NTA3NAphSTM0ODUzCmF0UnAzNwpzSTUyNDkKZzIKKChscDM4CkkxMTY1MAphSTExNjUzCmF0UnAzOQpzSTE0MDkKZzIKKChscDQwCkk1MjUwCmFJMjY5MwphSTE0MTUKYXRScDQxCnNJMjI4NjUKZzIKKChsdFJwNDIKc0kxMDc2OQpnMgooKGxwNDMKSTI1NjE4CmFJNzI5ODEKYXRScDQ0CnNJMjMxMjEKZzIKKChsdFJwNDUKc0kxNjY1CmcyCigobHA0NgpJMTkyMQphSTYyNzQKYXRScDQ3CnNJNTg4OQpnMgooKGx0UnA0OApzSTM4NzMKZzIKKChsdFJwNDkKc0kyMzM3NwpnMgooKGx0UnA1MApzSTM5MzcKZzIKKChsdFJwNTEKc0kxMDI0MQpnMgooKGx0UnA1MgpzSTIwNTEzCmcyCigobHA1MwpJNTQ1NjIKYUkzNTM2NQphdFJwNTQKc0k5NDg5CmcyCigobHRScDU1CnNJMTA1MTMKZzIKKChscDU2CkkyNTEwNgphdFJwNTcKc0kzNTg1CmcyCigobHRScDU4CnNJMTA0OTcKZzIKKChsdFJwNTkKc0k0Mzg1CmcyCigobHRScDYwCnNJNzY5NwpnMgooKGx0UnA2MQpzSTIxMDI1CmcyCigobHA2MgpJNTU1ODYKYUkzNDM0MQphdFJwNjMKc0kxMTAwOQpnMgooKGx0UnA2NApzSTQ5NjEKZzIKKChsdFJwNjUKcy4= </mua>
+					<collections> KGRwMQpTJ2NvbGxlY3Rpb25zTmV3UmV3YXJkcycKcDIKKGRwMwpzUydjb2xsZWN0aW9uTmV3SXRlbXMnCnA0CihkcDUKc1MnY29sbGVjdGlvblR1dG9yaWFsQ29tcGxldGVkJwpwNgpjX19idWlsdGluX18Kc2V0CnA3CigobHRScDgKc1MnY29sbGVjdGlvbnNJbnRyb1Nob3duJwpwOQpJMDEKc1Mnc2hvd25Db21wbGV0ZWRDb2xsZWN0aW9ucycKcDEwCmc3CigobHAxMQpJMQphdFJwMTIKc1MnY29sbGVjdGlvbnNXYXNFbmFibGVkJwpwMTMKSTAxCnNTJ2NvbGxlY3Rpb25zVGFiU2hvd25JZHMnCnAxNApnNwooKGxwMTUKSTEKYUkyCmFJMwphdFJwMTYKc1MnbGFzdFNob3duTmV3Q29sTGVjdGlvbicKcDE3CkkzCnNTJ2xhc3RTaG93bkNvbGxlY3Rpb25CYWxhbmNlJwpwMTgKKGRwMTkKSTEKSTEzCnNJMgpJMTEKc0kzCkk0CnNzUydjb2xsZWN0aW9uTmV3SXRlbXNDb3VudCcKcDIwCihkcDIxCnNTJ2NvbGxlY3Rpb25zVGFiU2hvd25OZXdJdGVtcycKcDIyCihkcDIzCkkxCkkyMgpzSTIKSTE5CnNJMwpJOApzcy4= </collections>
+					<NYNoFriendsPageResetTime> RjE3MzY2OTIyNDkuNjMyNDU3NQou </NYNoFriendsPageResetTime>
+					<NYCatPageVisited> STAxCi4= </NYCatPageVisited>
+					<NYDogPageVisited> STAxCi4= </NYDogPageVisited>
+					<NYCelebrityDayQuestsVisitedMask> STI2ODQyMDA5NQou </NYCelebrityDayQuestsVisitedMask>
+					<NYGiftMachineHintVisible> STAwCi4= </NYGiftMachineHintVisible>
+					<NYMarketPlaceVisited> STAxCi4= </NYMarketPlaceVisited>
+					<NYCelebrityDayQuestsCompletedMask> STI2ODQzNTQ1NQou </NYCelebrityDayQuestsCompletedMask>
+					<NYSackInfoVisited> STAxCi4= </NYSackInfoVisited>
+					<NYGuestActivityShown> STAxCi4= </NYGuestActivityShown>
+					<NYSackInfoLastSelected> STQKLg== </NYSackInfoLastSelected>
+					<NYGiftMachineBuyTokenVisited> STAxCi4= </NYGiftMachineBuyTokenVisited>
+					<NYDailyQuestsVisited> STAxCi4= </NYDailyQuestsVisited>
+					<grinch_progression_keys> KGRwMQpTJ2dyaW5jaF9wcm9ncmVzc2lvbl9oaW50X3N0YXRlJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHA0ClMnYmF0dGxlJwpwNQphVm1vdmUKcDYKYVZtaXNzaW9ucwpwNwphVnZlaGljbGUKcDgKYXRScDkKc1MnZ3JpbmNoX3Byb2dyZXNzaW9uX2N1cnJlbnRfaGludF9zdGF0ZScKcDEwCmNncmluY2hfcHJvZ3Jlc3Npb24uZ3VpLmltcGwuZ2VuLnZpZXdfbW9kZWxzLnZpZXdzLmxvYmJ5LnZpZXdzLmVudW1zCkhpbnRTdGF0ZQpwMTEKKFMnZmluaXNoJwpwMTIKdFJwMTMKc1MnZ3JpbmNoX2NvbXBsZXRlZF9xdWVzdHMnCnAxNApnMwooKGxwMTUKVmdyaW5jaDpzdXBwb3J0OmNoYXB0ZXJfMQpwMTYKYVZncmluY2g6c3VwcG9ydDpjaGFwdGVyXzIKcDE3CmFWZ3JpbmNoOnN1cHBvcnQ6Y2hhcHRlcl8zCnAxOAphVmdyaW5jaDphc3NhdWx0OmNoYXB0ZXJfMQpwMTkKYVZncmluY2g6YXNzYXVsdDpjaGFwdGVyXzIKcDIwCmFWZ3JpbmNoOmFzc2F1bHQ6Y2hhcHRlcl8zCnAyMQphVmdyaW5jaDpjYXJyaWVyOmNoYXB0ZXJfMQpwMjIKYVZncmluY2g6Y2FycmllcjpjaGFwdGVyXzMKcDIzCmFWZ3JpbmNoOmNhcnJpZXI6Y2hhcHRlcl8yCnAyNAphdFJwMjUKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDI2CkkxMjgwMDMwNQpzLg== </grinch_progression_keys>
+					<NYCelebrityAdvQuestsVisitedMask> STMxCi4= </NYCelebrityAdvQuestsVisitedMask>
+					<NYCelebrityAdvQuestsCompletedMask> STMKLg== </NYCelebrityAdvQuestsCompletedMask>
+					<comp7> KGRwMQpTJ2NvbXA3V2Vla2x5UXVlc3RzUGFnZVRva2Vuc0NvdW50JwpwMgpMN0wKc1MnY29tcDdXZWVrbHlRdWVzdEluV2lkZ2V0SUQnCnAzClMnY29tcDdfNF8zX3dlZWtseV8yXzMnCnA0CnNTJ2NvbXA3V2Vla2x5UXVlc3RXaWRnZXRQcm9ncmVzcycKcDUKTDQxMTdMCnNTJ2NvbXA3TGFzdFNlYXNvbicKcDYKUydjb21wN180XzMnCnA3CnNTJ2NvbXA3U2hvcFNlZW5Qcm9kdWN0cycKcDgKY19fYnVpbHRpbl9fCnNldApwOQooKGx0UnAxMApzUydjb21wN1dlZWtseVF1ZXN0SW5XaWRnZXRTdGF0ZScKcDExClMnYWN0aXZlJwpwMTIKcy4= </comp7>
+					<liveOpsWebEventsUIFlags> KGRwMQpTJ2xvbG4yNScKcDIKSTAwCnMu </liveOpsWebEventsUIFlags>
+				</ui_flags>
+				<favorites>
+					<ROYALE_VEHICLE> STU1OAou </ROYALE_VEHICLE>
+					<current> STQ3Mwou </current>
+				</favorites>
+				<counters>
+					<newShopTabs> KGRwMQpTJ2lzQ29tcDdCb25zQmFubmVyVmlzaXRlZCcKcDIKSTAxCnMu </newShopTabs>
+					<newLobbyTabCounter> KGRwMQpTJ1BlcnNvbmFsTWlzc2lvbk9wZXJhdGlvbnMnCnAyCkkwMApzUydzdG9yZScKcDMKUycnCnMu </newLobbyTabCounter>
+					<newHofCounter> KGRwMQpTJ3ZpZXdSYXRpbmdCdG4nCnAyCkkwMApzUyd2ZWhpY2xlc0J0bicKcDMKSTAwCnNTJ2FjaGlldmVtZW50c0J0bicKcDQKSTAwCnMu </newHofCounter>
+					<referralButtonCounter> STAKLg== </referralButtonCounter>
+					<vehiclePostProgressionLastSeenStep> KGRwMQpJNTIwOTcKSTEKc0k2NTYwMQpJMwpzSTMyMDAxCkkxCnNJMzIwNjUKSTMKc0k2NTEzCkkxCnNJNDg0MDEKSTEKc0kxOTk2OQpJMgpzSTUzMzYxCkkxCnNJMzc2NDkKSTcKc0kzMjU3NwpJNApzSTcwMjUKSTYKc0k5MTMKSTIKc0k1MzQwOQpJMgpzSTU3NDA5CkkzCnNJNjU1ODUKSTcKc0k1MTMyOQpJMQpzSTMwNDY1Ckk2CnNJMzMwNTcKSTYKc0k2MTkzCkkxCnNJNTIzMDUKSTYKc0kzMDIyNQpJMgpzSTYwNDk3Ckk2CnNJNjE1MDUKSTYKc0k2MDUyOQpJNgpzLg== </vehiclePostProgressionLastSeenStep>
+					<recertificationFormSeen> STAxCi4= </recertificationFormSeen>
+					<demountKitSeen> STAxCi4= </demountKitSeen>
+					<vehicleCarouselCountersSeen> KGRwMQpTJ293bjNEU3R5bGUnCnAyCkkwMQpzUydjYW5JbnN0YWxsQXR0YWNobWVudHMnCnAzCkkwMQpzLg== </vehicleCarouselCountersSeen>
+					<liveOpsWebEventsCounters> KGRwMQpTJ2xvbG4yNScKcDIKSTAKcy4= </liveOpsWebEventsCounters>
+					<ClanButtonNewsCounters> KGRwMQpTJ2NsYW5zdXBwbHlfaGFuZ2FyX2J1YmJsZScKcDIKSTIKcy4= </ClanButtonNewsCounters>
+				</counters>
+				<filters>
+					<BATTLEPASS_CAROUSEL_FILTER_CLIENT_1> KGRwMQpTJ2JhdHRsZVBhc3NTZWFzb24nCnAyCkkyMDI1MDMwMQpzLg== </BATTLEPASS_CAROUSEL_FILTER_CLIENT_1>
+					<tankmenList> KGRwMQpTJ2JhcnJhY2tzJwpwMgooZHAzClMndGFua21hbktpbmQnCnA0CihscDUKUydyZWNydWl0JwpwNgphc3NTJ21lbWJlckNoYW5nZScKcDcKKGRwOApTJ2xvY2F0aW9uJwpwOQoobHAxMApzcy4= </tankmenList>
+					<profileTechnique> KGRwMQpTJ2lzSW5IYW5nYXJTZWxlY3RlZCcKcDIKSTAwCnNTJ3NlbGVjdGVkQ29sdW1uU29ydGluZycKcDMKUydkZXNjZW5kaW5nJwpwNApzUydzZWxlY3RlZENvbHVtbicKcDUKSTIKcy4= </profileTechnique>
+				</filters>
+				<newbie_hints/>
+				<battle_hints>
+					<displayHistory> KGRwMQpTJ3RvdGFsRGlzcGxheUNvdW50JwpwMgooZHAzClMnZ3JpbmNoLnN0ZWFsaW5nX2Zyb21feW91JwpwNApJNzAKc3NTJ2xhc3REaXNwbGF5VGltZScKcDUKKGRwNgpnNApGMTczNTU5NzMxNC4yMTE5OTk5CnNzLg== </displayHistory>
+				</battle_hints>
+			</account>
+			<account>
+				<login> Referalka986 </login>
+				<manual>
+					<manual_new_content> KGRwMQpTJ3YuMS4yNy4wLjEgIzU4MycKcDIKKGxwMwoobHA0CmEobHA1CmEobHA2CmEobHA3CmEobHA4CmEobHA5CmEobHAxMAphcy4= </manual_new_content>
+				</manual>
+				<settings>
+					<grinch_keys> KGRwMQpTJ2dyaW5jaF9jaGFwdGVyc19lbmRfbm90aWZpY2F0aW9uX3Nob3duJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnZ3JpbmNoX2ZpbmlzaGVkX25vdGlmaWNhdGlvbl9zaG93bicKcDUKSTAxCnNTJ2dyaW5jaF9jaGFwdGVyc19zdGFydF9ub3RpZmljYXRpb25fc2hvd24nCnA2CmczCigobHRScDcKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDgKSTAKcy4= </grinch_keys>
+					<topOfTree> KGRwMQpTJzI0MTIwNS0wOTAwXzI1MDEwNS0wOTAwXzA1LTA1X0phbl90ZWNodHJlZV8hNTg1NjQnCnAyCihkcDMKUydub3RpZmllZCcKcDQKSTAwCnNTJ25hdGlvbnMnCnA1CihscDYKSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYXNzUycyNDEyMDUtMDkwMF8yNTAxMDUtMDkwMF8wNS0wNV9KYW5fdGVjaHRyZWVfITU4NTY1JwpwNwooZHA4Cmc0CkkwMApzZzUKKGxwOQpJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphc3Mu </topOfTree>
+					<battleMattersSettings> KGRwMQpTJ3Byb2dyZXNzRm9yUXVlc3QnCnAyCkkxCnNTJ2JhdHRsZXNDb3VudFdpdGhvdXRQcm9ncmVzcycKcDMKSTAKc1MncmVtaW5kZXJMYXN0RGlzcGxheVRpbWUnCnA0CkkwCnNTJ2xhc3RRdWVzdFByb2dyZXNzJwpwNQpJMApzLg== </battleMattersSettings>
+					<appliedColorSettings> KGRwMQpJMAooZHAyClZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwMwpJMApzcy4= </appliedColorSettings>
+					<wotPlus> KGRwMQpTJ2lzUGFzc2l2ZVhwRW5hYmxlZCcKcDIKSTAxCnNTJ2lzRnJlZURlbW91bnRpbmdFbmFibGVkJwpwMwpJMDEKc1MnaXNPcHRpb25hbERldmljZXNBc3Npc3RhbnRFbmFibGVkJwpwNApJMDEKc1MnaXNCYWRnZXNFbmFibGVkJwpwNQpJMDAKc1MnaXNBZGRpdGlvbmFsWFBFbmFibGVkJwpwNgpJMDAKc1MnaXNFeGNsdWRlZE1hcEVuYWJsZWQnCnA3CkkwMQpzUydpc0RhaWx5QXR0ZW5kYW5jZXNFbmFibGVkJwpwOApJMDEKc1MnaXNXb3RQbHVzRW5hYmxlZCcKcDkKSTAxCnNTJ2lzQmF0dGxlQm9udXNlc0VuYWJsZWQnCnAxMApJMDAKc1MnaXNHb2xkUmVzZXJ2ZUVuYWJsZWQnCnAxMQpJMDEKc1MnYW1vdW50T2ZEYWlseUF0dGVuZGFuY2UnCnAxMgpJMApzUydpc09uYm9hcmRpbmdTaG93bicKcDEzCkkwMApzUydpc0ZpcnN0VGltZScKcDE0CkkwMQpzLg== </wotPlus>
+					<telecomRentals> KGRwMQpTJ3BlbmRpbmdSZW50YWxzJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNUZWxlY29tUmVudGFsc0VuYWJsZWQnCnA1CkkwMQpzUydpc1RlbGVjb21SZW50YWxzQmxvY2tlZCcKcDYKSTAxCnMu </telecomRentals>
+					<quests> KGRwMQpTJ3Zpc2l0ZWQnCnAyCih0c1MnbmFWaXNpdGVkJwpwMwoodHNTJ2xhc3RWaXNpdFRpbWUnCnA0CkktMQpzUydxdWVzdERlbHRhcycKcDUKKGRwNgpTJ3Rva2Vuc1Byb2dyZXNzJwpwNwooZHA4CnNTJ3F1ZXN0UHJvZ3Jlc3MnCnA5CihkcDEwCnNTJ3F1ZXN0Q29tcGxldGlvbicKcDExCihkcDEyCnNzUydwZXJzb25hbE1pc3Npb25zJwpwMTMKKGRwMTQKUydoZWFkZXJBbGVydCcKcDE1CkkwMApzUydvcGVyYXRpb25zVmlzaXRlZCcKcDE2CmNfX2J1aWx0aW5fXwpzZXQKcDE3CigobHRScDE4CnNTJ2ludHJvU2hvd24nCnAxOQpJMDAKc3NTJ2RhaWx5UXVlc3RzJwpwMjAKKGRwMjEKUyd2aXNpdGVkQm9udXMnCnAyMgpJMDAKc1Mnc2VlbkNvbXBsZXRlZCcKcDIzCkkwMApzUydsYXN0VmlzaXRlZERRVGFiSWR4JwpwMjQKTnNTJ3ByZW1NaXNzaW9uc1RhYkRpc2NvdmVyZWQnCnAyNQpJMDAKc3Mu </quests>
+					<rankedWebLeague> Y2NvcHlfcmVnCl9yZWNvbnN0cnVjdG9yCnAxCihjZ3VpLnJhbmtlZF9iYXR0bGVzLnJhbmtlZF9oZWxwZXJzLndlYl9zZWFzb25fcHJvdmlkZXIKV2ViU2Vhc29uSW5mbwpwMgpjX19idWlsdGluX18KdHVwbGUKcDMKKEkwCk5JMDAKSTAwCnR0UnA0Ci4= </rankedWebLeague>
+					<lastLoggedServerDay> STIwMDkyCi4= </lastLoggedServerDay>
+					<lastSeenCollectingNotifyTime> RjE3MzYwMDk3MjguMDczMzg4MQou </lastSeenCollectingNotifyTime>
+					<grinch_progression_key> KGRwMQpTJ2lzX2ZpcnN0X2VudHJ5JwpwMgpJMDEKc1MncHJldmlvdXNfcG9pbnRzX2NvdW50JwpwMwpJMTEKcy4= </grinch_progression_key>
+					<personalReserves> KGRwMQpTJ2Jvb3N0ZXJDYXJkSGludHNTZWVuJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNGaXJzdFRpbWVOb3RpZmljYXRpb25TaG93bicKcDUKSTAxCnNTJ2lzSW50cm9QYWdlU2hvd24nCnA2CkkwMApzLg== </personalReserves>
+					<CustomizationTabsVisited> Y19fYnVpbHRpbl9fCnNldApwMQooKGxwMgpJMQphSTIKYUkzCmFJNAphSTUKYUk2CmFJNwphSTkKYXRScDMKLg== </CustomizationTabsVisited>
+					<achievements20_info> KGRwMQpTJ2FjaGlldmVtZW50c01lZGFsQ291bnRJbmZvJwpwMgpJMApzUydhY2hpZXZlbWVudHNGaXJzdEVudHJ5U3RhdHVzJwpwMwpJMQpzUydhY2hpZXZlbWVudFd0clBvaW50c05vdGlmaWNhdGlvbicKcDQKSTM5MjAKc1MnYWNoaWV2ZW1lbnRzUmF0aW5nQ2FsY3VsYXRlZFN0YXR1cycKcDUKSTEKc1MnYWNoaWV2ZW1lbnRXdHInCnA2CihkcDcKUydhY2hpZXZlbWVudFd0clByZXZSYW5rJwpwOApJMApzUydhY2hpZXZlbWVudFd0clByZXZTdWJSYW5rJwpwOQpJMApzUydhY2hpZXZlbWVudFd0clBvaW50cycKcDEwCkkwCnNzUydhY2hpZXZlbWVudHNFZGl0aW5nRW5hYmxlZFN0YXR1cycKcDExCkkwCnNTJ2FjaGlldmVtZW50c1d0clJhbmtzJwpwMTIKKGRwMTMKc1MnYWNoaWV2ZW1lbnRzTWVkYWxBZGRlZFN0YXR1cycKcDE0CkkxCnNTJ2FjaGlldmVtZW50c1JhdGluZ0NoYW5nZWRTdGF0dXMnCnAxNQpJMApzUydhY2hpZXZlbWVudHMyME1heFd0clBvaW50cycKcDE2CkkzOTIwCnNTJ3ByZXZBY2hpZXZlbWVudE5hbWVMaXN0JwpwMTcKKGxwMTgKc1MnYWNoaWV2ZW1lbnRzMjBJbml0aWFsQmF0dGxlQ291bnQnCnAxOQpJMjgyCnMu </achievements20_info>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+				</settings>
+				<notifications/>
+				<ui_flags>
+					<NYResourceCollectingAvailable> STAxCi4= </NYResourceCollectingAvailable>
+					<NYResourceFriendsCollectingAvailable> STAxCi4= </NYResourceFriendsCollectingAvailable>
+				</ui_flags>
+				<favorites>
+					<current> STQ2Ci4= </current>
+				</favorites>
+				<counters>
+					<newShopTabs> KGRwMQpTJ2lzQ29tcDdCb25zQmFubmVyVmlzaXRlZCcKcDIKSTAwCnMu </newShopTabs>
+					<newLobbyTabCounter> KGRwMQpTJ1BlcnNvbmFsTWlzc2lvbk9wZXJhdGlvbnMnCnAyCkkwMQpzLg== </newLobbyTabCounter>
+				</counters>
+				<filters/>
+				<newbie_hints/>
+			</account>
+			<account>
+				<login> PaPARIMSkii666 </login>
+				<manual>
+					<manual_new_content> KGRwMQpTJ3YuMS4yNy4wLjEgIzU4MycKcDIKKGxwMwoobHA0CmEobHA1CmEobHA2CmEobHA3CmEobHA4CmEobHA5CmEobHAxMAphcy4= </manual_new_content>
+				</manual>
+				<settings>
+					<grinch_keys> KGRwMQpTJ2dyaW5jaF9jaGFwdGVyc19lbmRfbm90aWZpY2F0aW9uX3Nob3duJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnZ3JpbmNoX2ZpbmlzaGVkX25vdGlmaWNhdGlvbl9zaG93bicKcDUKSTAxCnNTJ2dyaW5jaF9jaGFwdGVyc19zdGFydF9ub3RpZmljYXRpb25fc2hvd24nCnA2CmczCigobHRScDcKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDgKSTAKcy4= </grinch_keys>
+					<topOfTree> KGRwMQpTJzI0MTIwNS0wOTAwXzI1MDEwNS0wOTAwXzA1LTA1X0phbl90ZWNodHJlZV8hNTg1NjQnCnAyCihkcDMKUydub3RpZmllZCcKcDQKSTAwCnNTJ25hdGlvbnMnCnA1CihscDYKSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYXNzUycyNDEyMDUtMDkwMF8yNTAxMDUtMDkwMF8wNS0wNV9KYW5fdGVjaHRyZWVfITU4NTY1JwpwNwooZHA4Cmc0CkkwMApzZzUKKGxwOQpJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphc3Mu </topOfTree>
+					<battleMattersSettings> KGRwMQpTJ3Byb2dyZXNzRm9yUXVlc3QnCnAyCkkxCnNTJ2JhdHRsZXNDb3VudFdpdGhvdXRQcm9ncmVzcycKcDMKSTAKc1MncmVtaW5kZXJMYXN0RGlzcGxheVRpbWUnCnA0CkkwCnNTJ2xhc3RRdWVzdFByb2dyZXNzJwpwNQpJMApzLg== </battleMattersSettings>
+					<appliedColorSettings> KGRwMQpJMAooZHAyClZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwMwpJMApzcy4= </appliedColorSettings>
+					<wotPlus> KGRwMQpTJ2lzUGFzc2l2ZVhwRW5hYmxlZCcKcDIKSTAxCnNTJ2lzRnJlZURlbW91bnRpbmdFbmFibGVkJwpwMwpJMDEKc1MnaXNPcHRpb25hbERldmljZXNBc3Npc3RhbnRFbmFibGVkJwpwNApJMDEKc1MnaXNCYWRnZXNFbmFibGVkJwpwNQpJMDAKc1MnaXNBZGRpdGlvbmFsWFBFbmFibGVkJwpwNgpJMDAKc1MnaXNFeGNsdWRlZE1hcEVuYWJsZWQnCnA3CkkwMQpzUydpc0RhaWx5QXR0ZW5kYW5jZXNFbmFibGVkJwpwOApJMDEKc1MnaXNXb3RQbHVzRW5hYmxlZCcKcDkKSTAxCnNTJ2lzQmF0dGxlQm9udXNlc0VuYWJsZWQnCnAxMApJMDAKc1MnaXNHb2xkUmVzZXJ2ZUVuYWJsZWQnCnAxMQpJMDEKc1MnYW1vdW50T2ZEYWlseUF0dGVuZGFuY2UnCnAxMgpJMApzUydpc09uYm9hcmRpbmdTaG93bicKcDEzCkkwMApzUydpc0ZpcnN0VGltZScKcDE0CkkwMQpzLg== </wotPlus>
+					<telecomRentals> KGRwMQpTJ3BlbmRpbmdSZW50YWxzJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNUZWxlY29tUmVudGFsc0VuYWJsZWQnCnA1CkkwMQpzUydpc1RlbGVjb21SZW50YWxzQmxvY2tlZCcKcDYKSTAxCnMu </telecomRentals>
+					<quests> KGRwMQpTJ3Zpc2l0ZWQnCnAyCih0c1MnbmFWaXNpdGVkJwpwMwoodHNTJ2xhc3RWaXNpdFRpbWUnCnA0CkktMQpzUydxdWVzdERlbHRhcycKcDUKKGRwNgpTJ3Rva2Vuc1Byb2dyZXNzJwpwNwooZHA4CnNTJ3F1ZXN0UHJvZ3Jlc3MnCnA5CihkcDEwCnNTJ3F1ZXN0Q29tcGxldGlvbicKcDExCihkcDEyCnNzUydwZXJzb25hbE1pc3Npb25zJwpwMTMKKGRwMTQKUydoZWFkZXJBbGVydCcKcDE1CkkwMApzUydvcGVyYXRpb25zVmlzaXRlZCcKcDE2CmNfX2J1aWx0aW5fXwpzZXQKcDE3CigobHRScDE4CnNTJ2ludHJvU2hvd24nCnAxOQpJMDAKc3NTJ2RhaWx5UXVlc3RzJwpwMjAKKGRwMjEKUyd2aXNpdGVkQm9udXMnCnAyMgpJMDAKc1Mnc2VlbkNvbXBsZXRlZCcKcDIzCkkwMApzUydsYXN0VmlzaXRlZERRVGFiSWR4JwpwMjQKTnNTJ3ByZW1NaXNzaW9uc1RhYkRpc2NvdmVyZWQnCnAyNQpJMDAKc3Mu </quests>
+					<rankedWebLeague> Y2NvcHlfcmVnCl9yZWNvbnN0cnVjdG9yCnAxCihjZ3VpLnJhbmtlZF9iYXR0bGVzLnJhbmtlZF9oZWxwZXJzLndlYl9zZWFzb25fcHJvdmlkZXIKV2ViU2Vhc29uSW5mbwpwMgpjX19idWlsdGluX18KdHVwbGUKcDMKKEkwCk5JMDAKSTAwCnR0UnA0Ci4= </rankedWebLeague>
+					<lastLoggedServerDay> STIwMDkyCi4= </lastLoggedServerDay>
+					<grinch_progression_key> KGRwMQpTJ2lzX2ZpcnN0X2VudHJ5JwpwMgpJMDEKc1MncHJldmlvdXNfcG9pbnRzX2NvdW50JwpwMwpJMQpzLg== </grinch_progression_key>
+					<lastSeenCollectingNotifyTime> RjE3MzYwMTAxNjkuMDc1OTA4Mgou </lastSeenCollectingNotifyTime>
+					<achievements20_info> KGRwMQpTJ2FjaGlldmVtZW50c01lZGFsQ291bnRJbmZvJwpwMgpJMApzUydhY2hpZXZlbWVudHNGaXJzdEVudHJ5U3RhdHVzJwpwMwpJMApzUydhY2hpZXZlbWVudFd0clBvaW50c05vdGlmaWNhdGlvbicKcDQKSTAKc1MnYWNoaWV2ZW1lbnRzUmF0aW5nQ2FsY3VsYXRlZFN0YXR1cycKcDUKSTAKc1MnYWNoaWV2ZW1lbnRXdHInCnA2CihkcDcKUydhY2hpZXZlbWVudFd0clByZXZSYW5rJwpwOApJMApzUydhY2hpZXZlbWVudFd0clByZXZTdWJSYW5rJwpwOQpJMApzUydhY2hpZXZlbWVudFd0clBvaW50cycKcDEwCkkwCnNzUydhY2hpZXZlbWVudHNFZGl0aW5nRW5hYmxlZFN0YXR1cycKcDExCkkwCnNTJ2FjaGlldmVtZW50c1d0clJhbmtzJwpwMTIKKGRwMTMKc1MnYWNoaWV2ZW1lbnRzTWVkYWxBZGRlZFN0YXR1cycKcDE0CkkwCnNTJ2FjaGlldmVtZW50c1JhdGluZ0NoYW5nZWRTdGF0dXMnCnAxNQpJMApzUydhY2hpZXZlbWVudHMyME1heFd0clBvaW50cycKcDE2CkkwCnNTJ3ByZXZBY2hpZXZlbWVudE5hbWVMaXN0JwpwMTcKKGxwMTgKc1MnYWNoaWV2ZW1lbnRzMjBJbml0aWFsQmF0dGxlQ291bnQnCnAxOQpJMApzLg== </achievements20_info>
+					<AdvancedAchievements> KGRwMQpTJ3Vuc2VlbkFkdmFuY2VkQWNoaWV2ZW1lbnRzJwpwMgooZHAzClMndmVoaWNsZUFjaGlldmVtZW50cycKcDQKKGxwNQpJMzY0CmFzc1MncHJldkFjaGlldmVtZW50U2NvcmUnCnA2CkkwCnNTJ3ByZXZDYXRlZ29yeUxpc3REYXRhJwpwNwoobHA4CihJMApJMAp0cDkKYShJMApJMAp0cDEwCmEoSTAKSTAKdHAxMQphc1MncHJldlRyb3BoeUNvdW50JwpwMTIKSTAKc1MncHJldlBsYXllckNvbGxlY3Rpb25Qcm9ncmVzcycKcDEzCkkwCnNTJ21haW5BZHZhbmNlZEFjaGlldmVtZW50c1BhZ2VWaXNpdGVkJwpwMTQKSTAwCnNTJ2lzTmVlZGVkU2hvd0hpbnRBY2hpZXZlbWVudENhdGFsb2cnCnAxNQpJMDEKc1Mnc2VlblRyb3BoaWVzQWR2YW5jZWRBY2hpZXZlbWVudHMnCnAxNgooZHAxNwpzLg== </AdvancedAchievements>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+				</settings>
+				<notifications/>
+				<counters>
+					<newLobbyTabCounter> KGRwMQpTJ1BlcnNvbmFsTWlzc2lvbk9wZXJhdGlvbnMnCnAyCkkwMQpzLg== </newLobbyTabCounter>
+				</counters>
+				<ui_flags>
+					<luiSwitcherState> STAxCi4= </luiSwitcherState>
+					<mua> KGRwMQpJNDg4MQpjX19idWlsdGluX18Kc2V0CnAyCigobHRScDMKcy4= </mua>
+					<NYResourceCollectingAvailable> STAxCi4= </NYResourceCollectingAvailable>
+					<NYResourceFriendsCollectingAvailable> STAxCi4= </NYResourceFriendsCollectingAvailable>
+				</ui_flags>
+				<favorites>
+					<current> STEyCi4= </current>
+				</favorites>
+				<filters/>
+				<newbie_hints/>
+			</account>
+			<account>
+				<login> the_King211198 </login>
+				<manual>
+					<manual_new_content> KGRwMQpTJ3YuMS4yNy4wLjEgIzU4MycKcDIKKGxwMwoobHA0CmEobHA1CmEobHA2CmEobHA3CmEobHA4CmEobHA5CmEobHAxMAphcy4= </manual_new_content>
+					<lobby_menu_manual_trigger_shown> STAxCi4= </lobby_menu_manual_trigger_shown>
+				</manual>
+				<settings>
+					<grinch_keys> KGRwMQpTJ2dyaW5jaF9jaGFwdGVyc19lbmRfbm90aWZpY2F0aW9uX3Nob3duJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnZ3JpbmNoX2ZpbmlzaGVkX25vdGlmaWNhdGlvbl9zaG93bicKcDUKSTAxCnNTJ2dyaW5jaF9jaGFwdGVyc19zdGFydF9ub3RpZmljYXRpb25fc2hvd24nCnA2CmczCigobHRScDcKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDgKSTAKcy4= </grinch_keys>
+					<topOfTree> KGRwMQpTJzI0MTIwNS0wOTAwXzI1MDEwNS0wOTAwXzA1LTA1X0phbl90ZWNodHJlZV8hNTg1NjQnCnAyCihkcDMKUydub3RpZmllZCcKcDQKSTAwCnNTJ25hdGlvbnMnCnA1CihscDYKSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYXNzUycyNDEyMDUtMDkwMF8yNTAxMDUtMDkwMF8wNS0wNV9KYW5fdGVjaHRyZWVfITU4NTY1JwpwNwooZHA4Cmc0CkkwMApzZzUKKGxwOQpJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphSTAwCmFJMDAKYUkwMAphc3Mu </topOfTree>
+					<battleMattersSettings> KGRwMQpTJ3Byb2dyZXNzRm9yUXVlc3QnCnAyCkkzMQpzUydyZW1pbmRlckxhc3REaXNwbGF5VGltZScKcDMKSTAKc1MnYmF0dGxlc0NvdW50V2l0aG91dFByb2dyZXNzJwpwNApJNApzUydsYXN0UXVlc3RQcm9ncmVzcycKcDUKSTExCnMu </battleMattersSettings>
+					<appliedColorSettings> KGRwMQpJMAooZHAyClZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwMwpJMApzcy4= </appliedColorSettings>
+					<wotPlus> KGRwMQpTJ2lzUGFzc2l2ZVhwRW5hYmxlZCcKcDIKSTAxCnNTJ2lzRnJlZURlbW91bnRpbmdFbmFibGVkJwpwMwpJMDEKc1MnaXNPcHRpb25hbERldmljZXNBc3Npc3RhbnRFbmFibGVkJwpwNApJMDEKc1MnaXNCYWRnZXNFbmFibGVkJwpwNQpJMDAKc1MnaXNBZGRpdGlvbmFsWFBFbmFibGVkJwpwNgpJMDAKc1MnaXNFeGNsdWRlZE1hcEVuYWJsZWQnCnA3CkkwMQpzUydpc0RhaWx5QXR0ZW5kYW5jZXNFbmFibGVkJwpwOApJMDEKc1MnaXNXb3RQbHVzRW5hYmxlZCcKcDkKSTAxCnNTJ2lzQmF0dGxlQm9udXNlc0VuYWJsZWQnCnAxMApJMDAKc1MnaXNHb2xkUmVzZXJ2ZUVuYWJsZWQnCnAxMQpJMDEKc1MnYW1vdW50T2ZEYWlseUF0dGVuZGFuY2UnCnAxMgpJMApzUydpc09uYm9hcmRpbmdTaG93bicKcDEzCkkwMApzUydpc0ZpcnN0VGltZScKcDE0CkkwMQpzLg== </wotPlus>
+					<telecomRentals> KGRwMQpTJ3BlbmRpbmdSZW50YWxzJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNUZWxlY29tUmVudGFsc0VuYWJsZWQnCnA1CkkwMQpzUydpc1RlbGVjb21SZW50YWxzQmxvY2tlZCcKcDYKSTAxCnMu </telecomRentals>
+					<quests> KGRwMQpTJ3Zpc2l0ZWQnCnAyCih0c1MnbmFWaXNpdGVkJwpwMwoodHNTJ2xhc3RWaXNpdFRpbWUnCnA0CkktMQpzUydxdWVzdERlbHRhcycKcDUKKGRwNgpTJ3Rva2Vuc1Byb2dyZXNzJwpwNwooZHA4CnNTJ3F1ZXN0UHJvZ3Jlc3MnCnA5CihkcDEwClMnZHE6Njc3MzYyMjc6UVVFU1RfRUFTWTo6Yzo2MDFfXzMwOjpyOmV0dF9fMTo6cjpidHRfXzE6OnI6NjAxX180NTA6OnI6MTA4X18yJwpwMTEKKGRwMTIKTihkcDEzClMnYm9udXNDb3VudCcKcDE0CkkxCnNzc1MnZHE6Njc3MzYyMjc6UVVFU1RfTUVESVVNOjpjOjIxN19fMzUwMDo6cjpldHRfXzE6OnI6YnR0X18xOjpyOjYxMV9fMzAwOjpyOjIyMF9fMzAwMDAnCnAxNQooZHAxNgpOKGRwMTcKUydib251c0NvdW50JwpwMTgKSTAKc1MnZGFtYWdlRGVhbHQnCnAxOQpJMApzc3NzUydxdWVzdENvbXBsZXRpb24nCnAyMAooZHAyMQpTJ2RxOjY3NzM2MjI3OlFVRVNUX0VBU1k6OmM6NjAxX18zMDo6cjpldHRfXzE6OnI6YnR0X18xOjpyOjYwMV9fNDUwOjpyOjEwOF9fMicKcDIyCkkwMQpzUydkcTo2NzczNjIyNzpRVUVTVF9NRURJVU06OmM6MjE3X18zNTAwOjpyOmV0dF9fMTo6cjpidHRfXzE6OnI6NjExX18zMDA6OnI6MjIwX18zMDAwMCcKcDIzCkkwMApzc3NTJ3BlcnNvbmFsTWlzc2lvbnMnCnAyNAooZHAyNQpTJ2hlYWRlckFsZXJ0JwpwMjYKSTAwCnNTJ29wZXJhdGlvbnNWaXNpdGVkJwpwMjcKY19fYnVpbHRpbl9fCnNldApwMjgKKChsdFJwMjkKc1MnaW50cm9TaG93bicKcDMwCkkwMApzc1MnZGFpbHlRdWVzdHMnCnAzMQooZHAzMgpTJ3Zpc2l0ZWRCb251cycKcDMzCkkwMApzUydzZWVuQ29tcGxldGVkJwpwMzQKSTAwCnNTJ2xhc3RWaXNpdGVkRFFUYWJJZHgnCnAzNQpOc1MncHJlbU1pc3Npb25zVGFiRGlzY292ZXJlZCcKcDM2CkkwMApzcy4= </quests>
+					<rankedWebLeague> Y2NvcHlfcmVnCl9yZWNvbnN0cnVjdG9yCnAxCihjZ3VpLnJhbmtlZF9iYXR0bGVzLnJhbmtlZF9oZWxwZXJzLndlYl9zZWFzb25fcHJvdmlkZXIKV2ViU2Vhc29uSW5mbwpwMgpjX19idWlsdGluX18KdHVwbGUKcDMKKEkwCk5JMDAKSTAwCnR0UnA0Ci4= </rankedWebLeague>
+					<lastLoggedServerDay> STIwMDkyCi4= </lastLoggedServerDay>
+					<grinch_progression_key> KGRwMQpTJ2lzX2ZpcnN0X2VudHJ5JwpwMgpJMDEKc1MncHJldmlvdXNfcG9pbnRzX2NvdW50JwpwMwpJMQpzLg== </grinch_progression_key>
+					<lastSeenCollectingNotifyTime> RjE3MzYwMTAyOTQuMzA5NzY4Mgou </lastSeenCollectingNotifyTime>
+					<optDeviceTabVisited> KGRwMQpTJ3NpbXBsZScKcDIKSTAxCnMu </optDeviceTabVisited>
+					<achievements20_info> KGRwMQpTJ2FjaGlldmVtZW50c01lZGFsQ291bnRJbmZvJwpwMgpJMApzUydhY2hpZXZlbWVudHNGaXJzdEVudHJ5U3RhdHVzJwpwMwpJMQpzUydhY2hpZXZlbWVudFd0clBvaW50c05vdGlmaWNhdGlvbicKcDQKSTY0MjMKc1MnYWNoaWV2ZW1lbnRzUmF0aW5nQ2FsY3VsYXRlZFN0YXR1cycKcDUKSTEKc1MnYWNoaWV2ZW1lbnRXdHInCnA2CihkcDcKUydhY2hpZXZlbWVudFd0clByZXZSYW5rJwpwOApJMApzUydhY2hpZXZlbWVudFd0clByZXZTdWJSYW5rJwpwOQpJMApzUydhY2hpZXZlbWVudFd0clBvaW50cycKcDEwCkkwCnNzUydhY2hpZXZlbWVudHNFZGl0aW5nRW5hYmxlZFN0YXR1cycKcDExCkkwCnNTJ2FjaGlldmVtZW50c1d0clJhbmtzJwpwMTIKKGRwMTMKc1MnYWNoaWV2ZW1lbnRzTWVkYWxBZGRlZFN0YXR1cycKcDE0CkkxCnNTJ2FjaGlldmVtZW50c1JhdGluZ0NoYW5nZWRTdGF0dXMnCnAxNQpJMApzUydhY2hpZXZlbWVudHMyME1heFd0clBvaW50cycKcDE2Ckk2NDIzCnNTJ3ByZXZBY2hpZXZlbWVudE5hbWVMaXN0JwpwMTcKKGxwMTgKc1MnYWNoaWV2ZW1lbnRzMjBJbml0aWFsQmF0dGxlQ291bnQnCnAxOQpJMjQ0CnMu </achievements20_info>
+					<watchedPreBattleTipsSection> KGRwMQpTJ3RpcDE5MicKcDIKSTEKcy4= </watchedPreBattleTipsSection>
+					<minimapSize> RjMKLg== </minimapSize>
+					<preBattleHintSection> KGRwMQpTJ3F1ZXN0UHJvZ3Jlc3NIaW50JwpwMgooZHAzClMnaGludHNMZWZ0JwpwNApJMQpzUydsYXN0RGlzcGxheURheScKcDUKSTIxCnNTJ251bUJhdHRsZXMnCnA2CkkxMDAKc3NTJ2JhdHRsZUNvbW11bmljYXRpb25IaW50JwpwNwooZHA4Cmc0CkkwCnNzUydoZWxwU2NyZWVuSGludCcKcDkKKGRwMTAKSTM2MDk3CihkcDExClMnaGludHNMZWZ0JwpwMTIKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAxMwpJMApzUydudW1CYXR0bGVzJwpwMTQKSTAKc3NJMjI1MjkKKGRwMTUKUydoaW50c0xlZnQnCnAxNgpJMwpzUydsYXN0RGlzcGxheURheScKcDE3CkkwCnNTJ251bUJhdHRsZXMnCnAxOApJMApzc0kyMzM3NwooZHAxOQpTJ2hpbnRzTGVmdCcKcDIwCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMjEKSTAKc1MnbnVtQmF0dGxlcycKcDIyCkkwCnNzSTUzMzYxCihkcDIzClMnaGludHNMZWZ0JwpwMjQKSTIKc1MnbGFzdERpc3BsYXlEYXknCnAyNQpJMzQ2CnNTJ251bUJhdHRsZXMnCnAyNgpJMApzc0kyMTUzNwooZHAyNwpTJ2hpbnRzTGVmdCcKcDI4CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwMjkKSTAKc1MnbnVtQmF0dGxlcycKcDMwCkkwCnNzSTIwNTYxCihkcDMxClMnaGludHNMZWZ0JwpwMzIKSTMKc1MnbGFzdERpc3BsYXlEYXknCnAzMwpJMApzUydudW1CYXR0bGVzJwpwMzQKSTAKc3NJMjA3NjkKKGRwMzUKUydoaW50c0xlZnQnCnAzNgpJMwpzUydsYXN0RGlzcGxheURheScKcDM3CkkwCnNTJ251bUJhdHRsZXMnCnAzOApJMApzc0k2MjU3CihkcDM5ClMnaGludHNMZWZ0JwpwNDAKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA0MQpJMApzUydudW1CYXR0bGVzJwpwNDIKSTAKc3NJMTkwMDkKKGRwNDMKUydoaW50c0xlZnQnCnA0NApJMwpzUydsYXN0RGlzcGxheURheScKcDQ1CkkwCnNTJ251bUJhdHRsZXMnCnA0NgpJMApzc0k0NDI4OQooZHA0NwpTJ2hpbnRzTGVmdCcKcDQ4CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwNDkKSTAKc1MnbnVtQmF0dGxlcycKcDUwCkkwCnNzSTIxMjgxCihkcDUxClMnaGludHNMZWZ0JwpwNTIKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA1MwpJMApzUydudW1CYXR0bGVzJwpwNTQKSTAKc3NJMjI4NjUKKGRwNTUKUydoaW50c0xlZnQnCnA1NgpJMwpzUydsYXN0RGlzcGxheURheScKcDU3CkkwCnNTJ251bUJhdHRsZXMnCnA1OApJMApzc0k5MjY1CihkcDU5ClMnaGludHNMZWZ0JwpwNjAKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA2MQpJMApzUydudW1CYXR0bGVzJwpwNjIKSTAKc3NJMjEwMjUKKGRwNjMKUydoaW50c0xlZnQnCnA2NApJMgpzUydsYXN0RGlzcGxheURheScKcDY1CkkxNgpzUydudW1CYXR0bGVzJwpwNjYKSTAKc3NJNDM1NTMKKGRwNjcKUydoaW50c0xlZnQnCnA2OApJMwpzUydsYXN0RGlzcGxheURheScKcDY5CkkwCnNTJ251bUJhdHRsZXMnCnA3MApJMApzc0kyMzEyMQooZHA3MQpTJ2hpbnRzTGVmdCcKcDcyCkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwNzMKSTAKc1MnbnVtQmF0dGxlcycKcDc0CkkwCnNzSTg4MDEKKGRwNzUKUydoaW50c0xlZnQnCnA3NgpJMwpzUydsYXN0RGlzcGxheURheScKcDc3CkkwCnNTJ251bUJhdHRsZXMnCnA3OApJMApzc0k0NzIxCihkcDc5ClMnaGludHNMZWZ0JwpwODAKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA4MQpJMApzUydudW1CYXR0bGVzJwpwODIKSTAKc3NJMTg3NTMKKGRwODMKZzQwCkkzCnNnNDEKSTAKc2c0MgpJMApzc0k2NTU4NQooZHA4NApTJ2hpbnRzTGVmdCcKcDg1CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwODYKSTAKc1MnbnVtQmF0dGxlcycKcDg3CkkwCnNzSTYzODI1CihkcDg4ClMnaGludHNMZWZ0JwpwODkKSTMKc1MnbGFzdERpc3BsYXlEYXknCnA5MApJMApzUydudW1CYXR0bGVzJwpwOTEKSTAKc3NJMjE4NDEKKGRwOTIKUydoaW50c0xlZnQnCnA5MwpJMwpzUydsYXN0RGlzcGxheURheScKcDk0CkkwCnNTJ251bUJhdHRsZXMnCnA5NQpJMApzc0k2MDIwOQooZHA5NgpTJ2hpbnRzTGVmdCcKcDk3CkkzCnNTJ2xhc3REaXNwbGF5RGF5JwpwOTgKSTAKc1MnbnVtQmF0dGxlcycKcDk5CkkwCnNzSTE5MjgxCihkcDEwMApTJ2hpbnRzTGVmdCcKcDEwMQpJMwpzUydsYXN0RGlzcGxheURheScKcDEwMgpJMApzUydudW1CYXR0bGVzJwpwMTAzCkkwCnNzSTY1NjAxCihkcDEwNApTJ2hpbnRzTGVmdCcKcDEwNQpJMwpzUydsYXN0RGlzcGxheURheScKcDEwNgpJMApzUydudW1CYXR0bGVzJwpwMTA3CkkwCnNzc1MncmVzZXJ2ZXNIaW50U2VjdGlvbicKcDEwOAooZHAxMDkKZzQKSTAKc3Mu </preBattleHintSection>
+					<devMapsHintSection> KGRwMQpTJ2Rldk1hcHMnCnAyCihkcDMKUydoaW50c0xlZnQnCnA0CkkxCnNzLg== </devMapsHintSection>
+					<dynSquadHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTEKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkyMQpzUydudW1CYXR0bGVzJwpwNApJMTAKcy4= </dynSquadHint>
+					<commanderCamHintSection> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKcy4= </commanderCamHintSection>
+					<rocketAccelerationModeHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkyOApzUydudW1CYXR0bGVzJwpwNApJMQpzLg== </rocketAccelerationModeHint>
+					<wheeledModeScreenHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTIKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkyNApzUydudW1CYXR0bGVzJwpwNApJMApzLg== </wheeledModeScreenHint>
+					<twinGunHintSection> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkxCnNTJ251bUJhdHRsZXMnCnA0CkkwCnMu </twinGunHintSection>
+					<siegeModeHint> KGRwMQpTJ2hpbnRzTGVmdCcKcDIKSTAKc1MnbGFzdERpc3BsYXlEYXknCnAzCkkxMApzUydudW1CYXR0bGVzJwpwNApJMApzLg== </siegeModeHint>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+				</settings>
+				<notifications/>
+				<ui_flags>
+					<mua> KGRwMQpJMzMyOQpjX19idWlsdGluX18Kc2V0CnAyCigobHRScDMKc0kzOTA1CmcyCigobHRScDQKcy4= </mua>
+					<NYResourceCollectingAvailable> STAxCi4= </NYResourceCollectingAvailable>
+					<NYResourceFriendsCollectingAvailable> STAxCi4= </NYResourceFriendsCollectingAvailable>
+					<NYCelebrityDayQuestsVisitedMask> STMKLg== </NYCelebrityDayQuestsVisitedMask>
+				</ui_flags>
+				<favorites>
+					<current> STI4Ci4= </current>
+				</favorites>
+				<counters>
+					<newShopTabs> KGRwMQpTJ2lzQ29tcDdCb25zQmFubmVyVmlzaXRlZCcKcDIKSTAwCnMu </newShopTabs>
+					<newLobbyTabCounter> KGRwMQpTJ1BlcnNvbmFsTWlzc2lvbk9wZXJhdGlvbnMnCnAyCkkwMQpzLg== </newLobbyTabCounter>
+				</counters>
+				<filters/>
+				<newbie_hints/>
+			</account>
+			<account>
+				<login> UBERMANNN </login>
+				<manual>
+					<manual_new_content> KGRwMQpTJ3YuMS4yNy4xLjAgIzYwMScKcDIKKGxwMwoobHA0CmEobHA1CmEobHA2CmEobHA3CmEobHA4CmEobHA5CmEobHAxMAphcy4= </manual_new_content>
+				</manual>
+				<settings>
+					<grinch_keys> KGRwMQpTJ2dyaW5jaF9jaGFwdGVyc19lbmRfbm90aWZpY2F0aW9uX3Nob3duJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnZ3JpbmNoX2ZpbmlzaGVkX25vdGlmaWNhdGlvbl9zaG93bicKcDUKSTAxCnNTJ2dyaW5jaF9jaGFwdGVyc19zdGFydF9ub3RpZmljYXRpb25fc2hvd24nCnA2CmczCigobHRScDcKc1MnZ3JpbmNoX2N1cnJlbnRfdmVoaWNsZScKcDgKSTAKcy4= </grinch_keys>
+					<appliedColorSettings> KGRwMQpJMAooZHAyClZDT0xPUl9HUkFESU5HX1RFQ0hOSVFVRQpwMwpJMApzcy4= </appliedColorSettings>
+					<wotPlus> KGRwMQpTJ2lzUGFzc2l2ZVhwRW5hYmxlZCcKcDIKSTAxCnNTJ2lzRnJlZURlbW91bnRpbmdFbmFibGVkJwpwMwpJMDEKc1MnaXNPcHRpb25hbERldmljZXNBc3Npc3RhbnRFbmFibGVkJwpwNApJMDEKc1MnaXNCYWRnZXNFbmFibGVkJwpwNQpJMDAKc1MnaXNBZGRpdGlvbmFsWFBFbmFibGVkJwpwNgpJMDAKc1MnaXNFeGNsdWRlZE1hcEVuYWJsZWQnCnA3CkkwMQpzUydpc0RhaWx5QXR0ZW5kYW5jZXNFbmFibGVkJwpwOApJMDEKc1MnaXNXb3RQbHVzRW5hYmxlZCcKcDkKSTAxCnNTJ2lzQmF0dGxlQm9udXNlc0VuYWJsZWQnCnAxMApJMDAKc1MnaXNHb2xkUmVzZXJ2ZUVuYWJsZWQnCnAxMQpJMDEKc1MnYW1vdW50T2ZEYWlseUF0dGVuZGFuY2UnCnAxMgpJMApzUydpc09uYm9hcmRpbmdTaG93bicKcDEzCkkwMApzUydpc0ZpcnN0VGltZScKcDE0CkkwMQpzLg== </wotPlus>
+					<telecomRentals> KGRwMQpTJ3BlbmRpbmdSZW50YWxzJwpwMgpjX19idWlsdGluX18Kc2V0CnAzCigobHRScDQKc1MnaXNUZWxlY29tUmVudGFsc0VuYWJsZWQnCnA1CkkwMQpzUydpc1RlbGVjb21SZW50YWxzQmxvY2tlZCcKcDYKSTAxCnMu </telecomRentals>
+					<quests> KGRwMQpTJ3Zpc2l0ZWQnCnAyCih0c1MnbmFWaXNpdGVkJwpwMwoodHNTJ2xhc3RWaXNpdFRpbWUnCnA0CkktMQpzUydxdWVzdERlbHRhcycKcDUKKGRwNgpTJ3Rva2Vuc1Byb2dyZXNzJwpwNwooZHA4CnNTJ3F1ZXN0UHJvZ3Jlc3MnCnA5CihkcDEwCnNTJ3F1ZXN0Q29tcGxldGlvbicKcDExCihkcDEyCnNzUydwZXJzb25hbE1pc3Npb25zJwpwMTMKKGRwMTQKUydoZWFkZXJBbGVydCcKcDE1CkkwMApzUydvcGVyYXRpb25zVmlzaXRlZCcKcDE2CmNfX2J1aWx0aW5fXwpzZXQKcDE3CigobHRScDE4CnNTJ2ludHJvU2hvd24nCnAxOQpJMDAKc3NTJ2RhaWx5UXVlc3RzJwpwMjAKKGRwMjEKUyd2aXNpdGVkQm9udXMnCnAyMgpJMDAKc1Mnc2VlbkNvbXBsZXRlZCcKcDIzCkkwMApzUydsYXN0VmlzaXRlZERRVGFiSWR4JwpwMjQKTnNTJ3ByZW1NaXNzaW9uc1RhYkRpc2NvdmVyZWQnCnAyNQpJMDAKc3Mu </quests>
+					<rankedWebLeague> Y2NvcHlfcmVnCl9yZWNvbnN0cnVjdG9yCnAxCihjZ3VpLnJhbmtlZF9iYXR0bGVzLnJhbmtlZF9oZWxwZXJzLndlYl9zZWFzb25fcHJvdmlkZXIKV2ViU2Vhc29uSW5mbwpwMgpjX19idWlsdGluX18KdHVwbGUKcDMKKEkwCk5JMDAKSTAwCnR0UnA0Ci4= </rankedWebLeague>
+					<achievements20_info> KGRwMQpTJ2FjaGlldmVtZW50c01lZGFsQ291bnRJbmZvJwpwMgpJMApzUydhY2hpZXZlbWVudHNGaXJzdEVudHJ5U3RhdHVzJwpwMwpJMQpzUydhY2hpZXZlbWVudFd0clBvaW50c05vdGlmaWNhdGlvbicKcDQKSTQ5MDAKc1MncHJldkFjaGlldmVtZW50TmFtZUxpc3QnCnA1CihscDYKc1MnYWNoaWV2ZW1lbnRXdHInCnA3CihkcDgKUydhY2hpZXZlbWVudFd0clByZXZSYW5rJwpwOQpJMApzUydhY2hpZXZlbWVudFd0clByZXZTdWJSYW5rJwpwMTAKSTAKc1MnYWNoaWV2ZW1lbnRXdHJQb2ludHMnCnAxMQpJMApzc1MnYWNoaWV2ZW1lbnRzRWRpdGluZ0VuYWJsZWRTdGF0dXMnCnAxMgpJMApzUydhY2hpZXZlbWVudHNXdHJSYW5rcycKcDEzCihkcDE0CnNTJ2FjaGlldmVtZW50c01lZGFsQWRkZWRTdGF0dXMnCnAxNQpJMApzUydhY2hpZXZlbWVudHNSYXRpbmdDaGFuZ2VkU3RhdHVzJwpwMTYKSTAKc1MnYWNoaWV2ZW1lbnRzMjBJbml0aWFsQmF0dGxlQ291bnQnCnAxNwpJNTU0NQpzUydhY2hpZXZlbWVudHMyME1heFd0clBvaW50cycKcDE4Ckk0OTAwCnNTJ2FjaGlldmVtZW50c1JhdGluZ0NhbGN1bGF0ZWRTdGF0dXMnCnAxOQpJMQpzLg== </achievements20_info>
+					<funRandomLastPreset> UydmZXBfbmV3X3llYXJfMjAyNCcKcDEKLg== </funRandomLastPreset>
+					<relativePower> STAxCi4= </relativePower>
+					<easyTankEquipSettings> KGRwMQpTJ3NoZWxsc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMgpJMApzUydjb25zdW1hYmxlc0NhcmRTZWxlY3RlZFByZXNldEluZGV4JwpwMwpJMApzUydjb25zdW1hYmxlc0NhcmRQcmVzZXRTbG90c09yZGVyJwpwNAoobHA1CkkwCmFJMQphSTIKYXMu </easyTankEquipSettings>
+				</settings>
+				<notifications>
+					<funRandomNotifications> KGRwMQpTJ2Z1blJhbmRvbU5vdGlmaWNhdGlvbnNGcm96ZW4nCnAyCmNfX2J1aWx0aW5fXwpzZXQKcDMKKChsdFJwNApzUydmdW5SYW5kb21Ob3RpZmljYXRpb25zUHJvZ3Jlc3Npb25zJwpwNQpnMwooKGxwNgpTJycKYXRScDcKc1MnZnVuUmFuZG9tTm90aWZpY2F0aW9uc1N1Yk1vZGVzJwpwOApnMwooKGxwOQpTJ3Nub3diYWxsc18yMDI0JwpwMTAKYVMnaWNlX2FnZV8yMDI0JwpwMTEKYXRScDEyCnMu </funRandomNotifications>
+					<integratedAuctionNotifications> KGRwMQpTJ2F1Y3Rpb25TdGFnZUZpbmlzaE5vdGlmaWNhdGlvbicKcDIKY19fYnVpbHRpbl9fCnNldApwMwooKGx0UnA0CnNTJ2F1Y3Rpb25TdGFnZVN0YXJ0Tm90aWZpY2F0aW9uJwpwNQpnMwooKGxwNgpTJzIwMjUwOScKcDcKYVMnMjAyNTA1JwpwOAphdFJwOQpzLg== </integratedAuctionNotifications>
+				</notifications>
+				<counters>
+					<newLobbyTabCounter> KGRwMQpTJ1BlcnNvbmFsTWlzc2lvbk9wZXJhdGlvbnMnCnAyCkkwMQpzLg== </newLobbyTabCounter>
+				</counters>
+				<ui_flags>
+					<mua> KGRwMQpJOTc0NQpjX19idWlsdGluX18Kc2V0CnAyCigobHRScDMKcy4= </mua>
+				</ui_flags>
+				<favorites>
+					<current> STMwNAou </current>
+				</favorites>
+				<filters>
+					<BATTLEPASS_CAROUSEL_FILTER_CLIENT_1> KGRwMQpTJ2JhdHRsZVBhc3NTZWFzb24nCnAyCkkyMDI1MDEwMQpzLg== </BATTLEPASS_CAROUSEL_FILTER_CLIENT_1>
+				</filters>
+				<newbie_hints/>
+			</account>
+		</accounts>
+		<captureDevice> Default System Device </captureDevice>
+		<controlMode>
+			<strategicMode>
+				<camera>
+					<keySensitivity> 1.000000 </keySensitivity>
+					<sensitivity> 0.010000 </sensitivity>
+					<scrollSensitivity> 1.000000 </scrollSensitivity>
+					<camDist> 0.000000 </camDist>
+				</camera>
+			</strategicMode>
+			<artyMode>
+				<camera>
+					<horzInvert> false </horzInvert>
+					<vertInvert> false </vertInvert>
+					<keySensitivity> 1.000000 </keySensitivity>
+					<sensitivity> 0.010000 </sensitivity>
+					<scrollSensitivity> 1.000000 </scrollSensitivity>
+					<camDist> 0.000000 </camDist>
+				</camera>
+			</artyMode>
+			<arcadeMode>
+				<camera>
+					<horzInvert> false </horzInvert>
+					<vertInvert> false </vertInvert>
+					<keySensitivity> 1.000000 </keySensitivity>
+					<sensitivity> 0.010000 </sensitivity>
+					<scrollSensitivity> 1.000000 </scrollSensitivity>
+					<startDist> 7.800000 </startDist>
+					<fovMultMinDist> 1.000000 </fovMultMinDist>
+					<fovMultMaxDist> 1.000000 </fovMultMaxDist>
+					<startAngle> 60.000000 </startAngle>
+				</camera>
+			</arcadeMode>
+			<sniperMode>
+				<camera>
+					<horzInvert> false </horzInvert>
+					<vertInvert> false </vertInvert>
+					<keySensitivity> 1.000000 </keySensitivity>
+					<sensitivity> 0.010000 </sensitivity>
+					<scrollSensitivity> 1.000000 </scrollSensitivity>
+					<zoom> 2.000000 </zoom>
+				</camera>
+			</sniperMode>
+			<freeVideoMode>
+				<camera>
+					<horzInvert> false </horzInvert>
+					<vertInvert> false </vertInvert>
+					<keySensitivity> 1.000000 </keySensitivity>
+					<sensitivity> 0.010000 </sensitivity>
+					<scrollSensitivity> 1.000000 </scrollSensitivity>
+				</camera>
+			</freeVideoMode>
+		</controlMode>
+		<guiNotifyInfo> KGRwMQpTJ3ByZXNldENoYW5naW5nVmVyc2lvbicKcDIKSTAKc1MnbGFzdEJhdHRsZUF2Z0ZwcycKcDMKRjgzLjIxNDMzMjU4MDU2NjQwNgpzLg== </guiNotifyInfo>
+		<windowsStoredData>
+			<mask> 3 </mask>
+			<rev> 1 </rev>
+			<records>
+				<record> KEkxCkkxClMnU3Ryb25naG9sZEJhdHRsZVJvb21XaW5kb3cnCnAxCkk0NDEKSTE4NgpJLTEKSS0xCnRwMgou </record>
+				<record> KEkxCkkzCkkyCmNjb3B5X3JlZwpfcmVjb25zdHJ1Y3RvcgpwMQooY21lc3Nlbmdlci5wcm90by54bXBwLmppZApKSUQKcDIKY19fYnVpbHRpbl9fCm9iamVjdApwMwpOdFJwNApTJ2NsYW4tNTAwMjUyMDYwQGNsYW5zLndvdC5jMnMueG1wcC13b3QtZXUud2FyZ2FtaW5nLm5ldCcKYkkzNjUKSTY4NgpJNDI0CkkzNTYKdHA1Ci4= </record>
+				<record> KEkyCkkxClMnbWVzc2VuZ2VyL2NoYW5uZWxzTWFuYWdlbWVudFdpbmRvdycKcDEKSTE1MApJNjg4CkkyNjkKSTM0Nwp0cDIKLg== </record>
+			</records>
+		</windowsStoredData>
+		<mods>
+			<mastery>
+				<ui_variant> moe </ui_variant>
+				<ui_offset> 85+-94 </ui_offset>
+			</mastery>
+		</mods>
+		<igbHardwareAccelerationEnabled> false </igbHardwareAccelerationEnabled>
+		<interfaceScale> 1.000000 </interfaceScale>
+		<enableVoIPChannel> -1088119367 </enableVoIPChannel>
+		<buyVehicleView>
+			<crew> false </crew>
+			<consumables> false </consumables>
+		</buyVehicleView>
+		<commandMapping>
+			<CMD_CM_SHOOT>
+				<fireKey> KEY_LEFTMOUSE </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_SHOOT>
+			<CMD_STOP_UNTIL_FIRE>
+				<fireKey> KEY_NONE </fireKey>
+				<satelliteKeys/>
+			</CMD_STOP_UNTIL_FIRE>
+			<CMD_TOGGLE_GUI>
+				<fireKey> KEY_NONE </fireKey>
+				<satelliteKeys/>
+			</CMD_TOGGLE_GUI>
+			<CMD_AMMO_CHOICE_1>
+				<fireKey> KEY_1 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_1>
+			<CMD_AMMO_CHOICE_2>
+				<fireKey> KEY_2 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_2>
+			<CMD_AMMO_CHOICE_3>
+				<fireKey> KEY_3 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_3>
+			<CMD_AMMO_CHOICE_4>
+				<fireKey> KEY_4 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_4>
+			<CMD_AMMO_CHOICE_5>
+				<fireKey> KEY_5 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_5>
+			<CMD_AMMO_CHOICE_6>
+				<fireKey> KEY_6 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_6>
+			<CMD_AMMO_CHOICE_7>
+				<fireKey> KEY_7 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_7>
+			<CMD_AMMO_CHOICE_8>
+				<fireKey> KEY_8 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_8>
+			<CMD_AMMO_CHOICE_9>
+				<fireKey> KEY_9 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_9>
+			<CMD_AMMO_CHOICE_0>
+				<fireKey> KEY_0 </fireKey>
+				<satelliteKeys/>
+			</CMD_AMMO_CHOICE_0>
+			<CMD_MINIMAP_SIZE_DOWN>
+				<fireKey> KEY_MINUS </fireKey>
+				<satelliteKeys/>
+			</CMD_MINIMAP_SIZE_DOWN>
+			<CMD_MINIMAP_SIZE_UP>
+				<fireKey> KEY_EQUALS </fireKey>
+				<satelliteKeys/>
+			</CMD_MINIMAP_SIZE_UP>
+			<CMD_VOICECHAT_MUTE>
+				<fireKey> KEY_Q </fireKey>
+				<satelliteKeys/>
+			</CMD_VOICECHAT_MUTE>
+			<CMD_MOVE_FORWARD>
+				<fireKey> KEY_W </fireKey>
+				<satelliteKeys/>
+			</CMD_MOVE_FORWARD>
+			<CMD_CM_LOCK_TARGET_OFF>
+				<fireKey> KEY_E </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_LOCK_TARGET_OFF>
+			<CMD_CHAT_SHORTCUT_CONTEXT_COMMAND>
+				<fireKey> KEY_T </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_CONTEXT_COMMAND>
+			<CMD_DECREMENT_CRUISE_MODE>
+				<fireKey> KEY_MOUSE4 </fireKey>
+				<satelliteKeys/>
+			</CMD_DECREMENT_CRUISE_MODE>
+			<CMD_ROTATE_LEFT>
+				<fireKey> KEY_A </fireKey>
+				<satelliteKeys/>
+			</CMD_ROTATE_LEFT>
+			<CMD_MOVE_BACKWARD>
+				<fireKey> KEY_S </fireKey>
+				<satelliteKeys/>
+			</CMD_MOVE_BACKWARD>
+			<CMD_ROTATE_RIGHT>
+				<fireKey> KEY_D </fireKey>
+				<satelliteKeys/>
+			</CMD_ROTATE_RIGHT>
+			<CMD_CM_TRAJECTORY_VIEW>
+				<fireKey> KEY_G </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_TRAJECTORY_VIEW>
+			<CMD_VOICECHAT_ENABLE>
+				<fireKey> KEY_H </fireKey>
+				<satelliteKeys/>
+			</CMD_VOICECHAT_ENABLE>
+			<CMD_REQUEST_RECOVERY>
+				<fireKey> KEY_J </fireKey>
+				<satelliteKeys/>
+			</CMD_REQUEST_RECOVERY>
+			<CMD_CM_ALTERNATE_MODE>
+				<fireKey> KEY_LSHIFT </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_ALTERNATE_MODE>
+			<CMD_CM_LOCK_TARGET>
+				<fireKey> KEY_RIGHTMOUSE </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_LOCK_TARGET>
+			<CMD_CM_VEHICLE_SWITCH_AUTOROTATION>
+				<fireKey> KEY_X </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_VEHICLE_SWITCH_AUTOROTATION>
+			<CMD_RELOAD_PARTIAL_CLIP>
+				<fireKey> KEY_C </fireKey>
+				<satelliteKeys/>
+			</CMD_RELOAD_PARTIAL_CLIP>
+			<CMD_RADIAL_MENU_SHOW>
+				<fireKey> KEY_Z </fireKey>
+				<satelliteKeys/>
+			</CMD_RADIAL_MENU_SHOW>
+			<CMD_SHOW_PERSONAL_RESERVES>
+				<fireKey> KEY_B </fireKey>
+				<satelliteKeys/>
+			</CMD_SHOW_PERSONAL_RESERVES>
+			<CMD_QUEST_PROGRESS_SHOW>
+				<fireKey> KEY_N </fireKey>
+				<satelliteKeys/>
+			</CMD_QUEST_PROGRESS_SHOW>
+			<CMD_MINIMAP_VISIBLE>
+				<fireKey> KEY_M </fireKey>
+				<satelliteKeys/>
+			</CMD_MINIMAP_VISIBLE>
+			<CMD_INCREMENT_CRUISE_MODE>
+				<fireKey> KEY_MOUSE5 </fireKey>
+				<satelliteKeys/>
+			</CMD_INCREMENT_CRUISE_MODE>
+			<CMD_BLOCK_TRACKS>
+				<fireKey> KEY_SPACE </fireKey>
+				<satelliteKeys/>
+			</CMD_BLOCK_TRACKS>
+			<CMD_CHAT_SHORTCUT_CONTEXT_COMMIT>
+				<fireKey> KEY_F2 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_CONTEXT_COMMIT>
+			<CMD_CHAT_SHORTCUT_THANKYOU>
+				<fireKey> KEY_F3 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_THANKYOU>
+			<CMD_CHAT_SHORTCUT_BACKTOBASE>
+				<fireKey> KEY_F4 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_BACKTOBASE>
+			<CMD_CHAT_SHORTCUT_AFFIRMATIVE>
+				<fireKey> KEY_F5 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_AFFIRMATIVE>
+			<CMD_CHAT_SHORTCUT_NEGATIVE>
+				<fireKey> KEY_F6 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_NEGATIVE>
+			<CMD_CHAT_SHORTCUT_HELPME>
+				<fireKey> KEY_F7 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_HELPME>
+			<CMD_CHAT_SHORTCUT_RELOAD>
+				<fireKey> KEY_F8 </fireKey>
+				<satelliteKeys/>
+			</CMD_CHAT_SHORTCUT_RELOAD>
+			<CMD_CM_CAMERA_ROTATE_UP>
+				<fireKey> KEY_UPARROW </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_CAMERA_ROTATE_UP>
+			<CMD_CM_CHARGE_SHOT>
+				<fireKey> KEY_MOUSE2 </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_CHARGE_SHOT>
+			<CMD_CM_CAMERA_ROTATE_LEFT>
+				<fireKey> KEY_LEFTARROW </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_CAMERA_ROTATE_LEFT>
+			<CMD_CM_CAMERA_ROTATE_RIGHT>
+				<fireKey> KEY_RIGHTARROW </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_CAMERA_ROTATE_RIGHT>
+			<CMD_CM_CAMERA_ROTATE_DOWN>
+				<fireKey> KEY_DOWNARROW </fireKey>
+				<satelliteKeys/>
+			</CMD_CM_CAMERA_ROTATE_DOWN>
+		</commandMapping>
+	</scriptsPreferences>
+	<consoleHistory/>
+</root>

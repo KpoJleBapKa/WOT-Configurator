@@ -1,423 +1,250 @@
-#include "main.h"             // Включає оголошення ConfigEditor, FileValidator
-#include "pugixml/pugixml.hpp"
-#include <iostream>
-#include <filesystem>
+#include "main.h" // Головний заголовок (містить FilteredSettingsMap та оголошення ConfigEditor)
+#include "pugixml/pugixml.hpp" // Включаємо pugixml ТУТ
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
+#include <unordered_set> // Потрібен для фільтрів в getFilteredSettings
 #include <vector>
-#include <string>
-#include <unordered_set>
-#include <unordered_map>
-#include <limits>             // Для numeric_limits
-#include <cctype>             // Для tolower (використовується в modifySettings)
-#include <sstream>            // Для validateValue
+#include <map>
+#include <utility> // для std::pair
+#include <iostream> // Для std::cerr (опційно, для попереджень)
 
-// Переконайся, що FileValidator оголошений у main.h або окремому файлі
-// #include "FileValidator.h"
+// НЕ використовуємо using namespace std; у .cpp файлах
 
-using namespace std;
-namespace fs = std::filesystem; // Переконайся, що цей рядок є
-
-// --- Допоміжна функція validateValue (виправлена версія) ---
-bool validateValue(const string& settingName, const string& value) {
-    try {
-        // Спочатку перевірка для windowMode, бо він може бути цілим числом 0, 1, 2
-         if (settingName == "windowMode") {
-            int intVal;
-            std::istringstream iss(value);
-            iss >> intVal;
-            // Перевіряємо, чи вдалося зчитати, чи немає залишку, і чи значення в діапазоні
-            if (!iss.fail() && iss.eof() && intVal >= 0 && intVal <= 2) {
-                 return true;
-            } else {
-                 return false;
-            }
-        }
-
-        // Для решти спробуємо перетворити на float
-        float val = stof(value); // stof може кинути виняток std::invalid_argument або std::out_of_range
-
-        // Повний список тегів для перевірки діапазону 0.0-1.0
-        if (settingName == "masterVolume" || settingName == "volume_micVivox" ||
-            settingName == "volume_vehicles" || settingName == "volume_music" ||
-            settingName == "volume_effects" || settingName == "volume_ambient" ||
-            settingName == "volume_gui" || settingName == "volume_voice" ||
-            settingName == "colorGradingStrength" || settingName == "brightnessDeferred" ||
-            settingName == "contrastDeferred" || settingName == "saturationDeferred") {
-            return val >= 0.0f && val <= 1.0f;
-        }
-
-        // Чутливість (припускаємо діапазон 0.0-10.0)
-        if (settingName.find("sensitivity") != string::npos) {
-             return val >= 0.0f && val <= 10.0f;
-        }
-
-        // Роздільна здатність
-        if (settingName == "windowedWidth" || settingName == "fullscreenWidth") {
-            return val >= 800; // Мінімальна ширина
-        }
-        if (settingName == "windowedHeight" || settingName == "fullscreenHeight") {
-            return val >= 600; // Мінімальна висота
-        }
-
-        // Частота оновлення
-        if (settingName == "fullscreenRefresh") {
-            return val >= 50; // Мінімальна частота
-        }
-
-    } catch (...) { // Ловимо будь-які винятки (invalid_argument, out_of_range)
-         return false; // Якщо сталася помилка конвертації - значення невалідний
+// Метод для читання всього вмісту файлу як рядка (без змін)
+std::string ConfigEditor::readConfigContent(const fs::path& configPath) {
+    if (!fs::exists(configPath)) {
+        throw std::runtime_error("Файл конфігурації не знайдено: " + configPath.string());
     }
-    // Якщо перевірка для цього налаштування не визначена, вважаємо валідним
-    return true;
+    if (!fs::is_regular_file(configPath)){
+        throw std::runtime_error("Шлях не є файлом: " + configPath.string());
+    }
+
+    std::ifstream file(configPath);
+    if (!file.is_open()) {
+        throw std::runtime_error("Не вдалося відкрити файл конфігурації: " + configPath.string());
+    }
+
+    std::stringstream buffer;
+    try {
+        buffer << file.rdbuf(); // Читаємо весь файл в буфер
+    } catch (const std::exception& e) {
+        // Якщо сталася помилка під час читання
+        throw std::runtime_error(std::string("Помилка читання файлу конфігурації: ") + e.what());
+    }
+    return buffer.str(); // Повертаємо вміст
 }
 
-// --- Метод читання налаштувань (з валідацією та оригінальним виводом) ---
-void ConfigEditor::readCurrentSettings() {
-    FileValidator fileValidator;
-    string configPath = "User Configs";
-    vector<fs::path> configFilesPaths; // Шляхи
-    vector<string> configFilesNames;   // Імена для виводу користувачу
 
-    cout << "Reading settings from '" << configPath << "'..." << endl;
+// Метод для отримання відфільтрованих налаштувань (без змін)
+FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath) {
+    FilteredSettingsMap categorizedSettings; // Мапа для результату: "Категорія" -> { {"Налаштування", "Значення"}, ... }
 
-     if (!fs::exists(configPath) || !fs::is_directory(configPath)) {
-         cerr << "Error: Directory '" << configPath << "' not found." << endl;
-         return;
-     }
-    try {
-         for (const auto& entry : fs::directory_iterator(configPath)) {
-             if (entry.is_regular_file() && entry.path().extension() == ".xml") {
-                 configFilesPaths.push_back(entry.path());
-                 configFilesNames.push_back(entry.path().filename().string()); // Зберігаємо лише ім'я
-             }
-         }
-    } catch (const fs::filesystem_error& e) {
-        cerr << "Error reading directory '" << configPath << "': " << e.what() << endl;
-        return;
-    }
-
-    if (configFilesNames.empty()) {
-        cout << "No configuration files available to view in '" << configPath << "'." << endl;
-        return;
-    }
-
-    // Відображення списку файлів (імена файлів)
-    cout << "Available configuration files:" << endl;
-    for (size_t i = 0; i < configFilesNames.size(); ++i) {
-        cout << i + 1 << ". " << configFilesNames[i] << endl;
-    }
-     cout << "0. Cancel" << endl;
-
-    // Отримання вибору користувача
-    int choice; // Використовуємо int для узгодженості з іншими функціями
-    cout << "Enter the number of the file you want to view: ";
-      while (!(cin >> choice) || choice < 0 || choice > static_cast<int>(configFilesNames.size())) {
-          cout << "Invalid input. Please enter a number between 0 and " << configFilesNames.size() << ": ";
-          cin.clear();
-          cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     }
-     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (choice == 0) { cout << "Operation cancelled." << endl; return; }
-
-    fs::path selectedFile = configFilesPaths[choice - 1]; // Отримуємо шлях fs::path
-
-    // --- БЛОК ВАЛІДАЦІЇ ---
-    cout << "\nValidating selected file (" << selectedFile.filename().string() << ") before displaying..." << endl;
-     if (!fileValidator.isXmlWellFormed(selectedFile)) {
-        cerr << "Error: Selected file is not a well-formed XML. Cannot display settings." << endl;
-        return;
-    }
-    if (!fileValidator.hasExpectedStructure(selectedFile)) {
-        cerr << "Warning: Selected file might be missing expected WoT structure sections. Displaying available data..." << endl;
-    }
-     vector<string> valueErrors = fileValidator.findInvalidSimpleValues(selectedFile);
-    if (!valueErrors.empty()) {
-        cout << "\n--- Validation Warnings for " << selectedFile.filename().string() << " ---" << endl;
-        for(const auto& err : valueErrors) cout << "  - " << err << endl;
-        cout << "------------------------------------" << endl;
-    } else {
-        // Можна прибрати це повідомлення
-        // cout << "Selected file validation passed." << endl;
-    }
-    cout << "Proceeding to display settings..." << endl;
-    // --- КІНЕЦЬ БЛОКУ ВАЛІДАЦІЇ ---
-
-    // --- Завантаження та виведення (як у твоєму робочому коді) ---
+    // 1. Завантаження та перевірка XML
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(selectedFile.string().c_str()); // Використовуємо рядок
-
+    pugi::xml_parse_result result = doc.load_file(configPath.wstring().c_str()); // Використовуємо wstring().c_str() для шляхів у Windows
     if (!result) {
-        cout << "Failed to load file: " << result.description() << endl;
-        return;
+        throw std::runtime_error("Помилка завантаження XML: " + std::string(result.description()) + " у файлі " + configPath.string());
     }
 
-    cout << "\n--- Displaying settings from: " << selectedFile.filename().string() << " ---" << endl;
+    pugi::xml_node root = doc.child("root");
+    if (!root) {
+        throw std::runtime_error("Відсутній кореневий елемент <root> у файлі: " + configPath.string());
+    }
 
-    // Визначення полів (як у твоєму коді)
-    unordered_set<string> soundSettings = {"masterVolume", "volume_micVivox", "volume_vehicles",
-                                           "volume_music", "volume_effects", "volume_ambient",
-                                           "volume_gui", "volume_voice", "soundMode"};
-    unordered_set<string> controlSettings = {"horzInvert", "vertInvert", "keySensitivity",
-                                             "sensitivity", "scrollSensitivity"};
-    unordered_set<string> deviceSettings = {"windowMode", "windowedWidth", "windowedHeight",
-                                            "fullscreenWidth", "fullscreenHeight",
-                                            "fullscreenRefresh", "aspectRatio"};
+    // 2. Визначення фільтрів (які налаштування показувати)
+    const std::unordered_set<std::string> soundSettingsFilter = {
+        "masterVolume", "volume_micVivox", "volume_vehicles", "volume_music",
+        "volume_effects", "volume_ambient", "volume_gui", "volume_voice", "soundMode",
+        "bass_boost"
+    };
+    const std::unordered_set<std::string> controlSettingsFilter = {
+        "horzInvert", "vertInvert", "keySensitivity", "scrollSensitivity"
+    };
+    const std::unordered_set<std::string> deviceSettingsFilter = {
+        "windowMode", "windowedWidth", "windowedHeight", "fullscreenWidth",
+        "fullscreenHeight", "fullscreenRefresh", "aspectRatio", "gamma", "tripleBuffering"
+    };
+    const std::vector<std::string> graphicDirectTagsFilter = {
+        "graphicsSettingsVersion", "graphicsSettingsVersionMinor", "graphicsSettingsVersionMaintainance",
+        "graphicsSettingsStatus", "ParticlSystemNoRenderGroup", "distributionLevel",
+        "colorGradingStrength", "brightnessDeferred", "contrastDeferred", "saturationDeferred"
+    };
 
-    auto root = doc.child("root"); if (!root) { /*...*/ return; }
-    auto scriptsPreferences = root.child("scriptsPreferences");
-
-    // Sound
-    cout << "\nSound Settings:" << endl;
+    // 3. Обробка секцій та фільтрація
+    pugi::xml_node scriptsPreferences = root.child("scriptsPreferences");
     if (scriptsPreferences) {
-        auto soundPrefs = scriptsPreferences.child("soundPrefs");
+        // --- Звук ---
+        pugi::xml_node soundPrefs = scriptsPreferences.child("soundPrefs");
         if (soundPrefs) {
-            bool found = false;
-            for (auto& setting : soundPrefs.children()) {
-                string name = setting.name();
-                if (soundSettings.count(name)) {
-                    cout << "  " << name << ": " << setting.text().as_string() << endl;
-                    found = true;
+            std::vector<std::pair<std::string, std::string>> currentCategorySettings;
+            for (const auto& setting : soundPrefs.children()) {
+                std::string name = setting.name();
+                if (soundSettingsFilter.count(name)) {
+                    currentCategorySettings.push_back({name, setting.text().as_string()});
                 }
             }
-             if (!found) cout << "  (No matching settings found)" << endl;
-        } else { cout << "  (Section <soundPrefs> not found)" << endl; }
-    } else { cout << "  (Section <scriptsPreferences> not found)" << endl; }
-
-
-    // Graphics
-    auto graphicsPreferences = root.child("graphicsPreferences");
-    cout << "\nGraphics Settings:" << endl;
-    if (graphicsPreferences) {
-         cout << "  " << "graphicsSettingsVersion: " << graphicsPreferences.child("graphicsSettingsVersion").text().as_string() << endl;
-         cout << "  " << "graphicsSettingsVersionMinor: " << graphicsPreferences.child("graphicsSettingsVersionMinor").text().as_string() << endl;
-         cout << "  " << "graphicsSettingsVersionMaintainance: " << graphicsPreferences.child("graphicsSettingsVersionMaintainance").text().as_string() << endl;
-         cout << "  " << "graphicsSettingsStatus: " << graphicsPreferences.child("graphicsSettingsStatus").text().as_string() << endl;
-         for (auto& entry : graphicsPreferences.children("entry")) {
-             string label = entry.child("label").text().as_string();
-             string activeOption = entry.child("activeOption").text().as_string();
-             cout << "  " << label << ": " << activeOption << endl;
-         }
-         cout << "  " << "ParticlSystemNoRenderGroup: " << graphicsPreferences.child("ParticlSystemNoRenderGroup").text().as_string() << endl;
-         cout << "  " << "distributionLevel: " << graphicsPreferences.child("distributionLevel").text().as_string() << endl;
-         cout << "  " << "colorGradingStrength: " << graphicsPreferences.child("colorGradingStrength").text().as_string() << endl;
-         cout << "  " << "brightnessDeferred: " << graphicsPreferences.child("brightnessDeferred").text().as_string() << endl;
-         cout << "  " << "contrastDeferred: " << graphicsPreferences.child("contrastDeferred").text().as_string() << endl;
-         cout << "  " << "saturationDeferred: " << graphicsPreferences.child("saturationDeferred").text().as_string() << endl;
-    } else { cout << "  (Graphics preferences section not found)" << endl; }
-
-    // Control
-    cout << "\nControl Settings:" << endl;
-     if (scriptsPreferences) {
-         auto controlMode = scriptsPreferences.child("controlMode");
-         if (controlMode) {
-              bool found = false;
-              for (auto& mode : controlMode.children()) {
-                  auto camera = mode.child("camera");
-                  if (camera) {
-                     for (auto& setting : camera.children()) {
-                           string name = setting.name();
-                           if (controlSettings.count(name)) {
-                               cout << "  " << mode.name() << "/" << name << ": " << setting.text().as_string() << endl; // Виправлено тут
-                               found = true;
-                           }
-                     }
-                  }
-              }
-               if (!found) cout << "  (No matching control settings found)" << endl;
-         } else { cout << "  (Control mode section not found)" << endl; }
-    } // Немає else, бо вже перевірили scriptsPreferences
-
-    // Device
-    auto devicePreferences = root.child("devicePreferences");
-    cout << "\nDevice Settings:" << endl;
-    if (devicePreferences) {
-        bool found = false;
-        for (auto& setting : devicePreferences.children()) {
-            string name = setting.name();
-            if (deviceSettings.count(name)) {
-                cout << "  " << name << ": " << setting.text().as_string() << endl;
-                found = true;
-            }
+            if (!currentCategorySettings.empty()) categorizedSettings["Sound Settings"] = currentCategorySettings;
         }
-         if (!found) cout << "  (No matching device settings found)" << endl;
-    } else { cout << "  (Device settings section not found)" << endl; }
-
-     cout << "\n--- End of settings ---" << endl;
-}
-
-
-// --- Метод редагування налаштувань (з валідацією) ---
-// ТУТ ПОВИНЕН БУТИ ЛИШЕ ОДИН МЕТОД MODIFYSETTINGS
-void ConfigEditor::modifySettings() {
-    FileValidator fileValidator;
-    string configPath = "User Configs";
-    vector<fs::path> configFilesPaths; // Шляхи
-    vector<string> configFilesNames;   // Імена
-
-    cout << "Editing settings in '" << configPath << "'..." << endl;
-
-     if (!fs::exists(configPath) || !fs::is_directory(configPath)) { /* ... */ return; }
-    // ... (пошук файлів та заповнення векторів) ...
-      try {
-           for (const auto& entry : fs::directory_iterator(configPath)) {
-               if (entry.is_regular_file() && entry.path().extension() == ".xml") {
-                    configFilesPaths.push_back(entry.path());
-                    configFilesNames.push_back(entry.path().filename().string());
-               }
-           }
-      } catch (const fs::filesystem_error& e) { /* ... */ return; }
-    if (configFilesNames.empty()) { /* ... */ return; }
-
-    // Вибір файлу (як у твоєму коді)
-    cout << "Available configuration files:" << endl;
-    for (size_t i = 0; i < configFilesNames.size(); ++i) {
-         cout << i + 1 << ". " << configFilesNames[i] << endl; // Виводимо імена
-    }
-    cout << "0. Exit." << endl;
-
-    int choice; // Змінив size_t на int
-    cout << "Enter the number of the file you want to modify: ";
-    while (!(cin >> choice) || choice < 0 || choice > static_cast<int>(configFilesNames.size())) {
-         cout << "Invalid input. Please enter a number between 0 and " << configFilesNames.size() << ": ";
-         cin.clear();
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очистка буфера
-
-    if (choice == 0) {
-        cout << "Exiting configuration editor." << endl;
-        return;
-    }
-
-    // **ВИПРАВЛЕННЯ:** Оголошуємо ПЕРЕД блоком валідації
-    fs::path selectedFile = configFilesPaths[choice - 1]; // Шлях для валідації
-    string selectedFileStr = selectedFile.string();      // Рядок для pugixml
-
-    // --- ВАЛІДАЦІЯ ПЕРЕД РЕДАГУВАННЯМ ---
-      cout << "\nValidating file before editing (" << selectedFile.filename().string() << ")..." << endl;
-      if (!fileValidator.isXmlWellFormed(selectedFile)) { // Використовуємо selectedFile (fs::path)
-        cerr << "Error: Selected file is not a well-formed XML. Cannot edit." << endl;
-        return;
-    }
-    if (!fileValidator.hasExpectedStructure(selectedFile)) { // Використовуємо selectedFile (fs::path)
-        cerr << "Error: Selected file is missing expected WoT structure. Cannot edit reliably." << endl;
-        return;
-    }
-     vector<string> valueErrors = fileValidator.findInvalidSimpleValues(selectedFile); // Використовуємо selectedFile (fs::path)
-     if (!valueErrors.empty()) {
-         cout << "\n--- Validation Warnings for file before editing ---" << endl;
-          for(const auto& err : valueErrors) cout << "  - " << err << endl;
-         cout << "-------------------------------------------------" << endl;
-         // Продовжуємо, дозволяючи користувачу виправити помилки
-     } else {
-          cout << "File validation passed." << endl;
-     }
-     // --- КІНЕЦЬ ВАЛІДАЦІЇ ---
-
-
-    // --- Логіка редагування (як у твоєму коді, використовуємо selectedFileStr) ---
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(selectedFileStr.c_str());
-    if (!result) {
-         cout << "Failed to load file for editing: " << result.description() << endl;
-         return;
-    }
-
-    unordered_map<string, pugi::xml_node> categories;
-    auto root = doc.child("root");
-    if (!root) { /* ... */ return; }
-
-    categories["Sound Settings"] = root.child("scriptsPreferences").child("soundPrefs");
-    categories["Graphics Settings"] = root.child("graphicsPreferences");
-    categories["Control Settings"] = root.child("scriptsPreferences").child("controlMode");
-    categories["Device Settings"] = root.child("devicePreferences");
-
-    unordered_set<string> hiddenSettings = { /* ... твій набір ... */ };
-
-    // Вибір категорії (з виправленням categoryNames)
-    vector<string> categoryNames;
-    cout << "\nAvailable categories:" << endl; // Додав перенос рядка
-    size_t catIndex = 1; // Використовуємо size_t для індексу
-    const vector<string> orderedCategoryKeys = {"Sound Settings", "Graphics Settings", "Control Settings", "Device Settings"};
-    for (const auto& key : orderedCategoryKeys) {
-        if (categories.count(key) && categories[key]) {
-             cout << catIndex++ << ". " << key << endl;
-             categoryNames.push_back(key);
-        }
-    }
-    cout << "0. Exit." << endl;
-
-    int categoryChoice; // Використовуємо int
-    cout << "Enter the number of the category you want to modify: ";
-     while (!(cin >> categoryChoice) || categoryChoice < 0 || categoryChoice > static_cast<int>(categoryNames.size())) { /* ... */ }
-     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (categoryChoice == 0) { /* ... */ return; }
-
-    string selectedCategory = categoryNames[categoryChoice - 1];
-    auto selectedNode = categories[selectedCategory];
-
-    // Вибір налаштування
-    vector<pair<string, pugi::xml_node>> settingsList;
-    cout << "\n" << selectedCategory << ":" << endl; // Додав перенос рядка
-
-    // Заповнення settingsList (як у твоєму коді)
-    size_t settingIndex = 1; // Індекс для виведення користувачу
-    if (selectedCategory == "Control Settings") {
-        for (auto& mode : selectedNode.children()) {
-            string modeName = mode.name();
-            auto cameraNode = mode.child("camera");
-            if (cameraNode) {
-                for (auto& setting : cameraNode.children()) { // Ітеруємо по налаштуваннях камери
-                    string settingName = setting.name();
-                    if (settingName == "sensitivity" && hiddenSettings.find("sensitivity") == hiddenSettings.end()) { // Показуємо лише sensitivity
-                         string displayName = modeName + " sensitivity";
-                         cout << "  " << settingIndex++ << ". " << displayName << ": " << setting.text().as_string() << endl;
-                         settingsList.emplace_back(displayName, setting); // Зберігаємо сам вузол налаштування
+        // --- Керування ---
+        pugi::xml_node controlMode = scriptsPreferences.child("controlMode");
+        if (controlMode) {
+            std::vector<std::pair<std::string, std::string>> currentCategorySettings;
+            for (const auto& mode : controlMode.children()) {
+                pugi::xml_node camera = mode.child("camera");
+                if (camera) {
+                    for (const auto& setting : camera.children()) {
+                        std::string name = setting.name();
+                        if (controlSettingsFilter.count(name) || name == "sensitivity") {
+                            std::string displayName = std::string(mode.name()) + "/" + name;
+                            currentCategorySettings.push_back({displayName, setting.text().as_string()});
+                        }
                     }
-                    // Додай сюди інші controlSettings, якщо потрібно редагувати
                 }
             }
+            if (!currentCategorySettings.empty()) categorizedSettings["Control Settings"] = currentCategorySettings;
         }
-    } else {
-        for (auto& setting : selectedNode.children()) {
-            string name = setting.name();
-            if (hiddenSettings.find(name) == hiddenSettings.end()) {
-                 cout << "  " << settingIndex++ << ". " << name << ": " << setting.text().as_string() << endl;
-                 settingsList.emplace_back(name, setting);
+    }
+
+    // --- Графіка ---
+    pugi::xml_node graphicsPreferences = root.child("graphicsPreferences");
+    if (graphicsPreferences) {
+        std::vector<std::pair<std::string, std::string>> currentCategorySettings;
+        for(const std::string& tagName : graphicDirectTagsFilter) {
+            pugi::xml_node node = graphicsPreferences.child(tagName.c_str());
+            if(node) { currentCategorySettings.push_back({tagName, node.text().as_string()}); }
+        }
+        for (const auto& entry : graphicsPreferences.children("entry")) {
+            std::string label = entry.child_value("label");
+            if (!label.empty()) {
+                std::string activeOption = entry.child_value("activeOption");
+                currentCategorySettings.push_back({label, activeOption});
             }
         }
+        if (!currentCategorySettings.empty()) categorizedSettings["Graphics Settings"] = currentCategorySettings;
     }
 
-     if (settingsList.empty()) {
-          cout << "No modifiable settings found in this category." << endl;
-          return;
-     }
-    cout << "0. Exit." << endl;
-
-    int settingChoice; // Використовуємо int
-    cout << "Enter the number of the setting you want to modify: ";
-      while (!(cin >> settingChoice) || settingChoice < 0 || settingChoice > static_cast<int>(settingsList.size())) { /* ... */ }
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (settingChoice == 0) { /* ... */ return; }
-
-    // Зверни увагу: тут індекс для вектора на 1 менший за вибір користувача
-    auto& [selectedSettingName, selectedNodeSetting] = settingsList[settingChoice - 1];
-
-    // Введення нового значення
-    cout << "Enter new value for " << selectedSettingName << " (current: " << selectedNodeSetting.text().as_string() << "): ";
-    string newValue;
-    getline(cin, newValue); // Читаємо весь рядок
-
-    // Перевірка нового значення через validateValue
-    if (!validateValue(selectedSettingName, newValue)) {
-        cout << "Invalid value entered for " << selectedSettingName << ". Please ensure it is within the allowed range/format." << endl;
-        return;
+    // --- Пристрій ---
+    pugi::xml_node devicePreferences = root.child("devicePreferences");
+    if (devicePreferences) {
+        std::vector<std::pair<std::string, std::string>> currentCategorySettings;
+        for (const auto& setting : devicePreferences.children()) {
+            std::string name = setting.name();
+            if (deviceSettingsFilter.count(name)) {
+                currentCategorySettings.push_back({name, setting.text().as_string()});
+            }
+        }
+        if (!currentCategorySettings.empty()) categorizedSettings["Device Settings"] = currentCategorySettings;
     }
 
-    // Збереження
-    selectedNodeSetting.text().set(newValue.c_str());
-    if (doc.save_file(selectedFileStr.c_str())) {
-        cout << "Settings updated successfully." << endl;
-    } else {
-        cout << "Failed to save changes." << endl;
-    }
+    return categorizedSettings;
 }
+
+
+// Метод для збереження змін в XML
+void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const FilteredSettingsMap& settings) {
+    pugi::xml_document doc;
+    pugi::xml_parse_result loadResult = doc.load_file(configPath.wstring().c_str());
+
+    if (!loadResult) {
+        throw std::runtime_error("Не вдалося завантажити файл для збереження: " + configPath.string() + " (" + loadResult.description() + ")");
+    }
+
+    pugi::xml_node root = doc.child("root");
+    if (!root) {
+        throw std::runtime_error("Не знайдено <root> елемент у файлі: " + configPath.string());
+    }
+
+    // Ітеруємо по категоріях та налаштуваннях, які ми отримали з діалогу
+    for (const auto& categoryPair : settings) {
+        const std::string& categoryName = categoryPair.first;
+        const auto& settingsInCategory = categoryPair.second;
+
+        // Знаходимо відповідний вузол для категорії
+        pugi::xml_node categoryNode; // Вузол для поточної категорії/підкатегорії
+        pugi::xml_node scriptsPrefsNode; // Окремо для вкладених
+        pugi::xml_node graphicsPrefsNode; // Окремо для вкладених
+
+        // Визначаємо базовий вузол для пошуку/зміни
+        if (categoryName == "Sound Settings") {
+            scriptsPrefsNode = root.child("scriptsPreferences");
+            if (scriptsPrefsNode) categoryNode = scriptsPrefsNode.child("soundPrefs");
+        } else if (categoryName == "Graphics Settings") {
+            // ВИПРАВЛЕНО: Зберігаємо вузол graphicsPreferences
+            graphicsPrefsNode = root.child("graphicsPreferences");
+            categoryNode = graphicsPrefsNode; // categoryNode тепер вказує на <graphicsPreferences>
+        } else if (categoryName == "Control Settings") {
+            scriptsPrefsNode = root.child("scriptsPreferences");
+            if (scriptsPrefsNode) categoryNode = scriptsPrefsNode.child("controlMode");
+        } else if (categoryName == "Device Settings") {
+            categoryNode = root.child("devicePreferences");
+        }
+        // ... додати інші категорії, якщо потрібно
+
+        if (!categoryNode) {
+            std::cerr << "Warning: Category node not found in XML for category during save: " << categoryName << std::endl;
+            continue; // Пропускаємо цю категорію
+        }
+
+        for (const auto& settingPair : settingsInCategory) {
+            const std::string& settingName = settingPair.first;
+            const std::string& newValue = settingPair.second;
+
+            pugi::xml_node settingNode; // Вузол, який будемо змінювати
+
+            // Обробка вкладених налаштувань Control
+            if (categoryName == "Control Settings" && settingName.find('/') != std::string::npos) {
+                size_t slashPos = settingName.find('/');
+                std::string modeName = settingName.substr(0, slashPos);
+                std::string actualSettingName = settingName.substr(slashPos + 1);
+                pugi::xml_node modeNode = categoryNode.child(modeName.c_str()); // categoryNode тут <controlMode>
+                if(modeNode) {
+                    pugi::xml_node cameraNode = modeNode.child("camera");
+                    if(cameraNode) {
+                        settingNode = cameraNode.child(actualSettingName.c_str());
+                    } else {
+                        std::cerr << "Warning: <camera> node not found for mode '" << modeName << "' during save." << std::endl; continue;
+                    }
+                } else {
+                    std::cerr << "Warning: Control mode node not found: '" << modeName << "' during save." << std::endl; continue;
+                }
+            }
+            // Обробка налаштувань Graphics типу <entry>
+            // ВИПРАВЛЕНО: Використовуємо categoryNode (який є <graphicsPreferences>) для перевірки прямого дочірнього
+            else if (categoryName == "Graphics Settings" && !categoryNode.child(settingName.c_str())) {
+                // Це має бути <entry>. Шукаємо <entry> з відповідним <label>.
+                bool foundEntry = false;
+                for (pugi::xml_node entry : categoryNode.children("entry")) { // Ітеруємо по <entry> всередині <graphicsPreferences>
+                    if (entry.child_value("label") == settingName) {
+                        settingNode = entry.child("activeOption"); // Знаходимо вузол <activeOption> всередині <entry>
+                        foundEntry = true;
+                        break;
+                    }
+                }
+                if (!foundEntry) {
+                    std::cerr << "Warning: Graphics <entry> node not found for label: " << settingName << " during save." << std::endl;
+                    continue; // Пропускаємо, якщо не знайшли
+                }
+            }
+            // Обробка прямих налаштувань (для всіх категорій)
+            else {
+                settingNode = categoryNode.child(settingName.c_str());
+            }
+
+            // Оновлюємо значення знайденого вузла
+            if (settingNode) {
+                if (!settingNode.text().set(newValue.c_str())) {
+                    std::cerr << "Warning: Failed to set text for node: " << settingName << std::endl;
+                }
+            } else {
+                // Вузол не знайдено - логуємо, але не падаємо
+                std::cerr << "Warning: Setting node not found in XML for: '" << settingName << "' in category '" << categoryName << "' during save." << std::endl;
+            }
+        } // кінець for по налаштуваннях
+    } // кінець for по категоріях
+
+    // Зберігаємо змінений документ у той самий файл
+    if (!doc.save_file(configPath.wstring().c_str())) { // Використовуємо wstring для шляху
+        throw std::runtime_error("Не вдалося зберегти зміни у файл: " + configPath.string());
+    }
+} // кінець saveFilteredSettings

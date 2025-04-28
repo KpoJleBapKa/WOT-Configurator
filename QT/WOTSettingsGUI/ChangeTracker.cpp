@@ -1,14 +1,12 @@
-#include "main.h"      // Або "ChangeTracker.h"
-#include <iostream>
-#include <fstream>     // Для запису у файл
-#include <string>
-#include <chrono>      // Для отримання дати/часу
-#include <iomanip>     // Для форматування дати/часу (put_time)
-#include <filesystem> // Для перевірки/створення директорії
-#include <sstream>     // Для форматування часу
+#include "main.h" // Головний заголовок
+#include <fstream>
+#include <chrono>
+#include <iomanip>
+#include <filesystem>
+#include <sstream>
+#include <iostream> // Залишаємо для std::cerr
 
-using namespace std;
-namespace fs = std::filesystem;
+namespace fs = std::filesystem; // Використовуємо простір імен явно
 
 // Метод для запису дії в лог
 void ChangeTracker::logAction(const std::string& functionName, bool success, const std::string& details) {
@@ -18,31 +16,39 @@ void ChangeTracker::logAction(const std::string& functionName, bool success, con
     try {
         // Переконуємося, що директорія "User Data" існує
         if (!fs::exists(logDir)) {
-            cout << "Log directory '" << logDir.string() << "' not found. Creating..." << endl;
-            fs::create_directory(logDir);
+            // Спроба створити директорію
+            try {
+                fs::create_directory(logDir);
+            } catch(const fs::filesystem_error& e) {
+                // Якщо не вдалося створити - критична помилка
+                std::cerr << "CRITICAL ERROR: Could not create log directory '" << logDir.string() << "'. Error: " << e.what() << std::endl;
+                return; // Не можемо логувати
+            }
         }
 
         // Відкриваємо файл для дозапису (append)
-        // ios::app гарантує, що ми будемо писати в кінець файлу
-        ofstream logFile(logFilePath, ios::app);
+        std::ofstream logFile(logFilePath, std::ios::app);
 
         if (!logFile.is_open()) {
-            cerr << "Error: Could not open log file for writing: " << logFilePath.string() << endl;
+            // Якщо не можемо відкрити файл логів - це проблема
+            std::cerr << "ERROR: Could not open log file for writing: " << logFilePath.string() << std::endl;
+            // Можливо, варто кинути виняток або повернути статус помилки?
+            // Поки що просто виходимо.
             return;
         }
 
         // Отримуємо поточний час
-        auto now = chrono::system_clock::now();
-        auto now_c = chrono::system_clock::to_time_t(now);
-        tm now_tm;
-        #ifdef _WIN32
-            localtime_s(&now_tm, &now_c); // Безпечна версія для Windows
-        #else
-            localtime_r(&now_c, &now_tm); // Безпечна версія для POSIX
-        #endif
+        auto now = std::chrono::system_clock::now();
+        auto now_c = std::chrono::system_clock::to_time_t(now);
+        std::tm now_tm;
+#ifdef _WIN32
+        localtime_s(&now_tm, &now_c); // Безпечна версія для Windows
+#else
+        localtime_r(&now_c, &now_tm); // Безпечна версія для POSIX
+#endif
 
-        // Форматуємо лог-повідомлення: YYYY-MM-DD_HH:MM:SS | Function | Result: [OK/NOK] | Details: ...
-        logFile << put_time(&now_tm, "%Y-%m-%d_%H:%M:%S") << " | "
+        // Форматуємо лог-повідомлення
+        logFile << std::put_time(&now_tm, "%Y-%m-%d_%H:%M:%S") << " | "
                 << functionName << " | Result: [" << (success ? "OK" : "NOK") << "]";
 
         // Додаємо деталі, якщо вони є
@@ -50,20 +56,18 @@ void ChangeTracker::logAction(const std::string& functionName, bool success, con
             logFile << " | Details: " << details;
         }
 
-        logFile << endl; // Завершуємо рядок логу
+        logFile << std::endl; // Завершуємо рядок логу
 
-        // Файл закриється автоматично при виході з функції (RAII для ofstream)
+        // Файл закриється автоматично (RAII)
 
     } catch (const fs::filesystem_error& e) {
-         cerr << "Filesystem error during logging: " << e.what() << endl;
+        // Ловимо помилки файлової системи під час роботи (окрім створення папки/відкриття файлу)
+        std::cerr << "Filesystem error during logging: " << e.what() << std::endl;
     } catch (const std::exception& e) {
-         cerr << "Standard exception during logging: " << e.what() << endl;
+        // Ловимо інші стандартні винятки
+        std::cerr << "Standard exception during logging: " << e.what() << std::endl;
     } catch (...) {
-         cerr << "Unknown error during logging." << endl;
+        // Ловимо щось зовсім непередбачуване
+        std::cerr << "Unknown error during logging." << std::endl;
     }
 }
-
-// --- Старі методи (якщо вони були реалізовані) тепер не потрібні для логування дій ---
-// void ChangeTracker::logChanges() { cout << "Logging changes..." << endl; }
-// void ChangeTracker::rollbackChanges() { cout << "Rolling back changes..." << endl; }
-// void ChangeTracker::displayChangeHistory() { cout << "Displaying change history..." << endl; }

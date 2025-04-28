@@ -36,7 +36,12 @@ qt_add_executable(WOTSettingsGUI
     pugixml/pugiconfig.hpp # Додаємо, щоб CMake відстежував зміни
 
     # Згенерований хедер з даними XML
-    preferences_data.h # Важливо для AppInitializer.cpp
+    preferences_data.h
+    configeditdialog.h configeditdialog.cpp configeditdialog.ui
+    settingdelegate.h
+    settingdelegate.cpp
+    configeditdialog.h configeditdialog.cpp configeditdialog.ui
+    # Важливо для AppInitializer.cpp
 )
 
 # Вказуємо папки, де шукати заголовкові файли

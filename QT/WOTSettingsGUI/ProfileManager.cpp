@@ -1,43 +1,60 @@
-#include "main.h"
-#include <iostream>
+#include "main.h" // Головний заголовок
 #include <fstream>
 #include <filesystem>
+#include <stdexcept> // Для std::runtime_error
+#include <iostream> // Для std::cerr (опційно)
 
-using namespace std;
 namespace fs = std::filesystem;
 
-void ProfileManager::setName() {
-    cout << "Please enter your real World of Tanks nickname: ";
-    cin >> userName;
-    saveNameToFile(userName);
-    cout << "Name saved successfully." << endl;
+// Визначаємо шлях до файлу даних тут
+const fs::path userDataDir = "User Data";
+const fs::path userdataFile = userDataDir / "userdata.txt";
+
+// ЗМІНЕНО: Приймає ім'я, зберігає у файл, кидає виняток при помилці
+void ProfileManager::setName(const std::string& name) {
+    saveNameToFile(name); // Викликаємо приватний метод
 }
 
+// ЗМІНЕНО: Зроблено приватним
 void ProfileManager::saveNameToFile(const std::string& name) {
-    fs::create_directories("User Data");
-    ofstream outFile("User Data/userdata.txt");
-    if (outFile.is_open()) {
-        outFile << name;
-        outFile.close();
-    } else {
-        cout << "Error saving name to file." << endl;
+    try {
+        if (!fs::exists(userDataDir)) {
+            fs::create_directories(userDataDir);
+        }
+        std::ofstream outFile(userdataFile);
+        if (outFile.is_open()) {
+            outFile << name; // Записуємо ім'я
+            outFile.close();
+                // Успіх - нічого не робимо
+        } else {
+            // Кидаємо виняток, якщо не вдалося відкрити файл
+            throw std::runtime_error("Не вдалося відкрити файл " + userdataFile.string() + " для запису.");
+        }
+    } catch (const fs::filesystem_error& e) {
+        // Перетворюємо помилку файлової системи
+        throw std::runtime_error(std::string("Помилка файлової системи при збереженні імені: ") + e.what());
+    } catch (const std::runtime_error& e) {
+        throw; // Прокидуємо наш власний виняток
+    } catch (...) {
+        throw std::runtime_error("Невідома помилка під час збереження імені.");
     }
 }
 
-string ProfileManager::loadNameFromFile() {
-    ifstream inFile("User Data/userdata.txt");
+// ЗМІНЕНО: Повертає ім'я або порожній рядок, не використовує std::cout
+std::string ProfileManager::loadNameFromFile() {
+    if (!fs::exists(userdataFile)) {
+        return ""; // Файл не знайдено - це не помилка, імені просто немає
+    }
+    std::ifstream inFile(userdataFile);
+    std::string loadedName = "";
     if (inFile.is_open()) {
-        getline(inFile, userName);
+        std::getline(inFile, loadedName); // Читаємо весь рядок (ім'я)
         inFile.close();
     } else {
-        cout << "No saved name found." << endl;
+        // Якщо файл є, але не відкрився - це помилка
+        throw std::runtime_error("Не вдалося відкрити файл " + userdataFile.string() + " для читання.");
     }
-    return userName;
+    return loadedName;
 }
 
-void ProfileManager::showName() {
-    string name = loadNameFromFile();
-    cout << "Current name: " << name << endl;
-}
-
-
+// Метод showName() видалено, оскільки його логіка тепер у MainWindow
