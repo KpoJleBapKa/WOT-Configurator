@@ -6,7 +6,7 @@
 #include <filesystem> // Для fs::path
 #include <stdexcept>  // Для std::runtime_error
 #include <map>        // Для std::map
-#include <utility>    // Для std::pair
+#include <utility>    // Для std::pair, std::move
 #include <limits>     // Для std::numeric_limits
 
 // Використовуємо простір імен filesystem
@@ -14,12 +14,12 @@ namespace fs = std::filesystem;
 
 // --- Структура для Правил Валідації ---
 enum class SettingType {
-    STRING,         // Звичайний рядок (редагується через QLineEdit)
-    INT,            // Ціле число (QSpinBox)
-    FLOAT,          // Число з плаваючою комою (QDoubleSpinBox)
-    BOOL_TF,        // Логічне (true/false, QComboBox)
-    BOOL_01,        // Логічне (0/1, QComboBox)
-    NON_EDITABLE    // Нередаговане поле
+    STRING,       // Звичайний рядок (редагується через QLineEdit)
+    INT,          // Ціле число (QSpinBox)
+    FLOAT,        // Число з плаваючою комою (QDoubleSpinBox)
+    BOOL_TF,      // Логічне (true/false, QComboBox)
+    BOOL_01,      // Логічне (0/1, QComboBox)
+    NON_EDITABLE  // Нередаговане поле
 };
 
 struct SettingRule {
@@ -27,19 +27,38 @@ struct SettingRule {
     double minValue = -std::numeric_limits<double>::max(); // Використовуємо double для універсальності min/max
     double maxValue = std::numeric_limits<double>::max();
     int decimals = 6; // Кількість знаків після коми для FLOAT (QDoubleSpinBox)
+    std::string displayName = ""; // <-- ДОДАНО: Назва для відображення в UI
 
     // Конструктор за замовчуванням (для STRING)
     SettingRule() : type(SettingType::STRING) {}
 
     // Конструктор для типів БЕЗ діапазону (BOOL_TF, BOOL_01, NON_EDITABLE, STRING)
-    explicit SettingRule(SettingType t) : type(t) {}
+    explicit SettingRule(SettingType t, std::string dName = "")
+        : type(t), displayName(std::move(dName)) {}
 
-    // Конструктор для типів З діапазоном (INT, FLOAT)
-    SettingRule(SettingType t, double min, double max = std::numeric_limits<double>::max(), int dec = 6)
-        : type(t), minValue(min), maxValue(max), decimals(dec) {
-        if (t != SettingType::INT && t != SettingType::FLOAT) { /* Попередження */ }
-        if (t == SettingType::INT) decimals = 0;
+    // Повний конструктор для INT/FLOAT (з діапазоном, точністю та опціональним displayName)
+    SettingRule(SettingType t, double min, double max, int dec, std::string dName = "")
+        : type(t), minValue(min), maxValue(max), decimals(dec), displayName(std::move(dName)) {
+        // Перевірка типу не обов'язкова, але може бути корисною
+        // if (t != SettingType::INT && t != SettingType::FLOAT) { /* Попередження */ }
+        if (t == SettingType::INT) decimals = 0; // Для INT точність завжди 0
     }
+
+    // Спрощений конструктор для INT/FLOAT з діапазоном (використовує стандартну/нульову точність)
+    SettingRule(SettingType t, double min, double max, std::string dName = "")
+        : SettingRule(t, min, max, (t == SettingType::INT ? 0 : 6), std::move(dName)) {}
+
+    // Спрощений конструктор для INT/FLOAT тільки з мінімальним значенням
+    // SettingRule(SettingType t, double min, std::string dName = "")
+    //     : SettingRule(t, min, std::numeric_limits<double>::max(), (t == SettingType::INT ? 0 : 6), std::move(dName)) {}
+
+    // Конструктор спеціально для INT з діапазоном і displayName
+    SettingRule(SettingType t, int min, int max, std::string dName)
+        : SettingRule(t, static_cast<double>(min), static_cast<double>(max), 0, std::move(dName)) {
+        if (t != SettingType::INT) { /* Попередження: очікувався тип INT */ }
+    }
+
+    // Можна додати інші зручні перевантаження конструкторів за потреби
 };
 // --- Кінець визначення SettingRule ---
 
@@ -57,11 +76,12 @@ struct ValidationResult {
     bool isWellFormed = false; std::string wellFormedError = "";
     bool hasStructure = false; std::string structureInfo = "";
     std::vector<std::string> valueErrors;
-    bool isValid() const { return isWellFormed; }
+    bool isValid() const { return isWellFormed; } // Основна перевірка - чи валідний XML
 };
 class FileValidator {
 public:
     ValidationResult validateFile(const fs::path& filePath);
+    // Метод для інтерактивної перевірки перед дією (показує QMessageBox)
     bool validateBeforeAction(const fs::path& filePath, const std::string& actionNameStd, bool showSuccess = false);
 private:
     bool isXmlWellFormedInternal(const fs::path& filePath, pugi::xml_document& doc, std::string& errorMsg);
@@ -75,14 +95,16 @@ private:
 #define CONFIGEDITOR_H
 class ConfigEditor {
 public:
+    // Читає весь вміст файлу (не використовується для редагування, але може бути корисним)
     std::string readConfigContent(const fs::path& configPath);
+    // Отримує відфільтровані налаштування для показу/редагування
     FilteredSettingsMap getFilteredSettings(const fs::path& configPath);
+    // Зберігає змінені (відфільтровані) налаштування назад у файл
     void saveFilteredSettings(const fs::path& configPath, const FilteredSettingsMap& settings);
 };
 #endif // CONFIGEDITOR_H
 
-// --- Решта оголошень класів (AppInitializer, BackupManager, ChangeTracker, ConfigManager, ProfileManager) ---
-// (Скопіюй їх сюди з попередніх версій main.h)
+// --- Решта оголошень класів (без змін) ---
 #ifndef APPINITIALIZER_H
 #define APPINITIALIZER_H
 class AppInitializer { public: void loadInitialSettings(); void checkFolders(); void initializeComponents(); };

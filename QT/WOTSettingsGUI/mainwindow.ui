@@ -27,70 +27,70 @@
      <item>
       <widget class="QPushButton" name="checkFoldersButton">
        <property name="text">
-        <string>Check Folders</string>
+        <string>Перевірити папки</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="createBackupButton">
        <property name="text">
-        <string>Create Backup</string>
+        <string>Створити резервну копію</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="restoreBackupButton">
        <property name="text">
-        <string>Restore From Backup</string>
+        <string>Відновити налаштування з резервної копії</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="setUsernameButton">
        <property name="text">
-        <string>Set UserName</string>
+        <string>Ввести нік-нейм</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="showUsernameButton">
        <property name="text">
-        <string>Show current username</string>
+        <string>Показати поточний нік-нейм</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="showConfigButton">
        <property name="text">
-        <string> Show cfg settings</string>
+        <string>Вибрати та показати налаштування конфігураційного файлу</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="editConfigButton">
        <property name="text">
-        <string>Edit cfg settings</string>
+        <string>Внести зміни в конфігураційний файл</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="changeConfigButton">
        <property name="text">
-        <string>Change current cfg</string>
+        <string>Замінити поточний конфігураційний файл</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="checkCurrentConfigButton">
        <property name="text">
-        <string>Check current cfg</string>
+        <string>Показати налаштування поточного конфігураційного файлу</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="validateConfigButton">
        <property name="text">
-        <string>Validate Config File</string>
+        <string>Вибрати та провести валідацію конфігураційного файлу</string>
        </property>
       </widget>
      </item>

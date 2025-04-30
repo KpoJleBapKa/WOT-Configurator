@@ -398,16 +398,20 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
 {
     QString qConfigPath = QString::fromStdWString(configPath.wstring());
     QString filename = QFileInfo(qConfigPath).fileName();
-    std::string logActionName = windowTitlePrefix;
-    logActionName.pop_back(); logActionName.pop_back(); // Прибираємо ": " з префікса для логу
+    std::string logActionNameBase = windowTitlePrefix;
+    // Прибираємо потенційні ": " в кінці для логування
+    if (logActionNameBase.length() >= 2 && logActionNameBase.substr(logActionNameBase.length() - 2) == ": ") {
+        logActionNameBase.resize(logActionNameBase.length() - 2);
+    }
+    std::string logActionName = "MainWindow::Display" + logActionNameBase; // Формуємо назву дії для логу
 
     appendLog(QString("Спроба відображення відфільтрованих налаштувань: %1").arg(filename));
-    m_logger.logAction("MainWindow::"+logActionName, true, "Attempting to display filtered " + filename.toStdString());
+    m_logger.logAction(logActionName, true, "Attempting to display filtered " + filename.toStdString());
 
     // Валідація файлу перед показом (використовуємо допоміжний метод)
     if (!m_fileValidator.validateBeforeAction(configPath, "Перегляд налаштувань", false)) { // false - не показувати успіх
         appendLog("Перевірка файлу перед показом налаштувань не пройдена або скасована.");
-        m_logger.logAction("MainWindow::"+logActionName, false, "Pre-display validation failed or cancelled: " + filename.toStdString());
+        m_logger.logAction(logActionName, false, "Pre-display validation failed or cancelled: " + filename.toStdString());
         return;
     }
 
@@ -424,32 +428,112 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
 
         // Створюємо нове діалогове вікно
         QDialog *dialog = new QDialog(this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose); // Важливо! Автоматично видалить вікно при закритті
+        dialog->setAttribute(Qt::WA_DeleteOnClose); // Автоматично видалить вікно при закритті
         dialog->setWindowTitle(QString::fromStdString(windowTitlePrefix) + filename);
-        dialog->setMinimumSize(550, 450); // Збільшимо мінімальний розмір
+        dialog->setMinimumSize(600, 500); // Збільшимо мінімальний розмір
 
         QVBoxLayout *layout = new QVBoxLayout(dialog);
 
         // Створюємо дерево
         QTreeWidget *treeWidget = new QTreeWidget(dialog);
         treeWidget->setColumnCount(2); // Дві колонки
-        treeWidget->setHeaderLabels(QStringList() << "Категорія / Налаштування" << "Значення");
+        treeWidget->setHeaderLabels(QStringList() << "Налаштування" << "Значення");
         treeWidget->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents); // Автоширина першої колонки
         treeWidget->header()->setStretchLastSection(true); // Друга колонка розтягується
+        treeWidget->setAlternatingRowColors(true);
+
+        // --- Мапа для зрозумілих імен (Тимчасове рішення для MainWindow) ---
+        // !!! КРАЩЕ РІШЕННЯ: Передати правила (SettingRulesMap) з ConfigEditDialog сюди,
+        // або винести ініціалізацію правил у спільне місце.
+        std::map<std::string, std::string> nameMap;
+        // Заповнюємо мапу (можна винести в окрему функцію)
+        nameMap["masterVolume"] = "Загальна гучність";
+        nameMap["volume_micVivox"] = "Гучність мікрофону (Vivox)";
+        nameMap["volume_vehicles"] = "Гучність: Техніка";
+        nameMap["volume_music"] = "Гучність: Музика";
+        nameMap["volume_effects"] = "Гучність: Ефекти";
+        nameMap["volume_ambient"] = "Гучність: Оточення";
+        nameMap["volume_gui"] = "Гучність: Інтерфейс";
+        nameMap["volume_voice"] = "Гучність: Голосові повідомлення";
+        nameMap["soundMode"] = "Режим звуку";
+        nameMap["graphicsSettingsVersion"] = "Версія налаштувань графіки";
+        nameMap["COLOR_GRADING_TECHNIQUE"] = "Техніка корекції кольору";
+        nameMap["CUSTOM_AA_MODE"] = "Режим згладжування";
+        nameMap["DECOR_LEVEL"] = "Якість декалей";
+        nameMap["EFFECTS_QUALITY"] = "Якість ефектів";
+        nameMap["FAR_PLANE"] = "Дальність промальовки";
+        nameMap["FLORA_QUALITY"] = "Якість трави";
+        nameMap["HAVOK_ENABLED"] = "Фізика руйнувань Havok";
+        nameMap["HAVOK_QUALITY"] = "Якість фізики Havok";
+        nameMap["LIGHTING_QUALITY"] = "Якість освітлення";
+        nameMap["MOTION_BLUR_QUALITY"] = "Якість розмиття в русі";
+        nameMap["OBJECT_LOD"] = "Деталізація об'єктів";
+        nameMap["POST_PROCESSING_QUALITY"] = "Якість постобробки";
+        nameMap["SEMITRANSPARENT_LEAVES_ENABLED"] = "Прозорість листя";
+        nameMap["SHADOWS_QUALITY"] = "Якість тіней";
+        nameMap["SNIPER_MODE_EFFECTS_QUALITY"] = "Якість ефектів (снайп. режим)";
+        nameMap["SNIPER_MODE_GRASS_ENABLED"] = "Трава в снайп. режимі";
+        nameMap["SNIPER_MODE_SWINGING_ENABLED"] = "Хитання камери (снайп. режим)";
+        nameMap["SPEEDTREE_QUALITY"] = "Якість дерев";
+        nameMap["TERRAIN_QUALITY"] = "Якість ландшафту";
+        nameMap["TERRAIN_TESSELLATION_ENABLED"] = "Теселяція ландшафту";
+        nameMap["TEXTURE_QUALITY"] = "Якість текстур";
+        nameMap["TRACK_PHYSICS_QUALITY"] = "Фізика гусениць";
+        nameMap["VEHICLE_DUST_ENABLED"] = "Пил з-під техніки";
+        nameMap["VEHICLE_TRACES_ENABLED"] = "Сліди техніки";
+        nameMap["WATER_QUALITY"] = "Якість води";
+        nameMap["colorGradingStrength"] = "Сила корекції кольору";
+        nameMap["brightnessDeferred"] = "Яскравість";
+        nameMap["contrastDeferred"] = "Контрастність";
+        nameMap["saturationDeferred"] = "Насиченість";
+        nameMap["windowMode"] = "Режим вікна";
+        nameMap["windowedWidth"] = "Ширина (вікно)";
+        nameMap["windowedHeight"] = "Висота (вікно)";
+        nameMap["fullscreenWidth"] = "Ширина (повний екран)";
+        nameMap["fullscreenHeight"] = "Висота (повний екран)";
+        nameMap["fullscreenRefresh"] = "Частота оновлення";
+        nameMap["aspectRatio"] = "Співвідношення сторін";
+        nameMap["gamma"] = "Гамма";
+        nameMap["tripleBuffering"] = "Потрійна буферизація";
+        // Додайте сюди відповідності для режимів керування, якщо потрібно
+        std::map<std::string, std::string> modeNamesUKR = {
+            {"strategicMode", "Стратегічний"}, {"artyMode", "Арт-САУ"},
+            {"arcadeMode", "Аркадний"}, {"sniperMode", "Снайперський"},
+            {"freeVideoMode", "Вільна камера"}
+        };
+        for(const auto& modePair : modeNamesUKR) {
+            std::string modePrefix = modePair.second + ": ";
+            nameMap[modePair.first + "/horzInvert"] = modePrefix + "Інверсія по горизонталі";
+            nameMap[modePair.first + "/vertInvert"] = modePrefix + "Інверсія по вертикалі";
+            nameMap[modePair.first + "/keySensitivity"] = modePrefix + "Чутливість клавіатури";
+            nameMap[modePair.first + "/sensitivity"] = modePrefix + "Чутливість миші";
+            nameMap[modePair.first + "/scrollSensitivity"] = modePrefix + "Чутливість прокрутки";
+        }
+        // --- Кінець мапи ---
 
         // Заповнюємо дерево категоріями та налаштуваннями
+        QFont categoryFont = treeWidget->font();
+        categoryFont.setBold(true);
         for (const auto& categoryPair : settings) {
             QTreeWidgetItem *categoryItem = new QTreeWidgetItem(treeWidget);
-            categoryItem->setText(0, QString::fromStdString(categoryPair.first));
-            QFont boldFont = categoryItem->font(0); // Беремо поточний шрифт
-            boldFont.setBold(true);                 // Робимо його жирним
-            categoryItem->setFont(0, boldFont);     // Встановлюємо жирний шрифт для категорії
-            categoryItem->setExpanded(true);        // Розгортаємо категорію
+            categoryItem->setText(0, QString::fromStdString(categoryPair.first)); // Використовуємо назву категорії з FilteredSettingsMap
+            categoryItem->setFont(0, categoryFont);
+            categoryItem->setExpanded(true);
 
             for (const auto& settingPair : categoryPair.second) {
+                std::string settingName = settingPair.first; // Технічне ім'я
+                QString displayValue = QString::fromStdString(settingPair.second);
+                QString displayNameToShow = QString::fromStdString(settingName); // За замовчуванням
+
+                // Шукаємо зрозуміле ім'я в нашій мапі
+                if (nameMap.count(settingName)) {
+                    displayNameToShow = QString::fromStdString(nameMap[settingName]);
+                }
+
                 QTreeWidgetItem *settingItem = new QTreeWidgetItem(categoryItem); // Додаємо як дочірній
-                settingItem->setText(0, QString::fromStdString(settingPair.first));  // Ім'я
-                settingItem->setText(1, QString::fromStdString(settingPair.second)); // Значення
+                settingItem->setText(0, displayNameToShow); // Ім'я для показу
+                settingItem->setText(1, displayValue);  // Значення
+                // У цьому вікні редагування немає, тому UserRole не потрібне
             }
         }
 
@@ -474,7 +558,6 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
         m_logger.logAction("ConfigEditor::getFilteredSettings", false, e.what());
     }
 }
-
 
 // Показує ПОВНИЙ вміст файлу у новому діалоговому вікні
 void MainWindow::displayFileContent(const QString& filePath, const QString& logActionName)
