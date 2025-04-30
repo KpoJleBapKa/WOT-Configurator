@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>582</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,20 +17,13 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>-1</x>
-      <y>254</y>
-      <width>801</width>
-      <height>326</height>
+      <x>100</x>
+      <y>200</y>
+      <width>401</width>
+      <height>301</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="checkFoldersButton">
-       <property name="text">
-        <string>Перевірити папки</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="createBackupButton">
        <property name="text">
@@ -42,13 +35,6 @@
       <widget class="QPushButton" name="restoreBackupButton">
        <property name="text">
         <string>Відновити налаштування з резервної копії</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="setUsernameButton">
-       <property name="text">
-        <string>Ввести нік-нейм</string>
        </property>
       </widget>
      </item>
@@ -108,22 +94,71 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>94</height>
+      <width>291</width>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Logs</string>
+        <string>Логи</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPlainTextEdit" name="outputLogArea">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="readOnly">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>0</y>
+      <width>231</width>
+      <height>108</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Налаштування</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="checkFoldersButton">
+       <property name="text">
+        <string>Перевірити папки</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setUsernameButton">
+       <property name="text">
+        <string>Ввести нік-нейм</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="helpButton">
+       <property name="text">
+        <string>FAQ: Як користуватись застосунком</string>
        </property>
       </widget>
      </item>
@@ -135,7 +170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>582</width>
      <height>21</height>
     </rect>
    </property>

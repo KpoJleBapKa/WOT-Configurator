@@ -1,0 +1,92 @@
+#include "helpdialog.h"
+
+#include <QVBoxLayout>
+#include <QHBoxLayout> // Для кнопки
+#include <QTextBrowser>
+#include <QPushButton>
+#include <QSpacerItem> // Для вирівнювання кнопки
+#include <QSizePolicy> // Для вирівнювання кнопки
+
+// --- Конструктор ---
+HelpDialog::HelpDialog(QWidget *parent) : QDialog(parent)
+{
+    setupUi();         // Створюємо інтерфейс
+    populateHelpText(); // Заповнюємо текстом
+    this->setMinimumSize(600, 450); // Встановлюємо мінімальний розмір вікна
+}
+
+// --- Налаштування UI ---
+void HelpDialog::setupUi()
+{
+    this->setWindowTitle("Довідка / FAQ"); // Заголовок вікна
+
+    // Головний вертикальний layout
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->setContentsMargins(10, 10, 10, 10);
+
+    // Текстове поле
+    helpTextBrowser = new QTextBrowser(this);
+    helpTextBrowser->setReadOnly(true);
+    helpTextBrowser->setOpenExternalLinks(true);
+    helpTextBrowser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // Дозволяємо розтягування
+
+    // Кнопка закриття
+    closeButton = new QPushButton("Закрити", this);
+    closeButton->setMinimumHeight(30);
+    connect(closeButton, &QPushButton::clicked, this, &QDialog::accept); // Підключаємо до стандартного слоту закриття
+
+    // Layout для кнопки (щоб вона була внизу і, можливо, праворуч)
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum)); // Розпірка зліва
+    buttonLayout->addWidget(closeButton); // Додаємо кнопку
+
+    // Додаємо елементи в головний layout
+    mainLayout->addWidget(helpTextBrowser); // Текстове поле
+    mainLayout->addLayout(buttonLayout);    // Layout з кнопкою
+
+    this->setLayout(mainLayout); // Встановлюємо layout для діалогу
+}
+
+// --- Заповнення тексту довідки ---
+void HelpDialog::populateHelpText()
+{
+    // Текст довідки (такий самий, як і раніше, можна змінити)
+    QString helpContent = R"(
+        <h1>Довідка та Часті Питання (FAQ)</h1>
+        <p>Ласкаво просимо до програми WOT Settings!</p>
+        <p>Конфігураційний файл (preferences.xml) - файл, який зберігає в собі налаштування гри World of Tanks</p>
+
+        <h2>Як користуватися програмою:</h2>
+        <ul>
+            <li><b>Перевірити папки:</b> Натисніть цю кнопку при першому запуску, щоб створити необхідні директорії.</li>
+            <li><b>Створити резервну копію:</b> Зберігає поточний файл налаштувань гри (`preferences.xml`) у папку `Restored Configs` з датою та часом у назві. Рекомендується робити перед будь-якими змінами.</li>
+            <li><b>Відновити з копії:</b> Дозволяє вибрати раніше створену резервну копію з папки `Restored Configs` і замінити нею поточний файл налаштувань гри.</li>
+            <li><b>Встановити нікнейм:</b> Зберігає ваш ігровий нікнейм (використовується для ідентифікації, але не впливає на гру).</li>
+            <li><b>Показати нікнейм:</b> Відображає збережений нікнейм.</li>
+            <li><b>Показати конфіг користувача:</b> Дозволяє вибрати конфігураційний файл `.xml` з папки `User Configs` (або з будь-якої іншої директорії) та переглянути його відфільтровані налаштування (тільки для читання).</li>
+            <li><b>Редагувати конфіг користувача:</b> Дозволяє вибрати конфігураційний файл `.xml` з папки `User Configs` (або з будь-якої іншої директорії) та змінити його налаштування. Зміни зберігаються у вибраний файл.</li>
+            <li><b>Застосувати конфіг користувача:</b> Дозволяє вибрати конфігураційний файл `.xml` з папки `User Configs` (або з будь-якої іншої директорії) та **замінити** ним поточний файл налаштувань гри (`preferences.xml`). <strong>Увага:</strong> Ця дія перезаписує ваші ігрові налаштування!</li>
+            <li><b>Переглянути поточний конфіг гри:</b> Показує відфільтровані налаштування з поточного конфігураційного файлу `preferences.xml` (тільки для читання).</li>
+            <li><b>Валідація конфігу:</b> Дозволяє вибрати будь-який `.xml` файл і перевірити його на коректність формату та наявність очікуваної структури.</li>
+            <li><b>Вихід:</b> Закриває програму.</li>
+        </ul>
+
+        <h2>Часті Питання (FAQ):</h2>
+        <p><b>П: Де знаходиться файл налаштувань гри (preferences.xml)?</b></p>
+        <p>В: Зазвичай він знаходиться у папці <code>%APPDATA%\Wargaming.net\WorldOfTanks\</code> (де <code>%APPDATA%</code> - це системна папка, наприклад, <code>C:\Users\ВашеІм'я\AppData\Roaming</code>).</p>
+
+        <p><b>П: Чи може ця програма зламати мою гру?</b></p>
+        <p>В: Програма лише редагує файл налаштувань. Некоректні значення можуть призвести до скидання налаштувань гри до стандартних або непередбачуваної поведінки гри. Завжди робіть резервну копію перед редагуванням або застосуванням конфігів.</p>
+
+        <p><b>П: Чому я не бачу всіх налаштувань гри при редагуванні?</b></p>
+        <p>В: Програма показує та дозволяє редагувати лише певну, відому їй підмножину налаштувань для спрощення інтерфейсу та зменшення ризику помилок.</p>
+
+        <p><b>П: Де зберігаються резервні копії та конфіги користувача?</b></p>
+        <p>В: У підпапках програми: `Restored Configs` для резервних копій, `User Configs` для ваших власних конфігураційних файлів.</p>
+
+        <hr>
+        <p><i>Версія програми: 0.12</i></p>
+    )";
+
+    helpTextBrowser->setHtml(helpContent);
+}

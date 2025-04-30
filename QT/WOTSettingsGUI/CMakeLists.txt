@@ -41,6 +41,9 @@ qt_add_executable(WOTSettingsGUI
     settingdelegate.h
     settingdelegate.cpp
     configeditdialog.h configeditdialog.cpp configeditdialog.ui
+    helpdialog.h helpdialog.cpp helpdialog.ui
+
+
     # Важливо для AppInitializer.cpp
 )
 

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "configeditdialog.h"
+// НЕ включаємо helpdialog.h тут, щоб уникнути потенційних циклічних залежностей,
+// включимо його в mainwindow.cpp
 
 // Попереднє оголошення для уникнення включення повних заголовків тут
 QT_BEGIN_NAMESPACE
@@ -16,45 +18,45 @@ class QVBoxLayout;
 class QPlainTextEdit;
 class QPushButton;
 class QFontDatabase;
-class QTreeWidget;      // <-- Оголошення для QTreeWidget
-class QTreeWidgetItem;  // <-- Оголошення для QTreeWidgetItem
-class QHeaderView;      // <-- Оголошення для QHeaderView
+class QTreeWidget;
+class QTreeWidgetItem;
+class QHeaderView;
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-// Включаємо ОДИН головний заголовок для всієї логіки
-#include "main.h" // Переконайся, що файл називається саме так
-
-// Перемістимо оголошення fs сюди, бо воно використовується в оголошенні displaySettingsInTreeDialog
+#include "main.h"
 #include <filesystem>
 namespace fs = std::filesystem;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT // Макрос для сигналів/слотів
+    Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr); // Конструктор
-    ~MainWindow();                     // Деструктор
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
-private slots: // Слоти для обробки сигналів від UI елементів
-    // Слоти для кнопок меню (без змін)
+private slots:
+    // Старі слоти
     void onCheckFoldersClicked();
     void onCreateBackupClicked();
     void onRestoreBackupClicked();
     void onSetUsernameClicked();
     void onShowUsernameClicked();
-    void onShowConfigClicked(); // Показує конфіг користувача (відфільтровано)
+    void onShowConfigClicked();
     void onEditConfigClicked();
-    void onChangeConfigClicked(); // Застосовує конфіг користувача
-    void onCheckCurrentConfigClicked(); // Показує конфіг гри (відфільтровано)
+    void onChangeConfigClicked();
+    void onCheckCurrentConfigClicked();
     void onValidateConfigClicked();
     void onExitClicked();
 
-private: // Приватні члени та методи класу
-    Ui::MainWindow *ui; // Вказівник на UI, створений дизайнером
+    // --- НОВИЙ СЛОТ ---
+    void onHelpButtonClicked(); // Слот для кнопки "Довідка"
 
-    // Екземпляри класів логіки (без змін)
+private:
+    Ui::MainWindow *ui;
+
+    // Екземпляри класів логіки
     AppInitializer m_initializer;
     BackupManager m_backupManager;
     ChangeTracker m_logger;
@@ -63,24 +65,23 @@ private: // Приватні члени та методи класу
     FileValidator m_fileValidator;
     ProfileManager m_profileManager;
 
-    // Допоміжні функції UI (без змін)
+    // Допоміжні функції UI
     void showMessage(const QString& title, const QString& text, bool isWarning = false);
     void appendLog(const QString& message);
-    void setupConnections(); // Функція для налаштування connect()
-    void loadUsername(); // Завантажити ім'я при старті
-    void displayFileContent(const QString& filePath, const QString& logActionName); // Показати повний вміст файлу у новому вікні
+    void setupConnections(); // Оновимо цю функцію
+    void loadUsername();
+    void displayFileContent(const QString& filePath, const QString& logActionName);
 
-    // Допоміжні функції для вибору файлів (без змін)
+    // Допоміжні функції для вибору файлів
     QString selectBackupFile();
     QString selectUserConfigFile();
     QString selectFileToValidate();
 
-    // Допоміжні функції для відображення результатів валідації (без змін)
+    // Допоміжні функції для відображення результатів валідації
     void displayValidationResult(const ValidationResult& result, const QString& filename);
-    QString formatValidationSummary(const ValidationResult& result); // Формує рядок з резюме для показу
+    QString formatValidationSummary(const ValidationResult& result);
 
-    // <-- ОГОЛОШЕННЯ НОВОЇ ФУНКЦІЇ
-    // Оголошуємо функцію, яка показує відфільтровані налаштування
+    // Функція для відображення налаштувань
     void displaySettingsInTreeDialog(const fs::path& configPath, const std::string& windowTitlePrefix);
 
 };

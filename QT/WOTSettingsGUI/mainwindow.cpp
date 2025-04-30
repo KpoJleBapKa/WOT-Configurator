@@ -1,71 +1,81 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h" // Підключення згенерованого UI
+#include "ui_mainwindow.h"     // Підключення згенерованого UI
+#include "helpdialog.h"        // <-- ВКЛЮЧЕНО helpdialog.h
 
 // Включаємо необхідні заголовки Qt
 #include <QDateTime>
 #include <QTextStream>
 #include <QVBoxLayout>
-#include <QPlainTextEdit> // Потрібен для outputLogArea та діалогу показу контенту
+#include <QPlainTextEdit>
 #include <QPushButton>
 #include <QFontDatabase>
 #include <QDialog>
-#include <QInputDialog>   // Для введення імені користувача
-#include <QFileDialog>    // Для вибору файлів
-#include <QMessageBox>    // Для повідомлень користувачу
-#include <QScrollBar>     // Для прокрутки логу
-#include <QTreeWidget>    // Для дерева налаштувань
-#include <QTreeWidgetItem>// Для елементів дерева
-#include <QHeaderView>    // Для налаштування заголовків дерева
+#include <QInputDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QScrollBar>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QHeaderView>
+#include <QDebug> // Для qWarning
 
-// --- Конструктор та Деструктор ---
-
+// --- Конструктор (Без змін, пов'язаних з HelpDialog) ---
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow) // Створюємо UI з дизайнера
+    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this); // Застосовуємо дизайн до вікна
-    this->setWindowTitle("WOT Settings GUI by Kroll"); // Встановлюємо заголовок
+    ui->setupUi(this);
+    this->setWindowTitle("WOT Settings GUI by Kroll");
 
     appendLog("Запуск програми...");
     m_logger.logAction("Application::Start", true);
 
-    // Налаштовуємо з'єднання сигналів від кнопок до слотів
+    // Налаштовуємо з'єднання сигналів (включаючи нову кнопку)
     setupConnections();
 
     // Виконуємо початкові дії
-    onCheckFoldersClicked(); // Перевіряємо папки при старті
-    loadUsername();          // Завантажуємо ім'я користувача (якщо є)
+    onCheckFoldersClicked();
+    loadUsername();
 
     appendLog("Програма готова до роботи.");
 }
 
+// --- Деструктор (Без змін) ---
 MainWindow::~MainWindow()
 {
     appendLog("Завершення роботи програми...");
     m_logger.logAction("Application::Exit", true);
-    delete ui; // Звільняємо пам'ять від UI
+    delete ui;
 }
 
-// --- Налаштування з'єднань сигнал-слот ---
-
+// --- Налаштування з'єднань (ОНОВЛЕНО) ---
 void MainWindow::setupConnections()
 {
-    // З'єднуємо кожну кнопку з її слотом-обробником
+    // Старі з'єднання
     connect(ui->checkFoldersButton, &QPushButton::clicked, this, &MainWindow::onCheckFoldersClicked);
     connect(ui->createBackupButton, &QPushButton::clicked, this, &MainWindow::onCreateBackupClicked);
     connect(ui->restoreBackupButton, &QPushButton::clicked, this, &MainWindow::onRestoreBackupClicked);
     connect(ui->setUsernameButton, &QPushButton::clicked, this, &MainWindow::onSetUsernameClicked);
     connect(ui->showUsernameButton, &QPushButton::clicked, this, &MainWindow::onShowUsernameClicked);
-    connect(ui->showConfigButton, &QPushButton::clicked, this, &MainWindow::onShowConfigClicked); // Показує конфіг користувача (відфільтровано)
+    connect(ui->showConfigButton, &QPushButton::clicked, this, &MainWindow::onShowConfigClicked);
     connect(ui->editConfigButton, &QPushButton::clicked, this, &MainWindow::onEditConfigClicked);
-    connect(ui->changeConfigButton, &QPushButton::clicked, this, &MainWindow::onChangeConfigClicked); // Застосовує конфіг користувача
-    connect(ui->checkCurrentConfigButton, &QPushButton::clicked, this, &MainWindow::onCheckCurrentConfigClicked); // Показує конфіг гри (відфільтровано)
+    connect(ui->changeConfigButton, &QPushButton::clicked, this, &MainWindow::onChangeConfigClicked);
+    connect(ui->checkCurrentConfigButton, &QPushButton::clicked, this, &MainWindow::onCheckCurrentConfigClicked);
     connect(ui->validateConfigButton, &QPushButton::clicked, this, &MainWindow::onValidateConfigClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &MainWindow::onExitClicked);
+
+    // --- З'єднання для кнопки "Довідка" ---
+    // ЗАМІНІТЬ "helpButton" на реальне ім'я (objectName) вашої кнопки довідки в Designer!
+    if (ui->helpButton) {
+        connect(ui->helpButton, &QPushButton::clicked, this, &MainWindow::onHelpButtonClicked);
+    } else {
+        qWarning() << "setupConnections: ui->helpButton is null!";
+    }
+    // --- Кінець з'єднання для довідки ---
 }
 
-// --- Реалізація слотів-обробників ---
-
+// --- Реалізація старих слотів (Без змін) ---
+// ... (onCheckFoldersClicked, onCreateBackupClicked, ..., onExitClicked) ...
 void MainWindow::onCheckFoldersClicked()
 {
     appendLog("Перевірка необхідних папок...");
@@ -198,13 +208,12 @@ void MainWindow::onShowConfigClicked() // Показує конфіг корис
         m_logger.logAction("MainWindow::ShowUserConfig", false, "Cancelled by user (file selection)");
         return;
     }
-    // Викликаємо новий метод для показу у дереві
     displaySettingsInTreeDialog(userConfigFile.toStdWString(), "Конфіг Користувача: ");
 }
 
 void MainWindow::onEditConfigClicked()
 {
-    QString userConfigFile = selectUserConfigFile(); // Вибираємо файл
+    QString userConfigFile = selectUserConfigFile();
     if (userConfigFile.isEmpty()) {
         appendLog("Редагування конфігу скасовано (файл не вибрано).");
         m_logger.logAction("MainWindow::EditConfig", false, "Cancelled by user (file selection)");
@@ -216,7 +225,6 @@ void MainWindow::onEditConfigClicked()
     appendLog("Спроба редагування файлу: " + filename);
     m_logger.logAction("MainWindow::EditConfig", true, "Attempting to edit " + filename.toStdString());
 
-    // Валідація файлу перед редагуванням
     if (!m_fileValidator.validateBeforeAction(configPath, "Редагування конфігу", false)) {
         appendLog("Перевірка файлу перед редагуванням не пройдена або скасована.");
         m_logger.logAction("MainWindow::EditConfig", false, "Pre-edit validation failed or cancelled: " + filename.toStdString());
@@ -224,9 +232,7 @@ void MainWindow::onEditConfigClicked()
     }
 
     try {
-        // Крок 1: Отримуємо поточні відфільтровані налаштування
         FilteredSettingsMap currentSettings = m_configEditor.getFilteredSettings(configPath);
-
         if (currentSettings.empty()) {
             showMessage("Редагування", "Не знайдено відомих налаштувань для редагування у файлі " + filename, true);
             appendLog("Не знайдено відомих налаштувань для редагування у: " + filename);
@@ -234,14 +240,10 @@ void MainWindow::onEditConfigClicked()
             return;
         }
 
-        // Крок 2: Створюємо та показуємо діалог редагування
         ConfigEditDialog editDialog(currentSettings, configPath, this);
-        if (editDialog.exec() == QDialog::Accepted) { // Якщо користувач натиснув "Зберегти" і валідація пройшла
+        if (editDialog.exec() == QDialog::Accepted) {
             appendLog("Збереження змін після редагування...");
-            // Крок 3: Отримуємо оновлені налаштування з діалогу
             FilteredSettingsMap updatedSettings = editDialog.getUpdatedSettings();
-
-            // Крок 4: Зберігаємо зміни у файл через ConfigEditor
             try {
                 m_configEditor.saveFilteredSettings(configPath, updatedSettings);
                 appendLog("Зміни у файлі '" + filename + "' успішно збережено.");
@@ -253,12 +255,12 @@ void MainWindow::onEditConfigClicked()
                 showMessage("Помилка збереження", errorMsg, true);
                 m_logger.logAction("ConfigEditor::saveFilteredSettings", false, saveError.what());
             }
-        } else { // Якщо користувач натиснув "Скасувати"
+        } else {
             appendLog("Редагування файлу '" + filename + "' скасовано користувачем.");
             m_logger.logAction("MainWindow::EditConfig", false, "Cancelled by user in dialog: " + filename.toStdString());
         }
 
-    } catch (const std::exception& e) { // Ловимо помилки завантаження/парсингу для редагування
+    } catch (const std::exception& e) {
         QString errorMsg = QString("Помилка підготовки до редагування файлу '%1': %2").arg(filename).arg(QString::fromStdString(e.what()));
         appendLog(errorMsg);
         showMessage("Помилка редагування", errorMsg, true);
@@ -281,7 +283,6 @@ void MainWindow::onChangeConfigClicked() // Застосовує конфіг к
     appendLog(QString("Спроба застосування конфігу: %1").arg(filename));
     m_logger.logAction("MainWindow::ChangeConfig", true, "Attempting to apply " + filename.toStdString());
 
-    // Валідація файлу перед застосуванням
     if (!m_fileValidator.validateBeforeAction(sourcePath, "Застосування конфігу")) {
         appendLog("Перевірка перед застосуванням не пройдена або скасована.");
         m_logger.logAction("MainWindow::ChangeConfig", false, "Pre-apply validation failed or cancelled: " + filename.toStdString());
@@ -289,9 +290,8 @@ void MainWindow::onChangeConfigClicked() // Застосовує конфіг к
     }
     appendLog("Перевірка файлу перед застосуванням пройдена.");
 
-    // Виконуємо застосування
     try {
-        m_configManager.changeCurrentConfig(sourcePath); // Викликаємо метод логіки
+        m_configManager.changeCurrentConfig(sourcePath);
         QString msg = QString("Конфіг '%1' успішно застосовано до гри.").arg(filename);
         appendLog(msg);
         showMessage("Застосування конфігу", msg);
@@ -309,9 +309,8 @@ void MainWindow::onCheckCurrentConfigClicked() // Показує конфіг г
     appendLog("Перегляд поточного конфігу гри...");
     m_logger.logAction("MainWindow::CheckCurrentConfig", true, "Attempting to view game config");
     try {
-        fs::path gameConfigPath = m_configManager.getCurrentGameConfigPath(); // Отримуємо шлях
+        fs::path gameConfigPath = m_configManager.getCurrentGameConfigPath();
         if (!gameConfigPath.empty() && fs::exists(gameConfigPath)) {
-            // Викликаємо новий метод для показу у дереві
             displaySettingsInTreeDialog(gameConfigPath, "Поточний Конфіг Гри: ");
         } else {
             appendLog("Поточний конфіг гри не знайдено.");
@@ -328,7 +327,7 @@ void MainWindow::onCheckCurrentConfigClicked() // Показує конфіг г
 
 void MainWindow::onValidateConfigClicked()
 {
-    QString fileToValidate = selectFileToValidate(); // Вибираємо файл
+    QString fileToValidate = selectFileToValidate();
     if (fileToValidate.isEmpty()) {
         appendLog("Валідацію файлу скасовано.");
         m_logger.logAction("MainWindow::ValidateConfig", false, "Cancelled by user (file selection)");
@@ -341,12 +340,11 @@ void MainWindow::onValidateConfigClicked()
     m_logger.logAction("MainWindow::ValidateConfig", true, "Starting validation for " + filename.toStdString());
 
     try {
-        ValidationResult result = m_fileValidator.validateFile(validatePath); // Викликаємо метод логіки
-        displayValidationResult(result, filename); // Показуємо результат у вікні
-        // Логуємо короткий результат
+        ValidationResult result = m_fileValidator.validateFile(validatePath);
+        displayValidationResult(result, filename);
         m_logger.logAction("FileValidator::validateFile", result.isValid(), filename.toStdString() + " - " + formatValidationSummary(result).toStdString());
 
-    } catch (const std::exception& e) { // Ловимо помилки самої валідації
+    } catch (const std::exception& e) {
         QString errorMsg = QString("Помилка під час валідації файлу '%1': %2").arg(filename).arg(QString::fromStdString(e.what()));
         appendLog(errorMsg);
         showMessage("Помилка валідації", errorMsg, true);
@@ -359,11 +357,26 @@ void MainWindow::onExitClicked()
 {
     appendLog("Завершення роботи програми...");
     m_logger.logAction("MainWindow::Exit", true);
-    QApplication::quit(); // Завершуємо роботу додатку
+    QApplication::quit();
 }
 
-// --- Допоміжні функції UI ---
 
+// --- НОВИЙ СЛОТ для кнопки "Довідка" ---
+void MainWindow::onHelpButtonClicked()
+{
+    appendLog("Відкриття вікна довідки...");
+    m_logger.logAction("MainWindow::ShowHelp", true);
+
+    // Створюємо та показуємо діалог довідки модально
+    HelpDialog helpDlg(this); // Створюємо екземпляр діалогу
+    helpDlg.exec(); // Показуємо діалог і чекаємо, поки його закриють
+
+    appendLog("Вікно довідки закрито.");
+}
+
+
+// --- Допоміжні функції UI (без змін) ---
+// ... (showMessage, appendLog, loadUsername, displaySettingsInTreeDialog, displayFileContent) ...
 void MainWindow::showMessage(const QString& title, const QString& text, bool isWarning)
 {
     if (isWarning) { QMessageBox::warning(this, title, text); }
@@ -373,9 +386,12 @@ void MainWindow::showMessage(const QString& title, const QString& text, bool isW
 void MainWindow::appendLog(const QString& message)
 {
     QString timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-    ui->outputLogArea->appendPlainText(timestamp + " | " + message); // Додаємо текст в лог
-    // Автоматична прокрутка донизу
-    ui->outputLogArea->verticalScrollBar()->setValue(ui->outputLogArea->verticalScrollBar()->maximum());
+    if(ui->outputLogArea) {
+        ui->outputLogArea->appendPlainText(timestamp + " | " + message);
+        ui->outputLogArea->verticalScrollBar()->setValue(ui->outputLogArea->verticalScrollBar()->maximum());
+    } else {
+        qWarning() << "appendLog: ui->outputLogArea is null!";
+    }
 }
 
 void MainWindow::loadUsername()
@@ -393,30 +409,26 @@ void MainWindow::loadUsername()
     }
 }
 
-// Показує ВІДФІЛЬТРОВАНІ налаштування у новому діалоговому вікні з деревом
 void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const std::string& windowTitlePrefix)
 {
     QString qConfigPath = QString::fromStdWString(configPath.wstring());
     QString filename = QFileInfo(qConfigPath).fileName();
     std::string logActionNameBase = windowTitlePrefix;
-    // Прибираємо потенційні ": " в кінці для логування
     if (logActionNameBase.length() >= 2 && logActionNameBase.substr(logActionNameBase.length() - 2) == ": ") {
         logActionNameBase.resize(logActionNameBase.length() - 2);
     }
-    std::string logActionName = "MainWindow::Display" + logActionNameBase; // Формуємо назву дії для логу
+    std::string logActionName = "MainWindow::Display" + logActionNameBase;
 
     appendLog(QString("Спроба відображення відфільтрованих налаштувань: %1").arg(filename));
     m_logger.logAction(logActionName, true, "Attempting to display filtered " + filename.toStdString());
 
-    // Валідація файлу перед показом (використовуємо допоміжний метод)
-    if (!m_fileValidator.validateBeforeAction(configPath, "Перегляд налаштувань", false)) { // false - не показувати успіх
+    if (!m_fileValidator.validateBeforeAction(configPath, "Перегляд налаштувань", false)) {
         appendLog("Перевірка файлу перед показом налаштувань не пройдена або скасована.");
         m_logger.logAction(logActionName, false, "Pre-display validation failed or cancelled: " + filename.toStdString());
         return;
     }
 
     try {
-        // Отримуємо відфільтровані дані з ConfigEditor
         FilteredSettingsMap settings = m_configEditor.getFilteredSettings(configPath);
 
         if (settings.empty()) {
@@ -426,27 +438,21 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
             return;
         }
 
-        // Створюємо нове діалогове вікно
         QDialog *dialog = new QDialog(this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose); // Автоматично видалить вікно при закритті
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->setWindowTitle(QString::fromStdString(windowTitlePrefix) + filename);
-        dialog->setMinimumSize(600, 500); // Збільшимо мінімальний розмір
+        dialog->setMinimumSize(600, 500);
 
         QVBoxLayout *layout = new QVBoxLayout(dialog);
 
-        // Створюємо дерево
         QTreeWidget *treeWidget = new QTreeWidget(dialog);
-        treeWidget->setColumnCount(2); // Дві колонки
+        treeWidget->setColumnCount(2);
         treeWidget->setHeaderLabels(QStringList() << "Налаштування" << "Значення");
-        treeWidget->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents); // Автоширина першої колонки
-        treeWidget->header()->setStretchLastSection(true); // Друга колонка розтягується
+        treeWidget->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+        treeWidget->header()->setStretchLastSection(true);
         treeWidget->setAlternatingRowColors(true);
 
-        // --- Мапа для зрозумілих імен (Тимчасове рішення для MainWindow) ---
-        // !!! КРАЩЕ РІШЕННЯ: Передати правила (SettingRulesMap) з ConfigEditDialog сюди,
-        // або винести ініціалізацію правил у спільне місце.
         std::map<std::string, std::string> nameMap;
-        // Заповнюємо мапу (можна винести в окрему функцію)
         nameMap["masterVolume"] = "Загальна гучність";
         nameMap["volume_micVivox"] = "Гучність мікрофону (Vivox)";
         nameMap["volume_vehicles"] = "Гучність: Техніка";
@@ -495,7 +501,6 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
         nameMap["aspectRatio"] = "Співвідношення сторін";
         nameMap["gamma"] = "Гамма";
         nameMap["tripleBuffering"] = "Потрійна буферизація";
-        // Додайте сюди відповідності для режимів керування, якщо потрібно
         std::map<std::string, std::string> modeNamesUKR = {
             {"strategicMode", "Стратегічний"}, {"artyMode", "Арт-САУ"},
             {"arcadeMode", "Аркадний"}, {"sniperMode", "Снайперський"},
@@ -509,43 +514,38 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
             nameMap[modePair.first + "/sensitivity"] = modePrefix + "Чутливість миші";
             nameMap[modePair.first + "/scrollSensitivity"] = modePrefix + "Чутливість прокрутки";
         }
-        // --- Кінець мапи ---
 
-        // Заповнюємо дерево категоріями та налаштуваннями
         QFont categoryFont = treeWidget->font();
         categoryFont.setBold(true);
         for (const auto& categoryPair : settings) {
             QTreeWidgetItem *categoryItem = new QTreeWidgetItem(treeWidget);
-            categoryItem->setText(0, QString::fromStdString(categoryPair.first)); // Використовуємо назву категорії з FilteredSettingsMap
+            categoryItem->setText(0, QString::fromStdString(categoryPair.first));
             categoryItem->setFont(0, categoryFont);
             categoryItem->setExpanded(true);
 
             for (const auto& settingPair : categoryPair.second) {
-                std::string settingName = settingPair.first; // Технічне ім'я
+                std::string settingName = settingPair.first;
                 QString displayValue = QString::fromStdString(settingPair.second);
-                QString displayNameToShow = QString::fromStdString(settingName); // За замовчуванням
+                QString displayNameToShow = QString::fromStdString(settingName);
 
-                // Шукаємо зрозуміле ім'я в нашій мапі
                 if (nameMap.count(settingName)) {
                     displayNameToShow = QString::fromStdString(nameMap[settingName]);
                 }
 
-                QTreeWidgetItem *settingItem = new QTreeWidgetItem(categoryItem); // Додаємо як дочірній
-                settingItem->setText(0, displayNameToShow); // Ім'я для показу
-                settingItem->setText(1, displayValue);  // Значення
-                // У цьому вікні редагування немає, тому UserRole не потрібне
+                QTreeWidgetItem *settingItem = new QTreeWidgetItem(categoryItem);
+                settingItem->setText(0, displayNameToShow);
+                settingItem->setText(1, displayValue);
             }
         }
 
         layout->addWidget(treeWidget);
 
-        // Кнопка закриття
         QPushButton *closeButton = new QPushButton("Закрити", dialog);
         connect(closeButton, &QPushButton::clicked, dialog, &QDialog::accept);
         layout->addWidget(closeButton);
 
         dialog->setLayout(layout);
-        dialog->show(); // Показуємо немодально
+        dialog->show();
 
         appendLog(QString("Відфільтровані налаштування з '%1' відображено.").arg(filename));
         m_logger.logAction("ConfigEditor::getFilteredSettings", true, "Displayed filtered settings for " + filename.toStdString());
@@ -559,74 +559,7 @@ void MainWindow::displaySettingsInTreeDialog(const fs::path& configPath, const s
     }
 }
 
-// Показує ПОВНИЙ вміст файлу у новому діалоговому вікні
-void MainWindow::displayFileContent(const QString& filePath, const QString& logActionName)
-{
-    QFile file(filePath);
-    QString filename = QFileInfo(filePath).fileName();
-    fs::path fsPath = filePath.toStdWString();
-
-    appendLog(QString("Спроба відображення повного вмісту файлу: %1").arg(filename));
-    m_logger.logAction(logActionName.toStdString(), true, "Attempting to display FULL content of " + filename.toStdString());
-
-    if (!file.exists()) {
-        QString errorMsg = QString("Файл не знайдено: %1").arg(filename);
-        appendLog(errorMsg); showMessage("Помилка читання", errorMsg, true);
-        m_logger.logAction(logActionName.toStdString(), false, "File not found: " + filename.toStdString());
-        return;
-    }
-
-    // --- Валідація перед показом (просто перевірка на XML) ---
-    try {
-        ValidationResult valResult = m_fileValidator.validateFile(fsPath);
-        if (!valResult.isValid()) { // Якщо XML некоректний
-            QString errorMsg = QString("Файл '%1' не є коректним XML і не може бути відображений: %2")
-                                   .arg(filename).arg(QString::fromStdString(valResult.wellFormedError));
-            appendLog(errorMsg); showMessage("Помилка формату", errorMsg, true);
-            m_logger.logAction(logActionName.toStdString(), false, "Not well-formed XML: " + filename.toStdString());
-            return; // Не показуємо некоректний XML
-        }
-    } catch (const std::exception& e) {
-        appendLog(QString("Помилка під час валідації файлу '%1' перед показом повного вмісту: %2").arg(filename).arg(e.what()));
-        m_logger.logAction("FileValidator::validateFile", false, "Exception during validation for full display: " + std::string(e.what()));
-        // Спробуємо показати все одно
-    }
-    // --- Кінець валідації ---
-
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        QString content = in.readAll();
-        file.close();
-
-        // Створення та показ діалогового вікна
-        QDialog *displayDialog = new QDialog(this);
-        displayDialog->setAttribute(Qt::WA_DeleteOnClose);
-        displayDialog->setWindowTitle(QString("Повний Вміст Файлу: %1").arg(filename));
-        QVBoxLayout *layout = new QVBoxLayout(displayDialog);
-        QPlainTextEdit *textEdit = new QPlainTextEdit(displayDialog);
-        textEdit->setPlainText(content);
-        textEdit->setReadOnly(true);
-        textEdit->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
-        textEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
-        layout->addWidget(textEdit);
-        QPushButton *closeButton = new QPushButton("Закрити", displayDialog);
-        connect(closeButton, &QPushButton::clicked, displayDialog, &QDialog::accept);
-        layout->addWidget(closeButton);
-        displayDialog->setLayout(layout);
-        displayDialog->resize(700, 500);
-        displayDialog->show();
-
-        appendLog(QString("Повний вміст файлу '%1' відображено у окремому вікні.").arg(filename));
-        m_logger.logAction(logActionName.toStdString(), true, "Displayed FULL content for " + filename.toStdString());
-
-    } else {
-        QString errorMsg = QString("Не вдалося відкрити файл '%1' для читання.").arg(filename);
-        appendLog(errorMsg); showMessage("Помилка читання", errorMsg, true);
-        m_logger.logAction(logActionName.toStdString(), false, "Failed to open file: " + filename.toStdString());
-    }
-}
-
-// Допоміжна функція для вибору файлу резервної копії
+// Допоміжні функції для вибору файлів (без змін)
 QString MainWindow::selectBackupFile()
 {
     fs::path backupDir = "Restored Configs";
@@ -637,7 +570,6 @@ QString MainWindow::selectBackupFile()
                                         "XML files (*.xml)");
 }
 
-// Допоміжна функція для вибору файлу конфігурації користувача
 QString MainWindow::selectUserConfigFile()
 {
     fs::path userDir = "User Configs";
@@ -648,7 +580,6 @@ QString MainWindow::selectUserConfigFile()
                                         "XML files (*.xml)");
 }
 
-// Допоміжна функція для вибору файлу для валідації
 QString MainWindow::selectFileToValidate()
 {
     return QFileDialog::getOpenFileName(this,
@@ -657,7 +588,7 @@ QString MainWindow::selectFileToValidate()
                                         "XML files (*.xml);;All files (*)");
 }
 
-// Допоміжна функція для формування рядка-резюме результату валідації
+// Допоміжні функції для відображення результатів валідації (без змін)
 QString MainWindow::formatValidationSummary(const ValidationResult& result)
 {
     if (!result.isWellFormed) return "Помилка: Некоректний XML. " + QString::fromStdString(result.wellFormedError);
@@ -671,7 +602,6 @@ QString MainWindow::formatValidationSummary(const ValidationResult& result)
     return summary;
 }
 
-// Допоміжна функція для показу результатів валідації у QMessageBox
 void MainWindow::displayValidationResult(const ValidationResult& result, const QString& filename)
 {
     QString details = formatValidationSummary(result) + "\n";
@@ -694,8 +624,8 @@ void MainWindow::displayValidationResult(const ValidationResult& result, const Q
     QMessageBox msgBox;
     msgBox.setWindowTitle("Результат валідації: " + filename);
     msgBox.setText(details);
-    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse); // Дозволити копіювання тексту
-    msgBox.setIcon(result.isValid() ? QMessageBox::Information : QMessageBox::Warning); // Warning якщо є попередження, але XML валідний
-    if (!result.isWellFormed) msgBox.setIcon(QMessageBox::Critical); // Critical якщо XML невалідний
+    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse);
+    msgBox.setIcon(result.isValid() ? QMessageBox::Information : QMessageBox::Warning);
+    if (!result.isWellFormed) msgBox.setIcon(QMessageBox::Critical);
     msgBox.exec();
 }
