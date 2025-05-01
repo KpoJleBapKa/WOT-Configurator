@@ -28,33 +28,33 @@ void HelpDialog::setupUi()
     helpTextBrowser = new QTextBrowser(this);
     helpTextBrowser->setReadOnly(true);
     helpTextBrowser->setOpenExternalLinks(true);
-    helpTextBrowser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // Дозволяємо розтягування
+    helpTextBrowser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     // Кнопка закриття
     closeButton = new QPushButton("Закрити", this);
     closeButton->setMinimumHeight(30);
-    connect(closeButton, &QPushButton::clicked, this, &QDialog::accept); // Підключаємо до стандартного слоту закриття
+    connect(closeButton, &QPushButton::clicked, this, &QDialog::accept);
 
-    // Layout для кнопки (щоб вона була внизу і, можливо, праворуч)
+    // Layout для кнопки
     QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum)); // Розпірка зліва
-    buttonLayout->addWidget(closeButton); // Додаємо кнопку
+    buttonLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    buttonLayout->addWidget(closeButton);
 
     // Додаємо елементи в головний layout
-    mainLayout->addWidget(helpTextBrowser); // Текстове поле
-    mainLayout->addLayout(buttonLayout);    // Layout з кнопкою
+    mainLayout->addWidget(helpTextBrowser);
+    mainLayout->addLayout(buttonLayout);
 
-    this->setLayout(mainLayout); // Встановлюємо layout для діалогу
+    this->setLayout(mainLayout);
 }
 
-// --- Заповнення тексту довідки ---
+// --- Заповнення тексту довідки (ОНОВЛЕНО) ---
 void HelpDialog::populateHelpText()
 {
-    // Текст довідки (такий самий, як і раніше, можна змінити)
+    // Додаємо опис нової кнопки та новий пункт FAQ
     QString helpContent = R"(
         <h1>Довідка та Часті Питання (FAQ)</h1>
-        <p>Ласкаво просимо до програми WOT Settings!</p>
-        <p>Конфігураційний файл (preferences.xml) - файл, який зберігає в собі налаштування гри World of Tanks</p>
+        <p>Ласкаво прошу до програми WOT Settings!</p>
+        <p>Конфігураційний файл (preferences.xml) - файл, який зберігає в собі налаштування гри World of Tanks.</p>
 
         <h2>Як користуватися програмою:</h2>
         <ul>
@@ -68,6 +68,7 @@ void HelpDialog::populateHelpText()
             <li><b>Застосувати конфіг користувача:</b> Дозволяє вибрати конфігураційний файл `.xml` з папки `User Configs` (або з будь-якої іншої директорії) та **замінити** ним поточний файл налаштувань гри (`preferences.xml`). <strong>Увага:</strong> Ця дія перезаписує ваші ігрові налаштування!</li>
             <li><b>Переглянути поточний конфіг гри:</b> Показує відфільтровані налаштування з поточного конфігураційного файлу `preferences.xml` (тільки для читання).</li>
             <li><b>Валідація конфігу:</b> Дозволяє вибрати будь-який `.xml` файл і перевірити його на коректність формату та наявність очікуваної структури.</li>
+            <li><b>Статистика гравця:</b> Відкриває нове вікно, де можна ввести нікнейм гравця та отримати його основну статистику (кількість боїв, відсоток перемог, середню шкоду тощо) за допомогою офіційного Wargaming API.</li>
             <li><b>Вихід:</b> Закриває програму.</li>
         </ul>
 
@@ -76,7 +77,7 @@ void HelpDialog::populateHelpText()
         <p>В: Зазвичай він знаходиться у папці <code>%APPDATA%\Wargaming.net\WorldOfTanks\</code> (де <code>%APPDATA%</code> - це системна папка, наприклад, <code>C:\Users\ВашеІм'я\AppData\Roaming</code>).</p>
 
         <p><b>П: Чи може ця програма зламати мою гру?</b></p>
-        <p>В: Програма лише редагує файл налаштувань. Некоректні значення можуть призвести до скидання налаштувань гри до стандартних або непередбачуваної поведінки гри. Завжди робіть резервну копію перед редагуванням або застосуванням конфігів.</p>
+        <p>В: При роботі з конфігураційним файлом програма лише редагує його. Некоректні значення можуть призвести до скидання налаштувань гри до стандартних. Завжди робіть резервну копію перед редагуванням або застосуванням конфігів. Функція статистики лише читає дані з серверів Wargaming і не впливає на ваш акаунт чи гру.</p>
 
         <p><b>П: Чому я не бачу всіх налаштувань гри при редагуванні?</b></p>
         <p>В: Програма показує та дозволяє редагувати лише певну, відому їй підмножину налаштувань для спрощення інтерфейсу та зменшення ризику помилок.</p>
@@ -84,8 +85,11 @@ void HelpDialog::populateHelpText()
         <p><b>П: Де зберігаються резервні копії та конфіги користувача?</b></p>
         <p>В: У підпапках програми: `Restored Configs` для резервних копій, `User Configs` для ваших власних конфігураційних файлів.</p>
 
+        <p><b>П: Як працює функція статистики? Чи потрібен API ключ?</b></p>
+        <p>В: Функція використовує публічне Wargaming API для отримання даних. У цій версії програми API ключ вже вбудований. Програма надсилає запити до серверів Wargaming, щоб знайти ID гравця за нікнеймом, а потім його статистику.</p>
+
         <hr>
-        <p><i>Версія програми: 0.12</i></p>
+        <p><i>Версія програми: 0.13</i></p>
     )";
 
     helpTextBrowser->setHtml(helpContent);

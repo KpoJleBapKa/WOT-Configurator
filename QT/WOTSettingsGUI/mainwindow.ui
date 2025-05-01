@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>600</height>
+    <width>579</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,73 +17,17 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>200</y>
-      <width>401</width>
-      <height>301</height>
+      <x>0</x>
+      <y>600</y>
+      <width>581</width>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="createBackupButton">
-       <property name="text">
-        <string>Створити резервну копію</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="restoreBackupButton">
-       <property name="text">
-        <string>Відновити налаштування з резервної копії</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="showUsernameButton">
-       <property name="text">
-        <string>Показати поточний нік-нейм</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="showConfigButton">
-       <property name="text">
-        <string>Вибрати та показати налаштування конфігураційного файлу</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="editConfigButton">
-       <property name="text">
-        <string>Внести зміни в конфігураційний файл</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="changeConfigButton">
-       <property name="text">
-        <string>Замінити поточний конфігураційний файл</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="checkCurrentConfigButton">
-       <property name="text">
-        <string>Показати налаштування поточного конфігураційного файлу</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="validateConfigButton">
-       <property name="text">
-        <string>Вибрати та провести валідацію конфігураційного файлу</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="exitButton">
        <property name="text">
-        <string>Exit</string>
+        <string>Вийти</string>
        </property>
       </widget>
      </item>
@@ -95,14 +39,19 @@
       <x>0</x>
       <y>0</y>
       <width>291</width>
-      <height>91</height>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Логи</string>
+        <string> Логи</string>
        </property>
       </widget>
      </item>
@@ -127,12 +76,17 @@
       <x>350</x>
       <y>0</y>
       <width>231</width>
-      <height>108</height>
+      <height>136</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Налаштування</string>
        </property>
@@ -162,6 +116,171 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="font">
+        <font>
+         <family>Segoe Print</family>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>by KpoJleBapKa </string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>160</y>
+      <width>581</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Резервна копія</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createBackupButton">
+       <property name="text">
+        <string>Створити резервну копію</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="restoreBackupButton">
+       <property name="text">
+        <string>Відновити налаштування з резервної копії</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>280</y>
+      <width>581</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Редагування/відображення/перевірка налаштувань</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="showConfigButton">
+       <property name="text">
+        <string>Вибрати та показати налаштування конфігураційного файлу</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editConfigButton">
+       <property name="text">
+        <string>Внести зміни в конфігураційний файл</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="checkCurrentConfigButton">
+       <property name="text">
+        <string>Показати налаштування поточного конфігураційного файлу</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="changeConfigButton">
+       <property name="text">
+        <string>Замінити поточний конфігураційний файл</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="validateConfigButton">
+       <property name="text">
+        <string>Вибрати та провести валідацію конфігураційного файлу</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>489</y>
+      <width>581</width>
+      <height>79</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Інше</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="showUsernameButton">
+       <property name="text">
+        <string>Показати поточний нік-нейм</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="statsButton">
+       <property name="text">
+        <string>Пошук статистики за нік-неймом</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -170,7 +289,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>582</width>
+     <width>579</width>
      <height>21</height>
     </rect>
    </property>

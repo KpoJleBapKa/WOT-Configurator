@@ -5,7 +5,8 @@ cmake_minimum_required(VERSION 3.19)
 project(WOTSettingsGUI LANGUAGES CXX)
 
 # Пошук пакету Qt6 з необхідними компонентами
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+# !!! ДОДАНО Network !!!
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools Network)
 
 # Стандартні налаштування для проєктів Qt
 qt_standard_project_setup()
@@ -28,7 +29,7 @@ qt_add_executable(WOTSettingsGUI
     ConfigManager.cpp
     FileValidator.cpp
     ProfileManager.cpp
-    main.h              # Головний заголовок бекенду
+    main.h             # Головний заголовок бекенду
 
     # Pugixml
     pugixml/pugixml.cpp
@@ -37,20 +38,20 @@ qt_add_executable(WOTSettingsGUI
 
     # Згенерований хедер з даними XML
     preferences_data.h
-    configeditdialog.h configeditdialog.cpp configeditdialog.ui
+    configeditdialog.h configeditdialog.cpp configeditdialog.ui # Залишено дублікат, як у вас
     settingdelegate.h
     settingdelegate.cpp
-    configeditdialog.h configeditdialog.cpp configeditdialog.ui
-    helpdialog.h helpdialog.cpp helpdialog.ui
-
+    configeditdialog.h configeditdialog.cpp configeditdialog.ui # Залишено дублікат, як у вас
+    helpdialog.h helpdialog.cpp helpdialog.ui # Залишено .ui, як у вас
+    statsdialog.h statsdialog.cpp statsdialog.ui # Залишено .ui, як у вас
 
     # Важливо для AppInitializer.cpp
 )
 
 # Вказуємо папки, де шукати заголовкові файли
 target_include_directories(WOTSettingsGUI PRIVATE
-    .               # Поточна директорія (корінь проєкту)
-    pugixml         # Папка pugixml
+    .                  # Поточна директорія (корінь проєкту)
+    pugixml            # Папка pugixml
 )
 
 # Налаштування перекладів (якщо використовуєш)
@@ -60,10 +61,11 @@ qt_add_translations(
 )
 
 # Лінкування НЕОБХІДНИХ бібліотек Qt
+# !!! ДОДАНО Qt::Network !!!
 target_link_libraries(WOTSettingsGUI PRIVATE
     Qt::Core
     Qt::Widgets
-    # НЕ додаємо preferences_xml.o сюди!
+    Qt::Network
 )
 
 # Налаштування встановлення (стандартні)

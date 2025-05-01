@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"     // Підключення згенерованого UI
 #include "helpdialog.h"        // <-- ВКЛЮЧЕНО helpdialog.h
+#include "statsdialog.h"
 
 // Включаємо необхідні заголовки Qt
 #include <QDateTime>
@@ -17,7 +18,8 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QHeaderView>
-#include <QDebug> // Для qWarning
+#include <QStackedWidget>
+#include <QDebug>
 
 // --- Конструктор (Без змін, пов'язаних з HelpDialog) ---
 MainWindow::MainWindow(QWidget *parent)
@@ -70,6 +72,11 @@ void MainWindow::setupConnections()
         connect(ui->helpButton, &QPushButton::clicked, this, &MainWindow::onHelpButtonClicked);
     } else {
         qWarning() << "setupConnections: ui->helpButton is null!";
+    }
+    if (ui->statsButton) {
+        connect(ui->statsButton, &QPushButton::clicked, this, &MainWindow::onStatsButtonClicked);
+    } else {
+        qWarning() << "setupConnections: ui->statsButton is null!";
     }
     // --- Кінець з'єднання для довідки ---
 }
@@ -374,6 +381,18 @@ void MainWindow::onHelpButtonClicked()
     appendLog("Вікно довідки закрито.");
 }
 
+void MainWindow::onStatsButtonClicked()
+{
+    appendLog("Відкриття вікна статистики гравця...");
+    m_logger.logAction("MainWindow::ShowStats", true);
+
+    // Створюємо та показуємо діалог статистики модально
+    StatsDialog statsDlg(this); // Створюємо екземпляр діалогу
+    statsDlg.exec(); // Показуємо діалог і чекаємо, поки його закриють
+
+    appendLog("Вікно статистики гравця закрито.");
+    // Логування результату пошуку відбувається всередині StatsDialog
+}
 
 // --- Допоміжні функції UI (без змін) ---
 // ... (showMessage, appendLog, loadUsername, displaySettingsInTreeDialog, displayFileContent) ...

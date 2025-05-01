@@ -21,6 +21,7 @@ class QFontDatabase;
 class QTreeWidget;
 class QTreeWidgetItem;
 class QHeaderView;
+class QStackedWidget;
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
@@ -52,6 +53,7 @@ private slots:
 
     // --- НОВИЙ СЛОТ ---
     void onHelpButtonClicked(); // Слот для кнопки "Довідка"
+    void onStatsButtonClicked();
 
 private:
     Ui::MainWindow *ui;
