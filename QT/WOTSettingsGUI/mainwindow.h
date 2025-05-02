@@ -54,6 +54,7 @@ private slots:
     // --- НОВИЙ СЛОТ ---
     void onHelpButtonClicked(); // Слот для кнопки "Довідка"
     void onStatsButtonClicked();
+    void onAIChatButtonClicked();   // Слот для кнопки "AI Помічник"
 
 private:
     Ui::MainWindow *ui;

@@ -43,7 +43,8 @@ qt_add_executable(WOTSettingsGUI
     settingdelegate.cpp
     configeditdialog.h configeditdialog.cpp configeditdialog.ui # Залишено дублікат, як у вас
     helpdialog.h helpdialog.cpp helpdialog.ui # Залишено .ui, як у вас
-    statsdialog.h statsdialog.cpp statsdialog.ui # Залишено .ui, як у вас
+    statsdialog.h statsdialog.cpp statsdialog.ui
+    aichatdialog.h aichatdialog.cpp aichatdialog.ui # Залишено .ui, як у вас
 
     # Важливо для AppInitializer.cpp
 )

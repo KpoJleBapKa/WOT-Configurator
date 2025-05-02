@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"     // Підключення згенерованого UI
 #include "helpdialog.h"        // <-- ВКЛЮЧЕНО helpdialog.h
 #include "statsdialog.h"
+#include "aichatdialog.h"
 
 // Включаємо необхідні заголовки Qt
 #include <QDateTime>
@@ -77,6 +78,11 @@ void MainWindow::setupConnections()
         connect(ui->statsButton, &QPushButton::clicked, this, &MainWindow::onStatsButtonClicked);
     } else {
         qWarning() << "setupConnections: ui->statsButton is null!";
+    }
+    if (ui->aiChatButton) {
+        connect(ui->aiChatButton, &QPushButton::clicked, this, &MainWindow::onAIChatButtonClicked);
+    } else {
+        qWarning() << "setupConnections: ui->aiChatButton is null!";
     }
     // --- Кінець з'єднання для довідки ---
 }
@@ -392,6 +398,18 @@ void MainWindow::onStatsButtonClicked()
 
     appendLog("Вікно статистики гравця закрито.");
     // Логування результату пошуку відбувається всередині StatsDialog
+}
+
+void MainWindow::onAIChatButtonClicked()
+{
+    appendLog("Відкриття AI Помічника...");
+    m_logger.logAction("MainWindow::ShowAIChat", true);
+
+    // Створюємо та показуємо діалог AI модально
+    AIChatDialog aiDlg(this);
+    aiDlg.exec(); // Показуємо діалог і чекаємо, поки його закриють
+
+    appendLog("Вікно AI Помічника закрито.");
 }
 
 // --- Допоміжні функції UI (без змін) ---
