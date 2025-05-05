@@ -19,7 +19,6 @@
 #include <QScrollBar>
 #include <QDebug>
 
-// --- Конструктор ---
 AIChatDialog::AIChatDialog(QWidget *parent) :
     QDialog(parent),
     chatDisplay(nullptr),
@@ -29,8 +28,7 @@ AIChatDialog::AIChatDialog(QWidget *parent) :
     statusLabel(nullptr),
     networkManager(new QNetworkAccessManager(this))
 {
-    // !!! ЗАМІНІТЬ НА ВАШ СПРАВЖНІЙ API КЛЮЧ !!!
-    m_apiKey = "AIzaSyCDVA2LFFLTZF5Nuw-kqRtJNB3pYGOjv6M"; // <--- ВАШ КЛЮЧ GEMINI
+    m_apiKey = "AIzaSyCDVA2LFFLTZF5Nuw-kqRtJNB3pYGOjv6M";
 
     if (m_apiKey == "YOUR_API_KEY_HERE" || m_apiKey.isEmpty()) {
         qWarning() << "API Key is missing or is a placeholder in aichatdialog.cpp! AI features will not work.";
@@ -39,7 +37,7 @@ AIChatDialog::AIChatDialog(QWidget *parent) :
 
     m_apiUrl = QString("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=%1").arg(m_apiKey);
 
-    // --- ДОДАНО: Визначення базового промпту ---
+    // Визначення базового промпту
     m_basePrompt = "Ти - корисний AI-асистент для гравців World of Tanks. "
                    "Грати на САУ - дуже погано. "
                    "Універсальне обладнання для важкого, середнього танку - гарматний досилач, стабілізатор, поліпшене загартування/турбонагнітач. "
@@ -57,14 +55,13 @@ AIChatDialog::AIChatDialog(QWidget *parent) :
     setupUi();
 
     connect(sendButton, &QPushButton::clicked, this, &AIChatDialog::onSendButtonClicked);
-    connect(messageInput, &QLineEdit::returnPressed, this, &AIChatDialog::onSendButtonClicked); // Цей connect вже є і він правильний
+    connect(messageInput, &QLineEdit::returnPressed, this, &AIChatDialog::onSendButtonClicked);
     connect(closeButton, &QPushButton::clicked, this, &QDialog::accept);
     connect(networkManager, &QNetworkAccessManager::finished, this, &AIChatDialog::onNetworkReply);
 
     appendMessage("AI", "Привіт! Я AI Помічник. Запитуйте про World of Tanks.");
 }
 
-// --- Деструктор ---
 AIChatDialog::~AIChatDialog()
 {
     // networkManager видалиться автоматично
@@ -109,10 +106,7 @@ void AIChatDialog::setupUi()
 
     this->setLayout(mainLayout);
 
-    // --- ДОДАНО: Робимо кнопку "Надіслати" кнопкою за замовчуванням ---
     sendButton->setDefault(true);
-    // -------------------------------------------------------------------
-
     messageInput->setFocus(); // Встановлюємо фокус на поле вводу при відкритті
 }
 
@@ -124,7 +118,7 @@ void AIChatDialog::onSendButtonClicked()
     if (userMessage.isEmpty() || !sendButton->isEnabled()) {
         return;
     }
-    // Також перевіряємо наявність ключа ще раз
+    // Також перевіряємо наявність ключа ще раз, lol
     if (m_apiKey == "YOUR_API_KEY_HERE" || m_apiKey.isEmpty()) {
         QMessageBox::warning(this, "Помилка", "API ключ не налаштовано.");
         return;
@@ -168,27 +162,18 @@ void AIChatDialog::sendMessageToAPI(const QString &message)
     QJsonArray partsArray;
     QJsonObject part;
 
-    // !!! ДОДАНО: Формуємо повний текст запиту з базовим промптом !!!
     QString fullPrompt = m_basePrompt + message;
     part["text"] = fullPrompt; // Надсилаємо базовий промпт разом із запитанням
 
     partsArray.append(part);
     content["parts"] = partsArray;
-    // Зазвичай для одного запиту використовується роль "user"
-    // content["role"] = "user"; // Можна додати, якщо API вимагає
     contentsArray.append(content);
     requestBody["contents"] = contentsArray;
-
-    // Налаштування генерації (опціонально)
-    // QJsonObject generationConfig;
-    // generationConfig["temperature"] = 0.7;
-    // requestBody["generationConfig"] = generationConfig;
 
     QJsonDocument doc(requestBody);
     QByteArray jsonData = doc.toJson();
 
     qInfo() << "Sending API Request to Gemini with base prompt...";
-    // qInfo() << "Request Body:" << jsonData; // Для відладки
 
     networkManager->post(request, jsonData);
 }
@@ -258,7 +243,6 @@ QString AIChatDialog::parseGeminiResponse(const QByteArray& jsonData) {
             {
                 QString reason = firstCandidate["finishReason"].toString();
                 qWarning() << "AI Response potentially blocked. Finish Reason:" << reason;
-                // Можна додати обробку ratings, якщо потрібно більше деталей про причину блокування
                 return QString("[Відповідь не завершена або заблокована (Причина: %1)]").arg(reason);
             }
 

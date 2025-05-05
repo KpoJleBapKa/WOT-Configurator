@@ -16,7 +16,7 @@ class HelpDialog : public QDialog
 
 public:
     explicit HelpDialog(QWidget *parent = nullptr);
-    // Деструктор не потрібен для програмно створених віджетів
+    // Деструктор не потрібен для програмно створених віджетів (lol)
 
 private:
     // Віджети

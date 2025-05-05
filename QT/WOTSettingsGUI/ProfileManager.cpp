@@ -10,12 +10,11 @@ namespace fs = std::filesystem;
 const fs::path userDataDir = "User Data";
 const fs::path userdataFile = userDataDir / "userdata.txt";
 
-// ЗМІНЕНО: Приймає ім'я, зберігає у файл, кидає виняток при помилці
+// Приймає ім'я, зберігає у файл, кидає виняток при помилці
 void ProfileManager::setName(const std::string& name) {
     saveNameToFile(name); // Викликаємо приватний метод
 }
 
-// ЗМІНЕНО: Зроблено приватним
 void ProfileManager::saveNameToFile(const std::string& name) {
     try {
         if (!fs::exists(userDataDir)) {
@@ -40,7 +39,7 @@ void ProfileManager::saveNameToFile(const std::string& name) {
     }
 }
 
-// ЗМІНЕНО: Повертає ім'я або порожній рядок, не використовує std::cout
+// Повертає ім'я або порожній рядок, не використовує std::cout
 std::string ProfileManager::loadNameFromFile() {
     if (!fs::exists(userdataFile)) {
         return ""; // Файл не знайдено - це не помилка, імені просто немає
@@ -57,4 +56,3 @@ std::string ProfileManager::loadNameFromFile() {
     return loadedName;
 }
 
-// Метод showName() видалено, оскільки його логіка тепер у MainWindow

@@ -1,5 +1,5 @@
 #include "main.h" // Головний заголовок (містить оголошення FileValidator та ValidationResult)
-#include "pugixml/pugixml.hpp" // Включаємо pugixml ТУТ
+#include "pugixml/pugixml.hpp"
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -9,9 +9,8 @@
 #include <QMessageBox> // Для вікон повідомлень у validateBeforeAction
 #include <QString>     // Для роботи з QMessageBox
 
-// НЕ використовуємо "using namespace std;"
 
-// --- Допоміжні функції парсингу (залишаємо як є) ---
+// --- Допоміжні функції парсингу ---
 namespace { // Анонімний простір імен для локальних допоміжних функцій
 bool tryParseFloat(const char* text, float& outValue) {
     if (!text) return false;
@@ -168,7 +167,7 @@ bool FileValidator::hasExpectedStructureInternal(const pugi::xml_document& doc, 
         structureOk = false;
     }
 
-    // Додаткові перевірки (якщо потрібно)
+    // Додаткові перевірки
     const pugi::xml_node scriptsPrefs = root.child("scriptsPreferences");
     if (scriptsPrefs && !scriptsPrefs.child("soundPrefs")) {
         warningStream << "Відсутня підсекція <soundPrefs> всередині <scriptsPreferences>. ";

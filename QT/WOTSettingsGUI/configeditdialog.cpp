@@ -1,5 +1,5 @@
 #include "configeditdialog.h"
-#include "ui_configeditdialog.h" // Переконайтесь, що цей файл згенеровано Qt Designer
+#include "ui_configeditdialog.h"
 #include "settingdelegate.h"
 #include "main.h"
 
@@ -24,7 +24,7 @@
 #include <QSizePolicy>
 #include <QSpacerItem>
 
-// --- Функція валідації check_setting_value_local (Без змін) ---
+// валідатіон
 namespace {
 bool ends_with_compat(const std::string& str, const std::string& suffix) {
     return str.size() >= suffix.size() &&
@@ -32,7 +32,6 @@ bool ends_with_compat(const std::string& str, const std::string& suffix) {
 };
 
 bool check_setting_value_local(const std::string& settingName, const QString& qValue, const SettingRule& rule) {
-    // ... (код функції без змін) ...
     std::string value = qValue.toStdString();
     bool ok = false;
     QLocale locale = QLocale::system();
@@ -65,7 +64,6 @@ bool check_setting_value_local(const std::string& settingName, const QString& qV
 }
 } // кінець анонімного простору імен
 
-// --- Конструктор (Без змін відносно попередньої версії) ---
 ConfigEditDialog::ConfigEditDialog(const FilteredSettingsMap& currentSettings,
                                    const fs::path& filePath,
                                    QWidget *parent) :
@@ -75,7 +73,6 @@ ConfigEditDialog::ConfigEditDialog(const FilteredSettingsMap& currentSettings,
     m_currentSettings(currentSettings),
     m_settingDelegate(nullptr)
 {
-    // ... (код конструктора без змін, як у попередній відповіді) ...
     ui->setupUi(this);
 
     QSizePolicy treePolicy = ui->settingsTreeWidget->sizePolicy();
@@ -119,13 +116,12 @@ ConfigEditDialog::ConfigEditDialog(const FilteredSettingsMap& currentSettings,
     connect(ui->cancelButton, &QPushButton::clicked, this, &QDialog::reject);
 }
 
-// --- Деструктор (Без змін) ---
 ConfigEditDialog::~ConfigEditDialog()
 {
     delete ui;
 }
 
-// --- Ініціалізація правил (ОНОВЛЕНО: додано більше displayName для графіки) ---
+// Налаштування
 void ConfigEditDialog::initializeValidationRules() {
     m_rules.clear();
 
@@ -140,7 +136,7 @@ void ConfigEditDialog::initializeValidationRules() {
     m_rules["volume_voice"] = SettingRule(SettingType::FLOAT, 0.0, 1.0, "Гучність: Голосові повідомлення");
     m_rules["soundMode"] = SettingRule(SettingType::NON_EDITABLE, "Режим звуку");
 
-    // --- Graphics Settings (Додано більше перекладів) ---
+    // --- Graphics Settings ---
     m_rules["graphicsSettingsVersion"] = SettingRule(SettingType::NON_EDITABLE, "Версія налаштувань графіки");
     m_rules["graphicsSettingsVersionMinor"] = SettingRule(SettingType::NON_EDITABLE, "Мінорна версія нал. графіки");
     m_rules["graphicsSettingsVersionMaintainance"] = SettingRule(SettingType::NON_EDITABLE, "Патч версія нал. графіки");
@@ -211,9 +207,8 @@ void ConfigEditDialog::initializeValidationRules() {
     m_rules["tripleBuffering"] = SettingRule(SettingType::BOOL_TF, "Потрійна буферизація");
 }
 
-// --- populateTree (Без змін відносно попередньої версії) ---
+// populateTree
 void ConfigEditDialog::populateTree() {
-    // ... (код populateTree з використанням UserRole, як у попередній відповіді) ...
     ui->settingsTreeWidget->clear();
     QFont categoryFont = ui->settingsTreeWidget->font();
     categoryFont.setBold(true);
@@ -270,14 +265,11 @@ void ConfigEditDialog::populateTree() {
     ui->settingsTreeWidget->resizeColumnToContents(0);
 }
 
-// --- getUpdatedSettings (Без змін) ---
 FilteredSettingsMap ConfigEditDialog::getUpdatedSettings() const {
     return m_currentSettings;
 }
 
-// --- collectSettingsFromTree (Без змін відносно попередньої версії) ---
 bool ConfigEditDialog::collectSettingsFromTree() {
-    // ... (код collectSettingsFromTree з використанням UserRole, як у попередній відповіді) ...
     FilteredSettingsMap updatedSettings;
     QTreeWidget *tree = ui->settingsTreeWidget;
     for (int i = 0; i < tree->topLevelItemCount(); ++i) {
@@ -309,9 +301,7 @@ bool ConfigEditDialog::collectSettingsFromTree() {
 }
 
 
-// --- finalValidationCheck (Без змін відносно попередньої версії) ---
 bool ConfigEditDialog::finalValidationCheck() {
-    // ... (код finalValidationCheck з використанням UserRole, як у попередній відповіді) ...
     QStringList validationErrors;
     QTreeWidget *tree = ui->settingsTreeWidget;
     bool allValid = true;
@@ -359,7 +349,6 @@ bool ConfigEditDialog::finalValidationCheck() {
     return true;
 }
 
-// --- Слот для кнопки "Зберегти" (Без змін відносно попередньої версії, з валідацією) ---
 void ConfigEditDialog::onSaveClicked()
 {
     if (!collectSettingsFromTree()) {

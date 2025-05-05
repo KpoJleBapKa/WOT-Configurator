@@ -23,7 +23,7 @@ fs::path BackupManager::getGameConfigPath() {
     return appDataDir / "Wargaming.net" / "WorldOfTanks" / "preferences.xml";
 }
 
-// ЗМІНЕНО: Повертає шлях до створеного бекапу або кидає виняток
+// Повертає шлях до створеного бекапу або кидає виняток
 fs::path BackupManager::createBackup() {
     fs::path sourcePath = getGameConfigPath();
 
@@ -69,7 +69,7 @@ fs::path BackupManager::createBackup() {
     }
 }
 
-// ЗМІНЕНО: Приймає шлях до файлу бекапу, кидає виняток при помилці
+// Приймає шлях до файлу бекапу, кидає виняток при помилці
 void BackupManager::restoreFromBackup(const fs::path& backupPath) {
     // Логіка вибору файлу тепер у MainWindow
     // Валідація файлу backupPath також відбувається в MainWindow перед викликом
@@ -96,10 +96,7 @@ void BackupManager::restoreFromBackup(const fs::path& backupPath) {
     }
 }
 
-// Цей метод поки не використовується в GUI
 void BackupManager::manageBackupSpace() {
-    // Тут може бути логіка для видалення старих бекапів
-    // Наприклад, залишити тільки N останніх файлів
+    // Тут може бути логіка для видалення старих бекапів, але пофік, вручну можна видалити
     // std::cerr << "Warning: manageBackupSpace() is not implemented." << std::endl;
-    throw std::runtime_error("Функція manageBackupSpace не реалізована.");
 }

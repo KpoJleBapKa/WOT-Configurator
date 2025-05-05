@@ -2,10 +2,8 @@
 #include <vector>
 #include <fstream>
 #include <stdexcept> // Для std::runtime_error
-#include <iostream> // Можна залишити для std::cerr у винятках, якщо потрібно
+#include <iostream>
 #include "preferences_data.h" // Включаємо дані
-
-// НЕ використовуємо "using namespace std;" у .cpp файлах без потреби
 
 void AppInitializer::checkFolders() {
     // Список папок, які мають існувати
@@ -18,7 +16,7 @@ void AppInitializer::checkFolders() {
             if (!fs::exists(folder)) {
                 fs::create_directory(folder);
                 // Видалено std::cout << "Created '" << folder << "' directory." << std::endl;
-                // Логування створення папки тепер може робити MainWindow або ChangeTracker
+                // Логування створення папки тепер в ChangeTracker
             }
         }
 
@@ -51,13 +49,11 @@ void AppInitializer::checkFolders() {
     }
 }
 
-// Ці методи залишаються як заглушки, якщо вони не роблять нічого критичного
+// Ці методи залишаються як заглушки (лєгєнди)
 void AppInitializer::loadInitialSettings() {
-    // Видалено std::cout << "Loading initial settings..." << std::endl;
-    // Тут може бути логіка завантаження початкових налаштувань програми
+    // std::cout << "Loading initial settings..." << std::endl;
 }
 
 void AppInitializer::initializeComponents() {
-    // Видалено std::cout << "Initializing components..." << std::endl;
-    // Тут може бути ініціалізація інших компонентів
+    // std::cout << "Initializing components..." << std::endl;
 }

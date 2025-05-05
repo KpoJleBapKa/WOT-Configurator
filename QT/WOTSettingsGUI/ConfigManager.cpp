@@ -1,12 +1,11 @@
 #include "main.h" // Головний заголовок
 #include <fstream>
 #include <sstream>
-#include <vector>  // Можливо, знадобиться для майбутніх функцій
+#include <vector>
 #include <cstdlib> // Для getenv
 #include <stdexcept> // Для std::runtime_error
 #include <iostream> // Для std::cerr (опційно)
 
-// НЕ використовуємо "using namespace std;"
 
 // Внутрішня допоміжна функція
 fs::path ConfigManager::getGameConfigPathInternal() {
@@ -21,12 +20,12 @@ fs::path ConfigManager::getGameConfigPathInternal() {
     return appDataDir / "Wargaming.net" / "WorldOfTanks" / "preferences.xml";
 }
 
-// НОВИЙ МЕТОД: Повертає шлях до поточного конфігу гри
+// Повертає шлях до поточного конфігу гри
 fs::path ConfigManager::getCurrentGameConfigPath() {
     return getGameConfigPathInternal();
 }
 
-// ЗМІНЕНО: Приймає шлях до конфігу користувача, кидає виняток при помилці
+// Приймає шлях до конфігу користувача, кидає виняток при помилці
 void ConfigManager::changeCurrentConfig(const fs::path& sourceConfigPath) {
     // Логіка вибору sourceConfigPath тепер у MainWindow
     // Валідація sourceConfigPath також відбувається в MainWindow перед викликом
@@ -56,11 +55,10 @@ void ConfigManager::changeCurrentConfig(const fs::path& sourceConfigPath) {
     }
 }
 
-// НОВИЙ МЕТОД: Читає та повертає вміст поточного конфігу гри
+// Читає та повертає вміст поточного конфігу гри
 std::string ConfigManager::viewCurrentGameConfigContent() {
     fs::path gameConfigPath = getGameConfigPathInternal();
     if (!fs::exists(gameConfigPath)) {
-        // Можна повернути порожній рядок або кинути виняток
         throw std::runtime_error("Файл конфігурації гри (preferences.xml) не знайдено.");
     }
 
@@ -84,7 +82,7 @@ std::string ConfigManager::viewCurrentGameConfigContent() {
     return buffer.str();
 }
 
-// Цей метод не використовується в GUI
+// Amogus
 void ConfigManager::uploadConfig() {
     throw std::runtime_error("Функція 'uploadConfig' не реалізована.");
 }

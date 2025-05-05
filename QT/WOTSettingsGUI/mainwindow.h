@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 #include "configeditdialog.h"
-// НЕ включаємо helpdialog.h тут, щоб уникнути потенційних циклічних залежностей,
-// включимо його в mainwindow.cpp
+// НЕ включаємо helpdialog.h тут, щоб уникнути потенційних циклічних залежностей,lol
+// включив його в mainwindow.cpp
 
-// Попереднє оголошення для уникнення включення повних заголовків тут
+// Оголошення для уникнення включення повних заголовків тут
 QT_BEGIN_NAMESPACE
 class QMessageBox;
 class QFileDialog;
@@ -50,8 +50,6 @@ private slots:
     void onCheckCurrentConfigClicked();
     void onValidateConfigClicked();
     void onExitClicked();
-
-    // --- НОВИЙ СЛОТ ---
     void onHelpButtonClicked(); // Слот для кнопки "Довідка"
     void onStatsButtonClicked();
     void onAIChatButtonClicked();   // Слот для кнопки "AI Помічник"
@@ -71,7 +69,7 @@ private:
     // Допоміжні функції UI
     void showMessage(const QString& title, const QString& text, bool isWarning = false);
     void appendLog(const QString& message);
-    void setupConnections(); // Оновимо цю функцію
+    void setupConnections();
     void loadUsername();
     void displayFileContent(const QString& filePath, const QString& logActionName);
 

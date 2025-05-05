@@ -1,5 +1,5 @@
 #include "main.h" // Головний заголовок (містить FilteredSettingsMap та оголошення ConfigEditor)
-#include "pugixml/pugixml.hpp" // Включаємо pugixml ТУТ
+#include "pugixml/pugixml.hpp"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -7,14 +7,12 @@
 #include <vector>
 #include <map>
 #include <utility> // для std::pair
-#include <iostream> // Для std::cerr (опційно, для попереджень)
+#include <iostream> // Для std::cerr
 #include <string>   // Для std::string
 #include <algorithm> // Для std::find_if_not
 #include <cctype>   // Для std::isspace
 
-// НЕ використовуємо using namespace std; у .cpp файлах
 
-// --- ДОДАНО: Допоміжні функції для обрізання пробілів ---
 namespace { // Анонімний простір імен для локальних допоміжних функцій
 
 // Обрізати пробіли зліва
@@ -35,12 +33,10 @@ std::string trim(std::string s) {
 }
 
 } // кінець анонімного простору імен
-// --- Кінець допоміжних функцій ---
 
 
-// Метод для читання всього вмісту файлу як рядка (без змін)
+// Метод для читання всього вмісту файлу як рядка
 std::string ConfigEditor::readConfigContent(const fs::path& configPath) {
-    // ... (код без змін) ...
     if (!fs::exists(configPath)) {
         throw std::runtime_error("Файл конфігурації не знайдено: " + configPath.string());
     }
@@ -63,7 +59,7 @@ std::string ConfigEditor::readConfigContent(const fs::path& configPath) {
 }
 
 
-// Метод для отримання відфільтрованих налаштувань (ОНОВЛЕНО: додано trim для label)
+// Метод для отримання відфільтрованих налаштувань
 FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath) {
     FilteredSettingsMap categorizedSettings;
 
@@ -79,12 +75,11 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
         throw std::runtime_error("Відсутній кореневий елемент <root> у файлі: " + configPath.string());
     }
 
-    // 2. Визначення фільтрів (без змін)
-    // ... (визначення soundSettingsFilter, controlSettingsFilter, etc. залишаються тут) ...
+    // 2. Визначення фільтрів
     const std::unordered_set<std::string> soundSettingsFilter = {
         "masterVolume", "volume_micVivox", "volume_vehicles", "volume_music",
         "volume_effects", "volume_ambient", "volume_gui", "volume_voice", "soundMode",
-        "bass_boost" // Приклад, якщо бас теж треба
+        "bass_boost"
     };
     const std::unordered_set<std::string> controlSettingsFilter = {
         // Ключі без префіксу режиму
@@ -180,9 +175,8 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
 }
 
 
-// Метод для збереження змін в XML (без змін)
+// Метод для збереження змін в XML
 void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const FilteredSettingsMap& settings) {
-    // ... (код saveFilteredSettings залишається без змін, він працює з технічними іменами, які тепер мають бути правильними) ...
     pugi::xml_document doc;
     pugi::xml_parse_result loadResult = doc.load_file(configPath.wstring().c_str());
 
@@ -222,7 +216,7 @@ void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const Filter
         }
 
         for (const auto& settingPair : settingsInCategory) {
-            const std::string& settingName = settingPair.first; // Технічне ім'я (тепер без пробілів!)
+            const std::string& settingName = settingPair.first; // Технічне ім'я (тепер без пробілів)
             const std::string& newValue = settingPair.second;
 
             pugi::xml_node settingNode;

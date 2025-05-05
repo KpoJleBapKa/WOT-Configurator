@@ -47,10 +47,9 @@ void HelpDialog::setupUi()
     this->setLayout(mainLayout);
 }
 
-// --- Заповнення тексту довідки (ОНОВЛЕНО) ---
+// --- Заповнення тексту довідки ---
 void HelpDialog::populateHelpText()
 {
-    // Додаємо опис нової кнопки та новий пункт FAQ
     QString helpContent = R"(
         <h1>Довідка та Часті Питання (FAQ)</h1>
         <p>Ласкаво прошу до програми WOT Settings!</p>

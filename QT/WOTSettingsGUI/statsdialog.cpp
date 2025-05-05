@@ -16,39 +16,31 @@
 #include <QMessageBox>
 #include <QDebug>
 
-// --- Конструктор ---
 StatsDialog::StatsDialog(QWidget *parent) :
     QDialog(parent),
     nicknameInput(nullptr),
     searchButton(nullptr),
     closeButton(nullptr),
     resultsOutput(nullptr),
-    networkManager(new QNetworkAccessManager(this)), // Важливо створити менеджер!
-    m_apiKey("d889298af2382fa0cfeb010e26874b63") // Ваш API ключ WG
+    networkManager(new QNetworkAccessManager(this)),
+    m_apiKey("d889298af2382fa0cfeb010e26874b63")
 {
     setupUi(); // Налаштовуємо інтерфейс
 
     // З'єднуємо кнопки зі слотами
     connect(searchButton, &QPushButton::clicked, this, &StatsDialog::onSearchButtonClicked);
     connect(closeButton, &QPushButton::clicked, this, &QDialog::accept); // Просто закриває діалог
-
-    // Сигнал finished від менеджера буде оброблятися різними слотами
-    // Ми будемо підключати потрібний слот перед кожним запитом
 }
 
-// --- Деструктор ---
 StatsDialog::~StatsDialog()
 {
     // networkManager видалиться автоматично, бо QDialog є його батьком
-    // Але якщо були активні запити, їх варто було б перервати:
-    // networkManager->disconnect(); // Можливо, не потрібно, якщо батько видаляється
 }
 
-// --- Налаштування UI (програмно) ---
 void StatsDialog::setupUi()
 {
     this->setWindowTitle("Статистика гравця World of Tanks");
-    this->setMinimumSize(550, 450); // Трохи збільшимо розмір
+    this->setMinimumSize(550, 450);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(10, 10, 10, 10);

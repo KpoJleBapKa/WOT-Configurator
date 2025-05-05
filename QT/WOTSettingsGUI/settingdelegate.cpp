@@ -18,11 +18,10 @@ SettingDelegate::SettingDelegate(const SettingRulesMap* rules, QObject *parent)
     }
 }
 
-// --- Створення редактора (Без змін відносно попередньої версії) ---
+// --- Створення редактора ---
 QWidget *SettingDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
                                        const QModelIndex &index) const
 {
-    // ... (код createEditor залишається тим самим, з QComboBox для BOOL) ...
     Q_UNUSED(option);
     if (index.column() != 1 || !m_rules) { return nullptr; }
 
@@ -94,7 +93,7 @@ QWidget *SettingDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
     }
 }
 
-// --- Встановлення даних у редактор (ОНОВЛЕНО: коректне читання чисел) ---
+// --- Встановлення даних у редактор ---
 void SettingDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QString valueStr = index.model()->data(index, Qt::EditRole).toString().trimmed(); // Обрізаємо пробіли одразу
@@ -129,7 +128,7 @@ void SettingDelegate::setEditorData(QWidget *editor, const QModelIndex &index) c
 }
 
 
-// --- Збереження даних з редактора в модель (Без змін відносно попередньої версії) ---
+// --- Збереження даних з редактора в модель ---
 void SettingDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     QString newValueStr;
@@ -164,7 +163,7 @@ void SettingDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, c
     }
 }
 
-// --- Геометрія редактора (Без змін) ---
+// --- Геометрія редактора ---
 void SettingDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(index);

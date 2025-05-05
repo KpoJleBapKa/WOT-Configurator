@@ -46,7 +46,7 @@ private:
     QString m_searchedNickname;
     QString m_accountId;
     QJsonObject m_playerStatsData; // Зберігаємо об'єкт статистики
-    QString m_clanTag;             // <-- ДОДАНО ОГОЛОШЕННЯ ЗМІННОЇ ДЛЯ КЛАНУ
+    QString m_clanTag;
 
     // Приватні функції
     void setupUi();

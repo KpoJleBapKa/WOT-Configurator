@@ -28,14 +28,12 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
 
-    // Валідація прибрана, просто записує дані
     void setModelData(QWidget *editor, QAbstractItemModel *model,
                       const QModelIndex &index) const override;
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
                               const QModelIndex &index) const override;
 
-    // Метод validateValue ВИДАЛЕНО
 private:
     const SettingRulesMap* m_rules;
 };

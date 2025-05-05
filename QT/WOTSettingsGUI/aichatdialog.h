@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QString>
-#include <QJsonObject> // Включено
+#include <QJsonObject>
 
 // Попередні оголошення класів Qt
 QT_BEGIN_NAMESPACE

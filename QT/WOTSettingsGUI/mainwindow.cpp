@@ -22,7 +22,6 @@
 #include <QStackedWidget>
 #include <QDebug>
 
-// --- Конструктор (Без змін, пов'язаних з HelpDialog) ---
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -33,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     appendLog("Запуск програми...");
     m_logger.logAction("Application::Start", true);
 
-    // Налаштовуємо з'єднання сигналів (включаючи нову кнопку)
+    // Налаштовуємо з'єднання сигналів
     setupConnections();
 
     // Виконуємо початкові дії
@@ -43,7 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
     appendLog("Програма готова до роботи.");
 }
 
-// --- Деструктор (Без змін) ---
 MainWindow::~MainWindow()
 {
     appendLog("Завершення роботи програми...");
@@ -51,10 +49,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// --- Налаштування з'єднань (ОНОВЛЕНО) ---
+// --- Налаштування з'єднань ---
 void MainWindow::setupConnections()
 {
-    // Старі з'єднання
     connect(ui->checkFoldersButton, &QPushButton::clicked, this, &MainWindow::onCheckFoldersClicked);
     connect(ui->createBackupButton, &QPushButton::clicked, this, &MainWindow::onCreateBackupClicked);
     connect(ui->restoreBackupButton, &QPushButton::clicked, this, &MainWindow::onRestoreBackupClicked);
@@ -67,8 +64,6 @@ void MainWindow::setupConnections()
     connect(ui->validateConfigButton, &QPushButton::clicked, this, &MainWindow::onValidateConfigClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &MainWindow::onExitClicked);
 
-    // --- З'єднання для кнопки "Довідка" ---
-    // ЗАМІНІТЬ "helpButton" на реальне ім'я (objectName) вашої кнопки довідки в Designer!
     if (ui->helpButton) {
         connect(ui->helpButton, &QPushButton::clicked, this, &MainWindow::onHelpButtonClicked);
     } else {
@@ -84,11 +79,8 @@ void MainWindow::setupConnections()
     } else {
         qWarning() << "setupConnections: ui->aiChatButton is null!";
     }
-    // --- Кінець з'єднання для довідки ---
 }
 
-// --- Реалізація старих слотів (Без змін) ---
-// ... (onCheckFoldersClicked, onCreateBackupClicked, ..., onExitClicked) ...
 void MainWindow::onCheckFoldersClicked()
 {
     appendLog("Перевірка необхідних папок...");

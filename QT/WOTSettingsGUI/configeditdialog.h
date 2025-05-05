@@ -39,7 +39,7 @@ private:
     fs::path m_filePath;
     FilteredSettingsMap m_currentSettings; // Оновлюється при збереженні
     SettingRulesMap m_rules;           // Мапа з правилами валідації
-    SettingDelegate *m_settingDelegate; // Вказівник на наш делегат
+    SettingDelegate *m_settingDelegate; // Вказівник на делегат
 
     // Допоміжні функції
     void initializeValidationRules(); // Ініціалізує мапу m_rules

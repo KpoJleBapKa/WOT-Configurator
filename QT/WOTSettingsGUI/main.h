@@ -27,7 +27,7 @@ struct SettingRule {
     double minValue = -std::numeric_limits<double>::max(); // Використовуємо double для універсальності min/max
     double maxValue = std::numeric_limits<double>::max();
     int decimals = 6; // Кількість знаків після коми для FLOAT (QDoubleSpinBox)
-    std::string displayName = ""; // <-- ДОДАНО: Назва для відображення в UI
+    std::string displayName = ""; // Назва для відображення в UI
 
     // Конструктор за замовчуванням (для STRING)
     SettingRule() : type(SettingType::STRING) {}
@@ -39,7 +39,6 @@ struct SettingRule {
     // Повний конструктор для INT/FLOAT (з діапазоном, точністю та опціональним displayName)
     SettingRule(SettingType t, double min, double max, int dec, std::string dName = "")
         : type(t), minValue(min), maxValue(max), decimals(dec), displayName(std::move(dName)) {
-        // Перевірка типу не обов'язкова, але може бути корисною
         // if (t != SettingType::INT && t != SettingType::FLOAT) { /* Попередження */ }
         if (t == SettingType::INT) decimals = 0; // Для INT точність завжди 0
     }
@@ -58,11 +57,10 @@ struct SettingRule {
         if (t != SettingType::INT) { /* Попередження: очікувався тип INT */ }
     }
 
-    // Можна додати інші зручні перевантаження конструкторів за потреби
 };
 // --- Кінець визначення SettingRule ---
 
-// Тип для передачі даних між діалогом та ConfigEditor (без змін)
+// Тип для передачі даних між діалогом та ConfigEditor
 using FilteredSettingsMap = std::map<std::string, std::vector<std::pair<std::string, std::string>>>;
 
 
@@ -95,7 +93,7 @@ private:
 #define CONFIGEDITOR_H
 class ConfigEditor {
 public:
-    // Читає весь вміст файлу (не використовується для редагування, але може бути корисним)
+    // Читає весь вміст файлу (не використовується для редагування)
     std::string readConfigContent(const fs::path& configPath);
     // Отримує відфільтровані налаштування для показу/редагування
     FilteredSettingsMap getFilteredSettings(const fs::path& configPath);
@@ -104,7 +102,6 @@ public:
 };
 #endif // CONFIGEDITOR_H
 
-// --- Решта оголошень класів (без змін) ---
 #ifndef APPINITIALIZER_H
 #define APPINITIALIZER_H
 class AppInitializer { public: void loadInitialSettings(); void checkFolders(); void initializeComponents(); };

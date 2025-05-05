@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iostream> // Залишаємо для std::cerr
 
-namespace fs = std::filesystem; // Використовуємо простір імен явно
+namespace fs = std::filesystem;
 
 // Метод для запису дії в лог
 void ChangeTracker::logAction(const std::string& functionName, bool success, const std::string& details) {
