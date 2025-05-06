@@ -25,7 +25,7 @@
 
 1.  **Завантаження:** 
 ```bash 
-Перейдіть на сторінку [Releases](https://github.com/KpoJleBapKa/WOT-Settings) та завантажте останню версію інсталятора ("WOT Settings v0.15 setup.exe`).
+Перейдіть на сторінку [Releases](https://github.com/KpoJleBapKa/WOT-Settings) та завантажте останню версію інсталятора ("WOT Settings v0.15.2 setup.exe`).
 ```
 2.  **Встановлення:** 
 ```bash

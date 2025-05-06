@@ -106,9 +106,14 @@ void AIChatDialog::setupUi()
 
     this->setLayout(mainLayout);
 
+    // Встановлюємо кнопку "Надіслати" як основну для Enter
     sendButton->setDefault(true);
-    messageInput->setFocus(); // Встановлюємо фокус на поле вводу при відкритті
+    // Встановлюємо кнопку "Закрити", щоб вона НЕ була кнопкою за замовчуванням
+    closeButton->setAutoDefault(false); // <-- ДОДАНО
+
+    messageInput->setFocus();
 }
+
 
 // --- Слот кнопки "Надіслати" ---
 void AIChatDialog::onSendButtonClicked()

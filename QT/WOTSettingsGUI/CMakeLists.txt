@@ -5,7 +5,6 @@ cmake_minimum_required(VERSION 3.19)
 project(WOTSettingsGUI LANGUAGES CXX)
 
 # Пошук пакету Qt6 з необхідними компонентами
-# !!! ДОДАНО Network !!!
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools Network)
 
 # Стандартні налаштування для проєктів Qt
@@ -44,7 +43,9 @@ qt_add_executable(WOTSettingsGUI
     configeditdialog.h configeditdialog.cpp configeditdialog.ui # Залишено дублікат, як у вас
     helpdialog.h helpdialog.cpp helpdialog.ui # Залишено .ui, як у вас
     statsdialog.h statsdialog.cpp statsdialog.ui
-    aichatdialog.h aichatdialog.cpp aichatdialog.ui # Залишено .ui, як у вас
+    aichatdialog.h aichatdialog.cpp aichatdialog.ui
+    resources.rc
+    resources.qrc # Залишено .ui, як у вас
 
     # Важливо для AppInitializer.cpp
 )

@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("WOT Settings GUI by Kroll");
 
+    this->setWindowIcon(QIcon(":/wotsettings"));
+
     appendLog("Запуск програми...");
     m_logger.logAction("Application::Start", true);
 
