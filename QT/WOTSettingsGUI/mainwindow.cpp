@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setWindowTitle("WOT Settings GUI by Kroll");
+    this->setWindowTitle("WOT Configurator by Kroll");
 
     this->setWindowIcon(QIcon(":/wotsettings"));
 

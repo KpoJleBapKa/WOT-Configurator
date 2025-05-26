@@ -7,7 +7,6 @@
 #include <iostream> // Для std::cerr (опційно)
 
 
-// Внутрішня допоміжна функція
 fs::path ConfigManager::getGameConfigPathInternal() {
     const char* appDataPath_cstr = getenv("APPDATA");
     if (!appDataPath_cstr) {
@@ -27,16 +26,12 @@ fs::path ConfigManager::getCurrentGameConfigPath() {
 
 // Приймає шлях до конфігу користувача, кидає виняток при помилці
 void ConfigManager::changeCurrentConfig(const fs::path& sourceConfigPath) {
-    // Логіка вибору sourceConfigPath тепер у MainWindow
-    // Валідація sourceConfigPath також відбувається в MainWindow перед викликом
-
     if (!fs::exists(sourceConfigPath)) {
         throw std::runtime_error("Обраний файл конфігурації користувача не знайдено: " + sourceConfigPath.string());
     }
     if (!fs::is_regular_file(sourceConfigPath)) {
         throw std::runtime_error("Вибраний шлях не є файлом: " + sourceConfigPath.string());
     }
-
 
     fs::path targetPath = getGameConfigPathInternal();
     fs::path targetDir = targetPath.parent_path();
@@ -47,7 +42,6 @@ void ConfigManager::changeCurrentConfig(const fs::path& sourceConfigPath) {
             fs::create_directories(targetDir);
         }
         fs::copy_file(sourceConfigPath, targetPath, fs::copy_options::overwrite_existing);
-        // Якщо копіювання пройшло без винятків - успіх
     } catch (const fs::filesystem_error& e) {
         throw std::runtime_error(std::string("Помилка файлової системи при застосуванні конфігу: ") + e.what());
     } catch (...) {
@@ -62,12 +56,11 @@ std::string ConfigManager::viewCurrentGameConfigContent() {
         throw std::runtime_error("Файл конфігурації гри (preferences.xml) не знайдено.");
     }
 
-    // Валідація перед читанням (використовуємо внутрішній валідатор)
+    // Валідація перед читанням
     ValidationResult valResult = m_validator.validateFile(gameConfigPath);
     if (!valResult.isValid()) {
         throw std::runtime_error("Поточний конфіг гри не є коректним XML: " + valResult.wellFormedError);
     }
-    // Можна додати логування попереджень з valResult.structureInfo / valResult.valueErrors
 
     std::ifstream file(gameConfigPath);
     if (!file.is_open()) {

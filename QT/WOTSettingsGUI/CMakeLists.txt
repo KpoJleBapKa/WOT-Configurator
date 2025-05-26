@@ -45,7 +45,8 @@ qt_add_executable(WOTSettingsGUI
     statsdialog.h statsdialog.cpp statsdialog.ui
     aichatdialog.h aichatdialog.cpp aichatdialog.ui
     resources.rc
-    resources.qrc # Залишено .ui, як у вас
+    resources.qrc
+    test/tes.h # Залишено .ui, як у вас
 
     # Важливо для AppInitializer.cpp
 )

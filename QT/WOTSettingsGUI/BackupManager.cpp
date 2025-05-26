@@ -1,4 +1,4 @@
-#include "main.h" // Головний заголовок
+#include "main.h"
 #include <chrono>
 #include <sstream>
 #include <iomanip>
@@ -31,16 +31,10 @@ fs::path BackupManager::createBackup() {
         throw std::runtime_error("Файл конфігурації гри для резервного копіювання не знайдено: " + sourcePath.string());
     }
 
-    // Валідація джерела (використовуємо валідатор, що є членом класу)
-    // validateBeforeAction сам покаже повідомлення або викине виняток, якщо треба
-    // false - не показувати вікно успіху валідації
-    // Припускаємо, що якщо validateBeforeAction повернув false, він вже повідомив причину.
     if (!m_validator.validateBeforeAction(sourcePath, "Створення резервної копії (перевірка джерела)", false)) {
         throw std::runtime_error("Перевірка файлу-джерела перед резервним копіюванням не пройдена або скасована.");
     }
-    // Якщо дійшли сюди, файл валідний (можливо, з попередженнями, які користувач проігнорував)
 
-    // Створення імені файлу бекапу
     auto now = std::chrono::system_clock::now();
     auto in_time_t = std::chrono::system_clock::to_time_t(now);
     std::tm local_tm;
@@ -55,13 +49,12 @@ fs::path BackupManager::createBackup() {
     fs::path backupDir = "Restored Configs";
     fs::path backupPath = backupDir / ss.str();
 
-    // Копіювання файлу
     try {
         if (!fs::exists(backupDir)) {
             fs::create_directories(backupDir);
         }
         fs::copy_file(sourcePath, backupPath, fs::copy_options::overwrite_existing);
-        return backupPath; // Повертаємо шлях до успішно створеного бекапу
+        return backupPath;
     } catch (const fs::filesystem_error& e) {
         throw std::runtime_error(std::string("Помилка файлової системи при створенні резервної копії: ") + e.what());
     } catch (...) {
@@ -71,24 +64,18 @@ fs::path BackupManager::createBackup() {
 
 // Приймає шлях до файлу бекапу, кидає виняток при помилці
 void BackupManager::restoreFromBackup(const fs::path& backupPath) {
-    // Логіка вибору файлу тепер у MainWindow
-    // Валідація файлу backupPath також відбувається в MainWindow перед викликом
-
     if (!fs::exists(backupPath)) {
         throw std::runtime_error("Обраний файл резервної копії не знайдено: " + backupPath.string());
     }
 
-    fs::path targetPath = getGameConfigPath(); // Отримуємо шлях до preferences.xml
+    fs::path targetPath = getGameConfigPath();
     fs::path targetDir = targetPath.parent_path();
 
-    // Відновлення (копіювання з заміною)
     try {
         if (!fs::exists(targetDir)) {
             fs::create_directories(targetDir);
         }
-        // Заміна файлу
         fs::copy_file(backupPath, targetPath, fs::copy_options::overwrite_existing);
-        // Якщо копіювання пройшло без винятків - відновлення успішне
     } catch (const fs::filesystem_error& e) {
         throw std::runtime_error(std::string("Помилка файлової системи при відновленні з копії: ") + e.what());
     } catch (...) {

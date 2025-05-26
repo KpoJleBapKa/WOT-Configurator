@@ -10,17 +10,14 @@
 #include <QString>     // Для роботи з QMessageBox
 
 
-// --- Допоміжні функції парсингу ---
-namespace { // Анонімний простір імен для локальних допоміжних функцій
+namespace {
 bool tryParseFloat(const char* text, float& outValue) {
     if (!text) return false;
-    std::string s(text); // Копіюємо в рядок для роботи з istringstream
+    std::string s(text);
     std::istringstream iss(s);
     iss >> outValue;
-    // Перевіряємо стан та чи не залишилось нечислових символів (окрім початкових/кінцевих пробілів)
-    // iss.eof() може не спрацювати, якщо є пробіли в кінці
     char remaining;
-    return !iss.fail() && !(iss >> remaining); // Чи вдалося прочитати ще щось після числа
+    return !iss.fail() && !(iss >> remaining);
 }
 bool tryParseInt(const char* text, int& outValue) {
     if (!text) return false;
@@ -30,10 +27,10 @@ bool tryParseInt(const char* text, int& outValue) {
     char remaining;
     return !iss.fail() && !(iss >> remaining);
 }
-} // кінець анонімного простору імен
+}
 
 
-// --- Реалізація основного методу валідації ---
+// Реалізація основного методу валідації
 ValidationResult FileValidator::validateFile(const fs::path& filePath) {
     ValidationResult result;
     pugi::xml_document doc;
@@ -47,7 +44,7 @@ ValidationResult FileValidator::validateFile(const fs::path& filePath) {
         return result; // isWellFormed = false
     }
 
-    // 1. Перевірка Well-Formed
+    // Перевірка Well-Formed
     std::string wfError;
     result.isWellFormed = isXmlWellFormedInternal(filePath, doc, wfError);
     if (!result.isWellFormed) {
@@ -55,24 +52,24 @@ ValidationResult FileValidator::validateFile(const fs::path& filePath) {
         return result;
     }
 
-    // 2. Перевірка структури (тільки якщо XML коректний)
+    // Перевірка структури (тільки якщо XML коректний)
     std::string structWarn;
     result.hasStructure = hasExpectedStructureInternal(doc, structWarn);
     result.structureInfo = structWarn; // Записуємо повідомлення (може бути "OK" або попередження)
 
-    // 3. Перевірка значень (тільки якщо XML коректний)
+    // Перевірка значень (тільки якщо XML коректний)
     result.valueErrors = findInvalidSimpleValuesInternal(doc);
 
     return result;
 }
 
-// --- Реалізація допоміжного методу для GUI ---
+// Реалізація допоміжного методу для GUI
 bool FileValidator::validateBeforeAction(const fs::path& filePath, const std::string& actionNameStd, bool showSuccess) {
-    QString actionName = QString::fromStdString(actionNameStd); // Конвертуємо для QMessageBox
+    QString actionName = QString::fromStdString(actionNameStd);
     ValidationResult result = validateFile(filePath);
 
-    if (result.isValid()) { // XML коректний
-        QString summary; // Резюме для повідомлення
+    if (result.isValid()) {
+        QString summary;
         bool hasWarnings = false;
 
         summary += "XML: OK.\n";
@@ -84,11 +81,10 @@ bool FileValidator::validateBeforeAction(const fs::path& filePath, const std::st
         } else {
             summary += QString("Значення: Знайдено %1 потенційних проблем.").arg(result.valueErrors.size());
             hasWarnings = true;
-            // Додамо перші кілька помилок для наочності
             summary += "\nПриклади помилок значень:\n";
             int count = 0;
             for(const auto& err : result.valueErrors) {
-                if (++count > 3) { // Обмежимо кількість для вікна
+                if (++count > 3) {
                     summary += "- ...\n";
                     break;
                 }
@@ -108,13 +104,12 @@ bool FileValidator::validateBeforeAction(const fs::path& filePath, const std::st
                                          QMessageBox::No);
             return (reply == QMessageBox::Yes);
         } else {
-            // Немає помилок і попереджень
             if (showSuccess) {
                 QMessageBox::information(nullptr, actionName + " - Валідація успішна",
                                          QString("Файл '%1' успішно пройшов валідацію.")
                                              .arg(QString::fromStdWString(filePath.filename().wstring())));
             }
-            return true; // Можна продовжувати
+            return true;
         }
     } else { // Критична помилка XML
         QMessageBox::critical(nullptr, actionName + " - Помилка валідації",
@@ -122,16 +117,13 @@ bool FileValidator::validateBeforeAction(const fs::path& filePath, const std::st
                                   .arg(actionName)
                                   .arg(QString::fromStdWString(filePath.filename().wstring()))
                                   .arg(QString::fromStdString(result.wellFormedError)));
-        return false; // Не можна продовжувати
+        return false;
     }
 }
 
 
-// --- Внутрішні методи реалізації ---
-
 bool FileValidator::isXmlWellFormedInternal(const fs::path& filePath, pugi::xml_document& doc, std::string& errorMsg) {
-    // doc вже передається за посиланням, перевіряємо тільки результат завантаження
-    pugi::xml_parse_result result = doc.load_file(filePath.c_str()); // Використовуємо c_str()
+    pugi::xml_parse_result result = doc.load_file(filePath.c_str());
     if (result.status != pugi::status_ok) {
         // Формуємо повідомлення про помилку
         std::stringstream ss;
@@ -144,11 +136,10 @@ bool FileValidator::isXmlWellFormedInternal(const fs::path& filePath, pugi::xml_
 }
 
 bool FileValidator::hasExpectedStructureInternal(const pugi::xml_document& doc, std::string& warnings) {
-    // doc вже завантажено в isXmlWellFormedInternal
     bool structureOk = true;
     std::stringstream warningStream;
 
-    const pugi::xml_node root = doc.child("root"); // Використовуємо const, бо не змінюємо
+    const pugi::xml_node root = doc.child("root");
     if (!root) {
         warnings = "Відсутній кореневий елемент <root>.";
         return false; // Це критична помилка структури
@@ -167,11 +158,9 @@ bool FileValidator::hasExpectedStructureInternal(const pugi::xml_document& doc, 
         structureOk = false;
     }
 
-    // Додаткові перевірки
     const pugi::xml_node scriptsPrefs = root.child("scriptsPreferences");
     if (scriptsPrefs && !scriptsPrefs.child("soundPrefs")) {
         warningStream << "Відсутня підсекція <soundPrefs> всередині <scriptsPreferences>. ";
-        // Можна не вважати це критичною помилкою (structureOk = false;)
     }
     if (scriptsPrefs && !scriptsPrefs.child("controlMode")) {
         warningStream << "Відсутня підсекція <controlMode> всередині <scriptsPreferences>. ";
@@ -180,23 +169,22 @@ bool FileValidator::hasExpectedStructureInternal(const pugi::xml_document& doc, 
 
     warnings = warningStream.str();
     if (structureOk && warnings.empty()) {
-        warnings = "OK"; // Якщо все добре і попереджень немає
+        warnings = "OK";
     }
-    return structureOk; // Повертаємо загальний статус (true, якщо основні секції є)
+    return structureOk;
 }
 
 std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pugi::xml_document& doc) {
-    // doc вже завантажено
     std::vector<std::string> errors;
     const pugi::xml_node root = doc.child("root");
-    if (!root) return {"Помилка: Відсутній <root> елемент для перевірки значень."}; // Повертаємо вектор з однією помилкою
+    if (!root) return {"Помилка: Відсутній <root> елемент для перевірки значень."};
 
-    // 1. Перевірка <soundPrefs>
+    // Перевірка <soundPrefs>
     const pugi::xml_node scriptsPrefs = root.child("scriptsPreferences");
     if (scriptsPrefs) {
         const pugi::xml_node soundPrefs = scriptsPrefs.child("soundPrefs");
         if (soundPrefs) {
-            const std::vector<std::string> volumeTags = { /* ... список тегів гучності ... */
+            const std::vector<std::string> volumeTags = { // список тегів гучності
                 "masterVolume", "volume_micVivox", "volume_vehicles", "volume_music",
                 "volume_effects", "volume_ambient", "volume_gui", "volume_voice",
                 "volume_masterFadeVivox", "volume_masterVivox", "volume_music_hangar",
@@ -217,7 +205,7 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
                     }
                 }
             }
-        } // Не додаємо помилку, якщо немає <soundPrefs>, це перевіряє структура
+        }
 
         // Перевірка <fov>
         const pugi::xml_node fovNode = scriptsPrefs.child("fov");
@@ -231,12 +219,11 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
             } else {
                 errors.push_back("<fov>: '" + std::string(text) + "'. Очікується число.");
             }
-        } // Не додаємо помилку, якщо немає <fov>
+        }
 
-    } // Не додаємо помилку, якщо немає <scriptsPreferences>
+    }
 
-
-    // 2. Перевірка <devicePreferences>
+    // Перевірка <devicePreferences>
     const pugi::xml_node devicePrefs = root.child("devicePreferences");
     if (devicePrefs) {
         // Window Mode
@@ -251,8 +238,7 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
             } else {
                 errors.push_back("<windowMode>: '" + std::string(text) + "'. Очікується ціле число.");
             }
-        } // Не додаємо помилку про відсутність
-
+        }
         // Resolutions
         const std::vector<std::pair<std::string, int>> resolutionTags = {
             {"windowedWidth", 640}, {"windowedHeight", 480},
@@ -270,7 +256,7 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
                 } else {
                     errors.push_back("<" + pair.first + ">: '" + text + "'. Очікується ціле число.");
                 }
-            } // Не додаємо помилку про відсутність
+            }
         }
         // Refresh Rate
         pugi::xml_node rrNode = devicePrefs.child("fullscreenRefresh");
@@ -278,16 +264,16 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
             int value;
             const char* text = rrNode.text().as_string();
             if(tryParseInt(text, value)) {
-                if (value < 10 || value > 400) { // Розширений діапазон для сучасних моніторів
+                if (value < 10 || value > 400) {
                     errors.push_back("<fullscreenRefresh>: '" + std::string(text) + "'. Нетипове значення (очікується 50-240).");
                 }
             } else {
                 errors.push_back("<fullscreenRefresh>: '" + std::string(text) + "'. Очікується ціле число.");
             }
-        } // Не додаємо помилку про відсутність
-    } // Не додаємо помилку, якщо немає <devicePreferences>
+        }
+    }
 
-    // 3. Перевірка графіки
+    // Перевірка графіки
     const pugi::xml_node graphPrefs = root.child("graphicsPreferences");
     if (graphPrefs) {
         const std::vector<std::string> graphTags = {
@@ -299,15 +285,15 @@ std::vector<std::string> FileValidator::findInvalidSimpleValuesInternal(const pu
                 float value;
                 const char* text = node.text().as_string();
                 if (tryParseFloat(text, value)) {
-                    if (value < 0.0f || value > 1.5f) { // Трохи розширимо діапазон
+                    if (value < 0.0f || value > 1.5f) {
                         errors.push_back("<" + tagName + ">: '" + text + "'. Нетипове значення (очікується ~[0.0, 1.0]).");
                     }
                 } else {
                     errors.push_back("<" + tagName + ">: '" + text + "'. Очікується число.");
                 }
-            } // Не додаємо помилку про відсутність
+            }
         }
-    } // Не додаємо помилку, якщо немає <graphicsPreferences>
+    }
 
     return errors;
 }

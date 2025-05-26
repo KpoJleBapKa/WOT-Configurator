@@ -13,27 +13,23 @@
 #include <cctype>   // Для std::isspace
 
 
-namespace { // Анонімний простір імен для локальних допоміжних функцій
+namespace {
 
-// Обрізати пробіли зліва
 std::string ltrim(std::string s) {
     s.erase(s.begin(), std::find_if_not(s.begin(), s.end(), ::isspace));
     return s;
 }
 
-// Обрізати пробіли справа
 std::string rtrim(std::string s) {
     s.erase(std::find_if_not(s.rbegin(), s.rend(), ::isspace).base(), s.end());
     return s;
 }
 
-// Обрізати пробіли з обох боків
 std::string trim(std::string s) {
     return ltrim(rtrim(std::move(s)));
 }
 
-} // кінець анонімного простору імен
-
+}
 
 // Метод для читання всього вмісту файлу як рядка
 std::string ConfigEditor::readConfigContent(const fs::path& configPath) {
@@ -58,12 +54,11 @@ std::string ConfigEditor::readConfigContent(const fs::path& configPath) {
     return buffer.str();
 }
 
-
 // Метод для отримання відфільтрованих налаштувань
 FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath) {
     FilteredSettingsMap categorizedSettings;
 
-    // 1. Завантаження та перевірка XML
+    // Завантаження та перевірка XML
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(configPath.wstring().c_str());
     if (!result) {
@@ -75,14 +70,13 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
         throw std::runtime_error("Відсутній кореневий елемент <root> у файлі: " + configPath.string());
     }
 
-    // 2. Визначення фільтрів
+    // Визначення фільтрів
     const std::unordered_set<std::string> soundSettingsFilter = {
         "masterVolume", "volume_micVivox", "volume_vehicles", "volume_music",
         "volume_effects", "volume_ambient", "volume_gui", "volume_voice", "soundMode",
         "bass_boost"
     };
     const std::unordered_set<std::string> controlSettingsFilter = {
-        // Ключі без префіксу режиму
         "horzInvert", "vertInvert", "keySensitivity", "sensitivity", "scrollSensitivity"
     };
     const std::unordered_set<std::string> deviceSettingsFilter = {
@@ -90,42 +84,38 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
         "fullscreenHeight", "fullscreenRefresh", "aspectRatio", "gamma", "tripleBuffering"
     };
     const std::vector<std::string> graphicDirectTagsFilter = {
-        // Теги, що є прямими дітьми <graphicsPreferences>
         "graphicsSettingsVersion", "graphicsSettingsVersionMinor", "graphicsSettingsVersionMaintainance",
         "graphicsSettingsStatus", "ParticlSystemNoRenderGroup", "distributionLevel",
         "colorGradingStrength", "brightnessDeferred", "contrastDeferred", "saturationDeferred"
     };
 
-
-    // 3. Обробка секцій та фільтрація
     pugi::xml_node scriptsPreferences = root.child("scriptsPreferences");
     if (scriptsPreferences) {
-        // --- Звук ---
+        // Звук
         pugi::xml_node soundPrefs = scriptsPreferences.child("soundPrefs");
         if (soundPrefs) {
             std::vector<std::pair<std::string, std::string>> currentCategorySettings;
             for (const auto& setting : soundPrefs.children()) {
-                std::string name = trim(setting.name()); // Обрізаємо ім'я тегу про всяк випадок
+                std::string name = trim(setting.name());
                 if (soundSettingsFilter.count(name)) {
-                    currentCategorySettings.push_back({name, trim(setting.text().as_string())}); // Обрізаємо і значення
+                    currentCategorySettings.push_back({name, trim(setting.text().as_string())});
                 }
             }
             if (!currentCategorySettings.empty()) categorizedSettings["Sound Settings"] = currentCategorySettings;
         }
-        // --- Керування ---
+        // Керування
         pugi::xml_node controlMode = scriptsPreferences.child("controlMode");
         if (controlMode) {
             std::vector<std::pair<std::string, std::string>> currentCategorySettings;
             for (const auto& mode : controlMode.children()) {
-                std::string modeName = trim(mode.name()); // Обрізаємо ім'я режиму
+                std::string modeName = trim(mode.name());
                 pugi::xml_node camera = mode.child("camera");
                 if (camera) {
                     for (const auto& setting : camera.children()) {
-                        std::string settingNamePart = trim(setting.name()); // Обрізаємо назву налаштування
-                        // Перевіряємо, чи є ця частина назви у фільтрі
+                        std::string settingNamePart = trim(setting.name());
                         if (controlSettingsFilter.count(settingNamePart)) {
                             std::string fullSettingName = modeName + "/" + settingNamePart; // Формуємо повний ключ
-                            currentCategorySettings.push_back({fullSettingName, trim(setting.text().as_string())}); // Обрізаємо значення
+                            currentCategorySettings.push_back({fullSettingName, trim(setting.text().as_string())});
                         }
                     }
                 }
@@ -134,7 +124,7 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
         }
     }
 
-    // --- Графіка ---
+    // Графіка
     pugi::xml_node graphicsPreferences = root.child("graphicsPreferences");
     if (graphicsPreferences) {
         std::vector<std::pair<std::string, std::string>> currentCategorySettings;
@@ -142,30 +132,29 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
         for(const std::string& tagName : graphicDirectTagsFilter) {
             pugi::xml_node node = graphicsPreferences.child(tagName.c_str());
             if(node) {
-                // Додаємо без змін (імена тегів зазвичай без пробілів), але значення обрізаємо
                 currentCategorySettings.push_back({tagName, trim(node.text().as_string())});
             }
         }
         // Обробка тегів <entry>
         for (const auto& entry : graphicsPreferences.children("entry")) {
-            std::string label = entry.child_value("label"); // Отримуємо значення <label>
-            std::string trimmed_label = trim(label); // <-- ОБРІЗАЄМО ПРОБІЛИ
-            if (!trimmed_label.empty()) { // Перевіряємо, чи щось залишилося після обрізання
+            std::string label = entry.child_value("label");
+            std::string trimmed_label = trim(label);
+            if (!trimmed_label.empty()) {
                 std::string activeOption = entry.child_value("activeOption");
-                currentCategorySettings.push_back({trimmed_label, trim(activeOption)}); // <-- Використовуємо ОБРІЗАНИЙ ключ
+                currentCategorySettings.push_back({trimmed_label, trim(activeOption)});
             }
         }
         if (!currentCategorySettings.empty()) categorizedSettings["Graphics Settings"] = currentCategorySettings;
     }
 
-    // --- Пристрій ---
+    // Пристрій
     pugi::xml_node devicePreferences = root.child("devicePreferences");
     if (devicePreferences) {
         std::vector<std::pair<std::string, std::string>> currentCategorySettings;
         for (const auto& setting : devicePreferences.children()) {
-            std::string name = trim(setting.name()); // Обрізаємо ім'я тегу
+            std::string name = trim(setting.name());
             if (deviceSettingsFilter.count(name)) {
-                currentCategorySettings.push_back({name, trim(setting.text().as_string())}); // Обрізаємо значення
+                currentCategorySettings.push_back({name, trim(setting.text().as_string())});
             }
         }
         if (!currentCategorySettings.empty()) categorizedSettings["Device Settings"] = currentCategorySettings;
@@ -173,7 +162,6 @@ FilteredSettingsMap ConfigEditor::getFilteredSettings(const fs::path& configPath
 
     return categorizedSettings;
 }
-
 
 // Метод для збереження змін в XML
 void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const FilteredSettingsMap& settings) {
@@ -202,7 +190,7 @@ void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const Filter
             if (scriptsPrefsNode) categoryNode = scriptsPrefsNode.child("soundPrefs");
         } else if (categoryName == "Graphics Settings") {
             graphicsPrefsNode = root.child("graphicsPreferences");
-            categoryNode = graphicsPrefsNode; // categoryNode тепер <graphicsPreferences>
+            categoryNode = graphicsPrefsNode;
         } else if (categoryName == "Control Settings") {
             scriptsPrefsNode = root.child("scriptsPreferences");
             if (scriptsPrefsNode) categoryNode = scriptsPrefsNode.child("controlMode");
@@ -216,7 +204,7 @@ void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const Filter
         }
 
         for (const auto& settingPair : settingsInCategory) {
-            const std::string& settingName = settingPair.first; // Технічне ім'я (тепер без пробілів)
+            const std::string& settingName = settingPair.first;
             const std::string& newValue = settingPair.second;
 
             pugi::xml_node settingNode;
@@ -237,16 +225,13 @@ void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const Filter
                     std::cerr << "Warning: Control mode node not found: '" << modeName << "' during save." << std::endl; continue;
                 }
             }
-            // Перевіряємо, чи це прямий тег, чи <entry> для графіки
             else if (categoryName == "Graphics Settings") {
-                // Спочатку шукаємо як прямий дочірній тег <graphicsPreferences>
                 settingNode = categoryNode.child(settingName.c_str());
-                if (!settingNode) { // Якщо не знайдено як прямий тег, шукаємо як <entry>
+                if (!settingNode) {
                     bool foundEntry = false;
                     for (pugi::xml_node entry : categoryNode.children("entry")) {
-                        // Порівнюємо обрізане значення <label> з нашим обрізаним ключем
                         if (trim(entry.child_value("label")) == settingName) {
-                            settingNode = entry.child("activeOption"); // Знаходимо <activeOption>
+                            settingNode = entry.child("activeOption");
                             foundEntry = true;
                             break;
                         }
@@ -267,7 +252,6 @@ void ConfigEditor::saveFilteredSettings(const fs::path& configPath, const Filter
                     std::cerr << "Warning: Failed to set text for node: " << settingName << std::endl;
                 }
             } else {
-                // Логуємо, якщо вузол так і не знайдено (не мало б траплятися після виправлення trim)
                 std::cerr << "Warning: Setting node could not be found in XML for key: '" << settingName << "' in category '" << categoryName << "' during save." << std::endl;
             }
         }
