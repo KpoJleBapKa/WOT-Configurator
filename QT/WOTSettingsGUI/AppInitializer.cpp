@@ -18,7 +18,7 @@ void AppInitializer::checkFolders() {
             }
         }
 
-        // Створення reference config, якщо його немає
+        /*// Створення reference config, якщо його немає
         fs::path refFolder = "Reference Config";
         fs::path refFile = refFolder / "preferences.xml";
         if (!fs::exists(refFile)) {
@@ -32,7 +32,7 @@ void AppInitializer::checkFolders() {
             } else {
                 throw std::runtime_error("Не вдалося створити еталонний файл конфігурації: " + refFile.string());
             }
-        }
+        }*/
     } catch (const fs::filesystem_error& e) {
         throw std::runtime_error(std::string("Помилка файлової системи при перевірці/створенні папок: ") + e.what());
     } catch (const std::runtime_error& e) {

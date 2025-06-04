@@ -46,7 +46,9 @@ fs::path BackupManager::createBackup() {
     std::stringstream ss;
     ss << "preferences_" << std::put_time(&local_tm, "%Y_%m_%d_%H%M%S") << ".xml";
 
-    fs::path backupDir = "Restored Configs";
+    // Отримуємо поточний шлях виконуваного файлу для формування відносних шляхів
+    fs::path currentExecutablePath = fs::current_path(); // або QCoreApplication::applicationDirPath() якщо використовуєте Qt
+    fs::path backupDir = currentExecutablePath / "Restored Configs";
     fs::path backupPath = backupDir / ss.str();
 
     try {
@@ -68,6 +70,10 @@ void BackupManager::restoreFromBackup(const fs::path& backupPath) {
         throw std::runtime_error("Обраний файл резервної копії не знайдено: " + backupPath.string());
     }
 
+    if (!m_validator.validateBeforeAction(backupPath, "Відновлення з резервної копії (перевірка джерела)", true)) {
+        throw std::runtime_error("Перевірка файлу-джерела перед відновленням не пройдена або скасована.");
+    }
+
     fs::path targetPath = getGameConfigPath();
     fs::path targetDir = targetPath.parent_path();
 
@@ -75,6 +81,19 @@ void BackupManager::restoreFromBackup(const fs::path& backupPath) {
         if (!fs::exists(targetDir)) {
             fs::create_directories(targetDir);
         }
+
+        if (fs::exists(targetPath)) {
+            try {
+                fs::remove(targetPath);
+                // std::cerr << "Successfully removed existing preferences.xml before restoration." << std::endl;
+            } catch (const fs::filesystem_error& e) {
+                // Якщо не вдалося видалити, це вже проблема з дозволами/блокуванням
+                throw std::runtime_error(std::string("Помилка файлової системи: не вдалося видалити існуючий файл preferences.xml перед відновленням. ") + e.what());
+            }
+        }
+
+        // Використовуємо overwrite_existing на випадок, якщо remove не спрацював з невідомих причин
+        // або файл був створений між remove та copy_file.
         fs::copy_file(backupPath, targetPath, fs::copy_options::overwrite_existing);
     } catch (const fs::filesystem_error& e) {
         throw std::runtime_error(std::string("Помилка файлової системи при відновленні з копії: ") + e.what());
@@ -84,6 +103,5 @@ void BackupManager::restoreFromBackup(const fs::path& backupPath) {
 }
 
 void BackupManager::manageBackupSpace() {
-    // Тут може бути логіка для видалення старих бекапів, але пофік, вручну можна видалити
-    // std::cerr << "Warning: manageBackupSpace() is not implemented." << std::endl;
+    // Тут може бути логіка для видалення старих бекапів.
 }
